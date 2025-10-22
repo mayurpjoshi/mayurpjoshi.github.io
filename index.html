@@ -146,6 +146,22 @@
 .plain-list em {
     color: var(--text-light);
 }
+        /* Profile Headshot */
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 6px 20px var(--shadow);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px var(--shadow);
+}
 
         /* Main Content */
         main {
@@ -636,8 +652,11 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <div class="hero-section">
-                <div class="hero-content">
-                    <h1>Mayur Joshi, PhD</h1>
+               <div class="hero-content">
+    <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MayurJoshi_Pic.jpg" 
+         alt="Mayur Joshi, PhD" class="profile-pic">
+    <h1> Mayur Joshi, PhD</h1>
+                    
                     <p class="subtitle">Assistant Professor of Information Systems</p>
                     <p class="subtitle">Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</p>
 <p class="affiliation">Telfer School of Management, University of Ottawa</p>
@@ -1203,6 +1222,7 @@
     </script>
 </body>
 </html>
+
 
 
 
