@@ -146,21 +146,42 @@
 .plain-list em {
     color: var(--text-light);
 }
-        /* Profile Headshot */
-.profile-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+      /* Side-by-side Hero Layout */
+.hero-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-rect {
+    width: 260px;
+    height: auto;
+    border-radius: 8px;
     object-fit: cover;
-    border: 4px solid var(--primary);
-    box-shadow: 0 6px 20px var(--shadow);
-    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-pic:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px var(--shadow);
+.profile-rect:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px var(--shadow);
+}
+
+.hero-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
         /* Main Content */
@@ -626,6 +647,14 @@
                 width: 100%;
                 justify-content: center;
             }
+            .hero-flex {
+    flex-direction: column;
+    text-align: center;
+}
+
+.hero-content {
+    text-align: center;
+}
         }
     </style>
 </head>
@@ -651,15 +680,28 @@
     <main>
         <!-- Home Page -->
         <div id="home" class="page active">
-            <div class="hero-section">
-               <div class="hero-content">
-    <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MayurJoshi_Pic.jpg" 
-         alt="Mayur Joshi, PhD" class="profile-pic">
-    <h1> Mayur Joshi, PhD</h1>
-                    
-                    <p class="subtitle">Assistant Professor of Information Systems</p>
-                    <p class="subtitle">Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</p>
-<p class="affiliation">Telfer School of Management, University of Ottawa</p>
+   <div class="hero-section">
+    <div class="hero-flex">
+        <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MayurJoshi_Pic.jpg" 
+                 alt="Dr. Mayur P. Joshi" class="profile-rect">
+        </div>
+        <div class="hero-content">
+            <h1>Dr. Mayur P. Joshi</h1>
+            <p class="subtitle">Assistant Professor of Information Systems</p>
+            <p class="affiliation">Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</p>
+            <p class="affiliation">Telfer School of Management, University of Ottawa</p>
+
+            <div class="contact-buttons">
+                <a href="mailto:mayur.joshi@uottawa.ca" class="contact-btn">📧 Email</a>
+                <a href="https://scholar.google.com" target="_blank" class="contact-btn">🎓 Google Scholar</a>
+                <a href="https://linkedin.com/in/mayurpjoshi" target="_blank" class="contact-btn">💼 LinkedIn</a>
+                <a href="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/CV_MayurJoshi_October2025.pdf" 
+                   target="_blank" class="contact-btn cv-btn">📄 Download CV</a>
+            </div>
+        </div>
+    </div>
+</div>
                     
                     <div class="contact-buttons">
                         <a href="mailto:mayur.joshi@telfer.uottawa.ca" class="contact-btn">
@@ -1222,6 +1264,7 @@
     </script>
 </body>
 </html>
+
 
 
 
