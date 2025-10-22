@@ -386,10 +386,18 @@
             font-style: italic;
         }
 
-        .pub-card a {
-            color: var(--primary);
-            text-decoration: none;
-        }
+       .pub-card a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+        .pub-card a::after {
+    content: " ↗";
+    font-size: 0.9rem;
+    color: var(--primary);
+}
 
         .pub-card a:hover {
             text-decoration: underline;
@@ -1195,6 +1203,7 @@
     </script>
 </body>
 </html>
+
 
 
 
