@@ -320,58 +320,13 @@
 
         /* Work & Education Timeline */
         .timeline {
-            position: relative;
-            padding-left: 2rem;
-            margin-top: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--primary);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.375rem;
-            top: 0.5rem;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid var(--bg);
-            box-shadow: 0 0 0 3px var(--primary);
-        }
-
-        .timeline-item .period {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .timeline-item .org {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
+    position: relative;
+    padding-left: 2rem;
+    margin-top: 2rem;
+}
+.timeline::before { content: none; }
+.timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 0; }
+.timeline-item::before { content: none; }
 
         /* Publications */
         .pub-card {
@@ -719,101 +674,60 @@
         </div>
 
         <!-- Work & Education Page -->
-      <div id="work" class="page">
+    <div id="work" class="page">
     <h2 class="section-title">Work & Education</h2>
 
     <!-- Education -->
     <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 2rem;">Education</h3>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="period">June 2021</div>
-            <h3>PhD in Business Administration</h3>
-            <p class="org">Ivey Business School, Western University, Canada</p>
-        </div>
+    <div class="plain-list">
+        <p><strong>PhD in Business Administration (June 2021)</strong><br>
+        Ivey Business School, Western University, Canada</p>
 
-        <div class="timeline-item">
-            <div class="period">December 2009</div>
-            <h3>Certified Associate of Indian Institute of Banking & Finance (CAIIB)</h3>
-            <p class="org">Indian Institute of Banking & Finance, Mumbai, India</p>
-        </div>
+        <p><strong>Certified Associate of Indian Institute of Banking & Finance (CAIIB) (Dec 2009)</strong><br>
+        Indian Institute of Banking & Finance, Mumbai, India</p>
 
-        <div class="timeline-item">
-            <div class="period">March 2004</div>
-            <h3>Master of Business Administration (MBA), Marketing</h3>
-            <p class="org">B.K. School of Business Management, Gujarat University, India</p>
-        </div>
+        <p><strong>Master of Business Administration (MBA), Marketing (Mar 2004)</strong><br>
+        B.K. School of Business Management, Gujarat University, India</p>
 
-        <div class="timeline-item">
-            <div class="period">March 2001</div>
-            <h3>Bachelor of Engineering (BE), Chemical</h3>
-            <p class="org">Dharmsinh Desai Institute of Technology, Gujarat University, India</p>
-        </div>
+        <p><strong>Bachelor of Engineering (BE), Chemical (Mar 2001)</strong><br>
+        Dharmsinh Desai Institute of Technology, Gujarat University, India</p>
     </div>
 
     <!-- Academic Positions -->
     <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem;">Academic Positions</h3>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="period">July 2023 – Present</div>
-            <h3>Assistant Professor of Information Systems</h3>
-            <p class="org">Telfer School of Management, University of Ottawa, Canada</p>
-        </div>
+    <div class="plain-list">
+        <p><strong>Assistant Professor of Information Systems (July 2023 – Present)</strong> &<br>
+        <strong>Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations (July 2025 – Present)</strong><br>
+        Telfer School of Management, University of Ottawa, Canada</p>
 
-        <div class="timeline-item">
-            <div class="period">July 2025 – Present</div>
-            <h3>Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</h3>
-            <p class="org">Telfer School of Management, University of Ottawa, Canada</p>
-        </div>
+        <p><strong>Assistant Professor (Lecturer) in FinTech and Information Systems (Feb 2021 – July 2023)</strong><br>
+        Alliance Manchester Business School, The University of Manchester, UK</p>
 
-        <div class="timeline-item">
-            <div class="period">February 2021 – July 2023</div>
-            <h3>Assistant Professor (Lecturer) in FinTech and Information Systems</h3>
-            <p class="org">Alliance Manchester Business School, The University of Manchester, UK</p>
-        </div>
-
-        <div class="timeline-item">
-            <div class="period">June 2018 – June 2025</div>
-            <h3>Research Fellow – Scotiabank Digital Banking Lab</h3>
-            <p class="org">Ivey Business School, Western University, Canada</p>
-        </div>
+        <p><strong>Research Fellow – Scotiabank Digital Banking Lab (June 2018 – June 2025)</strong><br>
+        Ivey Business School, Western University, Canada</p>
     </div>
 
     <!-- Editorial Affiliations -->
     <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem;">Editorial Affiliations</h3>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="period">2024 – Present</div>
-            <h3>Editorial Board Member</h3>
-            <p class="org">Information Systems Journal</p>
-        </div>
+    <div class="plain-list">
+        <p><strong>Editorial Board Member (2024 – Present)</strong><br>
+        Information Systems Journal</p>
 
-        <div class="timeline-item">
-            <div class="period">2022 – Present</div>
-            <h3>Early Career Editorial Board Member</h3>
-            <p class="org">Journal of Strategic Information Systems</p>
-        </div>
+        <p><strong>Early Career Editorial Board Member (2022 – Present)</strong><br>
+        Journal of Strategic Information Systems</p>
     </div>
 
     <!-- Industry Positions -->
     <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem;">Industry Positions</h3>
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="period">September 2006 – July 2016</div>
-            <h3>Sub-unit Head (Assistant Vice President) – Retail Branch Control Unit</h3>
-            <p class="org">HDFC Bank Ltd., India</p>
-        </div>
+    <div class="plain-list">
+        <p><strong>Sub-unit Head (Assistant Vice President) – Retail Branch Control Unit (Sep 2006 – July 2016)</strong><br>
+        HDFC Bank Ltd., India</p>
 
-        <div class="timeline-item">
-            <div class="period">May 2005 – August 2006</div>
-            <h3>Teller Authorizer (Assistant Manager) – Retail Branch Banking</h3>
-            <p class="org">ICICI Bank Ltd., India</p>
-        </div>
+        <p><strong>Teller Authorizer (Assistant Manager) – Retail Branch Banking (May 2005 – Aug 2006)</strong><br>
+        ICICI Bank Ltd., India</p>
 
-        <div class="timeline-item">
-            <div class="period">April 2004 – April 2005</div>
-            <h3>Executive (Management Trainee) – Business Planning and Analysis</h3>
-            <p class="org">Claris Lifesciences Ltd., India</p>
-        </div>
+        <p><strong>Executive (Management Trainee) – Business Planning and Analysis (Apr 2004 – Apr 2005)</strong><br>
+        Claris Lifesciences Ltd., India</p>
     </div>
 </div>
 
@@ -1252,6 +1166,7 @@
     </script>
 </body>
 </html>
+
 
 
 
