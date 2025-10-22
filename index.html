@@ -159,64 +159,7 @@
             }
         }
 
-        /* Home Page */
-        .hero-section {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
-            border-radius: 16px;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 0 2rem;
-        }
-
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-section .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .hero-section .description {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* Buttons and CTAs */
         .btn {
             padding: 0.875rem 2rem;
             border-radius: 8px;
@@ -251,57 +194,111 @@
             color: white;
         }
 
+        /* Home Page */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .hero-section .affiliation {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .cv-btn {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cv-btn:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* Section Titles */
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2rem;
             color: var(--text);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-        }
-
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px var(--shadow);
-        }
-
-        .stat-card .number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card .label {
-            font-size: 1rem;
-            color: var(--text-light);
-        }
-
-        /* Updates Grid */
+        /* Updates Section */
         .updates-grid {
             display: grid;
-            gap: 1.5rem;
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
 
         .update-card {
@@ -325,84 +322,73 @@
             margin-bottom: 0.5rem;
         }
 
-        .update-card h3 {
-            font-size: 1.125rem;
+        .update-card p {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Work & Education Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.375rem;
+            top: 0.5rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+
+        .timeline-item .period {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
             color: var(--text);
         }
 
-        /* Research Areas */
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .research-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .research-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px var(--shadow);
-            border-color: var(--primary);
-        }
-
-        .research-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .research-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .research-card p {
+        .timeline-item .org {
             color: var(--text-light);
-            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 0.5rem;
         }
 
         /* Publications */
-        .pub-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border: 2px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: white;
-        }
-
-        .publications-list {
-            display: grid;
-            gap: 2rem;
-        }
-
         .pub-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 2rem;
+            margin-bottom: 2rem;
             transition: all 0.3s ease;
         }
 
@@ -414,84 +400,158 @@
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
 
         .pub-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
             color: var(--text);
+            line-height: 1.4;
         }
 
         .pub-card .authors {
             color: var(--text-light);
             margin-bottom: 0.5rem;
+            font-style: italic;
         }
 
-        .pub-card .meta {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .badge-journal {
-            background: rgba(37, 99, 235, 0.1);
+        .pub-card a {
             color: var(--primary);
+            text-decoration: none;
         }
 
-        .badge-conference {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--secondary);
+        .pub-card a:hover {
+            text-decoration: underline;
         }
 
-        /* Contact Section */
-        .contact-grid {
+        /* Awards Section */
+        .awards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .contact-item {
-            text-align: center;
-            padding: 2rem;
+        .award-card {
             background: var(--bg-secondary);
-            border-radius: 12px;
             border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
             transition: all 0.3s ease;
         }
 
-        .contact-item:hover {
-            transform: translateY(-4px);
+        .award-card:hover {
+            transform: translateX(8px);
             box-shadow: 0 8px 24px var(--shadow);
         }
 
-        .contact-item .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .award-card .year {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
         }
 
-        .contact-item h3 {
+        .award-card h3 {
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: var(--text);
         }
 
-        .contact-item a {
+        .award-card p {
             color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        .contact-item a:hover {
+        /* Teaching Section */
+        .teaching-section {
+            margin-bottom: 3rem;
+        }
+
+        .teaching-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .teaching-card h3 {
             color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .course-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .course-item h4 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-item .details {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .course-item .award {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Service Section */
+        .service-category {
+            margin-bottom: 3rem;
+        }
+
+        .service-category h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .service-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-item h4 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .service-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .service-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .service-item a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
@@ -553,11 +613,24 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -570,10 +643,10 @@
             <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><button class="nav-btn active" onclick="showPage('home')">Home</button></li>
-                <li><button class="nav-btn" onclick="showPage('updates')">Updates</button></li>
-                <li><button class="nav-btn" onclick="showPage('research')">Research</button></li>
-                <li><button class="nav-btn" onclick="showPage('publications')">Publications</button></li>
-                <li><button class="nav-btn" onclick="showPage('contact')">Contact</button></li>
+                <li><button class="nav-btn" onclick="showPage('work')">Work & Education</button></li>
+                <li><button class="nav-btn" onclick="showPage('research')">Research & Publications</button></li>
+                <li><button class="nav-btn" onclick="showPage('teaching')">Teaching</button></li>
+                <li><button class="nav-btn" onclick="showPage('service')">Service & Professional Development</button></li>
             </ul>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                 <span id="themeIcon">🌙</span>
@@ -588,292 +661,481 @@
             <div class="hero-section">
                 <div class="hero-content">
                     <h1>Dr. Mayur P. Joshi</h1>
-                    <p class="subtitle">Assistant Professor | Researcher | Educator</p>
-                    <p class="description">
-                        Exploring the intersection of AI, digital transformation, and organizational theory. 
-                        Passionate about understanding how technology reshapes work, organizations, and society.
-                    </p>
-                    <div class="cta-buttons">
-                        <button class="btn btn-primary" onclick="showPage('publications')">View Publications</button>
-                        <button class="btn btn-secondary" onclick="showPage('contact')">Get in Touch</button>
+                    <p class="subtitle">Assistant Professor of Information Systems</p>
+                    <p class="affiliation">Telfer School of Management, University of Ottawa</p>
+                    <p class="affiliation">Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</p>
+                    
+                    <div class="contact-buttons">
+                        <a href="mailto:mayur.joshi@uottawa.ca" class="contact-btn">
+                            📧 Email
+                        </a>
+                        <a href="https://scholar.google.com" target="_blank" class="contact-btn">
+                            🎓 Google Scholar
+                        </a>
+                        <a href="https://linkedin.com/in/mayurpjoshi" target="_blank" class="contact-btn">
+                            💼 LinkedIn
+                        </a>
+                        <a href="#" class="contact-btn cv-btn">
+                            📄 Download CV
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="number">15+</div>
-                    <div class="label">Publications</div>
+            <div style="margin-top: 3rem;">
+                <h2 class="section-title">Latest Updates</h2>
+                <div class="updates-grid">
+                    <div class="update-card">
+                        <div class="date">September 2025</div>
+                        <p>📄 My latest paper on theorizing as an organizing capability was recently published in <strong>Journal of Management Studies</strong>!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">July 2025</div>
+                        <p>🏆 I was awarded the <strong>Father Edgar Thivierge Fellowship in AI and Transformation of Work, Occupations, and Organizations</strong> at Telfer School of Management!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">January 2025</div>
+                        <p>🎤 I presented my work on AI in the Garbage Cans @ <strong>HICSS 2025</strong>!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">2023</div>
+                        <p>🏅 I won the <strong>Teaching Excellence Award</strong> for the year 2022-23 from Alliance Manchester Business School!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">August 2023</div>
+                        <p>⭐ I won the <strong>Outstanding Associate Editor award</strong> from the CTO Division, AoM 2023!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">August 2023</div>
+                        <p>👥 I co-organized a PDW on <strong>Rationality in the Era of AI</strong> at AoM 2023 with a house-full audience!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">June 2023</div>
+                        <p>🎯 I won the <strong>Best Associate Editor award</strong> from ECIS 2023!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">2023</div>
+                        <p>📰 My conceptual paper on <strong>digital transformation</strong> just came out in <strong>JAIS</strong>!</p>
+                    </div>
+                    <div class="update-card">
+                        <div class="date">December 2022</div>
+                        <p>🏆 I won the prestigious <strong>Outreach Practice Publication Award</strong> from AIS during ICIS 2022!</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="number">5</div>
-                    <div class="label">Awards</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">3</div>
-                    <div class="label">Best Editor Awards</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">100+</div>
-                    <div class="label">Citations</div>
-                </div>
-            </div>
-
-            <div style="margin-top: 4rem;">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">
-                    I am an Assistant Professor specializing in information systems, digital transformation, 
-                    and organizational theory. My research focuses on understanding how artificial intelligence 
-                    and digital technologies transform organizations, work practices, and decision-making processes.
-                </p>
-                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
-                    With publications in top-tier journals such as the Journal of Management Studies and JAIS, 
-                    and recognition through multiple editorial awards, I am committed to advancing our understanding 
-                    of the socio-technical aspects of digital transformation. My work bridges theory and practice, 
-                    contributing to both academic discourse and real-world applications.
-                </p>
             </div>
         </div>
 
-        <!-- Updates Page -->
-        <div id="updates" class="page">
-            <h2 class="section-title">Latest Updates</h2>
-            <p class="section-subtitle">Recent achievements, publications, and highlights from my academic journey</p>
+        <!-- Work & Education Page -->
+        <div id="work" class="page">
+            <h2 class="section-title">Work & Education</h2>
             
-            <div class="updates-grid">
-                <div class="update-card">
-                    <div class="date">September 2025</div>
-                    <h3>📄 New Publication in Journal of Management Studies</h3>
-                    <p>Latest paper on theorizing as an organizing capability published in one of the leading management journals!</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="period">July 2023 - Present</div>
+                    <h3>Assistant Professor of Information Systems</h3>
+                    <p class="org">Telfer School of Management, University of Ottawa, Canada</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">July 2025</div>
-                    <h3>🏆 Father Edgar Thivierge Fellowship Award</h3>
-                    <p>Honored to receive the fellowship in AI and Transformation of Work, Occupations, and Organizations at Telfer School of Management.</p>
+
+                <div class="timeline-item">
+                    <div class="period">July 2025 - Present</div>
+                    <h3>Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</h3>
+                    <p class="org">Telfer School of Management, University of Ottawa, Canada</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">January 2025</div>
-                    <h3>🎤 HICSS 2025 Presentation</h3>
-                    <p>Presented research on AI in the Garbage Cans model at Hawaii International Conference on System Sciences.</p>
+
+                <div class="timeline-item">
+                    <div class="period">February 2021 - July 2023</div>
+                    <h3>Assistant Professor (Lecturer) in FinTech and Information Systems</h3>
+                    <p class="org">Alliance Manchester Business School, The University of Manchester, UK</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">2023</div>
-                    <h3>🏅 Teaching Excellence Award</h3>
-                    <p>Received the Teaching Excellence Award for 2022-23 from Alliance Manchester Business School.</p>
+
+                <div class="timeline-item">
+                    <div class="period">June 2018 - June 2025</div>
+                    <h3>Research Fellow - Scotiabank Digital Banking Lab</h3>
+                    <p class="org">Ivey Business School, Western University, Canada</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">August 2023</div>
-                    <h3>⭐ Outstanding Associate Editor - AoM</h3>
-                    <p>Won Outstanding Associate Editor award from the CTO Division, Academy of Management 2023.</p>
+
+                <div class="timeline-item">
+                    <div class="period">2024 - Present</div>
+                    <h3>Editorial Board Member</h3>
+                    <p class="org">Information Systems Journal</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">August 2023</div>
-                    <h3>👥 PDW on Rationality in the Era of AI</h3>
-                    <p>Co-organized a Professional Development Workshop at AoM 2023 with a house-full audience exploring rationality in the age of artificial intelligence.</p>
+
+                <div class="timeline-item">
+                    <div class="period">2022 - Present</div>
+                    <h3>Early Career Editorial Board Member</h3>
+                    <p class="org">Journal of Strategic Information Systems</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">June 2023</div>
-                    <h3>🎯 Best Associate Editor - ECIS</h3>
-                    <p>Received the Best Associate Editor award from European Conference on Information Systems 2023.</p>
+
+                <div class="timeline-item">
+                    <div class="period">September 2006 - July 2016</div>
+                    <h3>Sub-unit Head (Assistant Vice President) - Retail Branch Control Unit</h3>
+                    <p class="org">HDFC Bank Ltd., India</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">2023</div>
-                    <h3>📰 Digital Transformation Paper Published</h3>
-                    <p>Conceptual paper on digital transformation published in Journal of the Association for Information Systems (JAIS).</p>
+
+                <div class="timeline-item">
+                    <div class="period">May 2005 - August 2006</div>
+                    <h3>Teller Authorizer (Assistant Manager) - Retail Branch Banking</h3>
+                    <p class="org">ICICI Bank Ltd., India</p>
                 </div>
-                <div class="update-card">
-                    <div class="date">December 2022</div>
-                    <h3>🏆 Outreach Practice Publication Award</h3>
-                    <p>Won the prestigious Outreach Practice Publication Award from AIS during ICIS 2022.</p>
+
+                <div class="timeline-item">
+                    <div class="period">April 2004 - April 2005</div>
+                    <h3>Executive (Management Trainee) - Business Planning and Analysis</h3>
+                    <p class="org">Claris Lifesciences Ltd., India</p>
                 </div>
             </div>
         </div>
 
-        <!-- Research Page -->
+        <!-- Research & Publications Page -->
         <div id="research" class="page">
-            <h2 class="section-title">Research Interests</h2>
-            <p class="section-subtitle">Exploring the intersection of technology, organizations, and society</p>
+            <h2 class="section-title">Research & Publications</h2>
             
-            <div class="research-grid">
-                <div class="research-card">
-                    <div class="icon">🤖</div>
-                    <h3>Artificial Intelligence</h3>
-                    <p>Exploring the organizational implications of AI adoption, rationality in the era of AI, and the transformation of work and decision-making processes. My research examines how AI technologies reshape organizational practices and the nature of human work.</p>
-                </div>
-                <div class="research-card">
-                    <div class="icon">🔄</div>
-                    <h3>Digital Transformation</h3>
-                    <p>Understanding how organizations navigate digital transformation, develop capabilities, and adapt to technological change. I investigate the strategic, operational, and cultural dimensions of digitalization in contemporary organizations.</p>
-                </div>
-                <div class="research-card">
-                    <div class="icon">🏢</div>
-                    <h3>Organization Theory</h3>
-                    <p>Investigating theorizing as an organizing capability, organizational decision-making, and the evolution of organizational practices. My work contributes to understanding how organizations make sense of and respond to complex environments.</p>
-                </div>
-                <div class="research-card">
-                    <div class="icon">💼</div>
-                    <h3>Information Systems</h3>
-                    <p>Research at the intersection of technology, organizations, and strategy, focusing on IS adoption, implementation, and organizational outcomes. I examine how information systems enable and constrain organizational action.</p>
-                </div>
-                <div class="research-card">
-                    <div class="icon">📊</div>
-                    <h3>Decision Making</h3>
-                    <p>Studying organizational decision-making processes, including the role of garbage can models, bounded rationality, and the impact of AI on managerial and organizational decisions.</p>
-                </div>
-                <div class="research-card">
-                    <div class="icon">🎓</div>
-                    <h3>Theory Development</h3>
-                    <p>Focused on developing and refining theoretical frameworks that explain contemporary organizational phenomena, particularly in the context of rapid technological change and digital innovation.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Publications Page -->
-        <div id="publications" class="page">
-            <h2 class="section-title">Publications</h2>
-            <p class="section-subtitle">Selected publications in leading journals and conferences</p>
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1.5rem;">Publications</h3>
             
-            <div class="pub-filters">
-                <button class="filter-btn active" onclick="filterPubs('all')">All</button>
-                <button class="filter-btn" onclick="filterPubs('journal')">Journals</button>
-                <button class="filter-btn" onclick="filterPubs('conference')">Conferences</button>
-            </div>
-            
-            <div class="publications-list">
-                <div class="pub-card" data-type="journal">
-                    <div class="journal">Journal of Management Studies</div>
-                    <h3>Theorizing as an Organizing Capability</h3>
-                    <p class="authors">Mayur P. Joshi et al.</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        This research explores how organizations develop and leverage theorizing as a core capability 
-                        for navigating complex and ambiguous environments.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-journal">Journal Article</span>
-                        <span class="badge badge-journal">2025</span>
-                        <span class="badge badge-journal">Impact Factor: 7.5+</span>
-                    </div>
-                </div>
-                
-                <div class="pub-card" data-type="journal">
-                    <div class="journal">Journal of the Association for Information Systems (JAIS)</div>
-                    <h3>Digital Transformation: A Conceptual Framework</h3>
-                    <p class="authors">Mayur P. Joshi et al.</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        A comprehensive conceptual framework for understanding digital transformation across 
-                        organizational contexts and industries.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-journal">Journal Article</span>
-                        <span class="badge badge-journal">2023</span>
-                        <span class="badge badge-journal">Senior Scholar Basket</span>
-                    </div>
-                </div>
-                
-                <div class="pub-card" data-type="conference">
-                    <div class="journal">HICSS 2025</div>
-                    <h3>AI in the Garbage Cans: Rethinking Organizational Decision-Making</h3>
-                    <p class="authors">Mayur P. Joshi</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        Examining how artificial intelligence influences organizational decision-making through 
-                        the lens of garbage can models.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-conference">Conference Proceeding</span>
-                        <span class="badge badge-conference">2025</span>
-                        <span class="badge badge-conference">Hawaii</span>
-                    </div>
-                </div>
-                
-                <div class="pub-card" data-type="conference">
-                    <div class="journal">ICIS 2022</div>
-                    <h3>Bridging Research and Practice in Digital Innovation</h3>
-                    <p class="authors">Mayur P. Joshi et al.</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        An exploration of how academic research can effectively inform and guide practical 
-                        implementations of digital innovation.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-conference">Conference Proceeding</span>
-                        <span class="badge badge-conference">2022</span>
-                        <span class="badge badge-conference">🏆 Award Winner</span>
-                    </div>
-                </div>
-                
-                <div class="pub-card" data-type="journal">
-                    <div class="journal">Organization Science</div>
-                    <h3>Sensemaking in Digital Contexts</h3>
-                    <p class="authors">Mayur P. Joshi et al.</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        Investigating how organizational members make sense of digital technologies and 
-                        their implications for work practices.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-journal">Journal Article</span>
-                        <span class="badge badge-journal">Under Review</span>
-                    </div>
-                </div>
-                
-                <div class="pub-card" data-type="conference">
-                    <div class="journal">Academy of Management Annual Meeting</div>
-                    <h3>Rationality in the Era of AI: A Critical Review</h3>
-                    <p class="authors">Mayur P. Joshi et al.</p>
-                    <p style="color: var(--text-light); margin-top: 0.5rem;">
-                        A critical examination of how AI challenges traditional notions of organizational 
-                        and individual rationality.
-                    </p>
-                    <div class="meta">
-                        <span class="badge badge-conference">PDW</span>
-                        <span class="badge badge-conference">2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Page -->
-        <div id="contact" class="page">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="section-subtitle">Feel free to reach out for collaborations, speaking opportunities, or academic discussions</p>
-            
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="mailto:mayur.joshi@example.com">mayur.joshi@example.com</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">🎓</div>
-                    <h3>Google Scholar</h3>
-                    <a href="#" target="_blank">View Profile</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">💼</div>
-                    <h3>LinkedIn</h3>
-                    <a href="#" target="_blank">Connect with Me</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">🐦</div>
-                    <h3>Twitter</h3>
-                    <a href="#" target="_blank">Follow @MayurPJoshi</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">🏛️</div>
-                    <h3>Institution</h3>
-                    <a href="#" target="_blank">University Profile</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">📚</div>
-                    <h3>ResearchGate</h3>
-                    <a href="#" target="_blank">Research Profile</a>
-                </div>
+            <div class="pub-card">
+                <div class="journal">Journal of Management Studies (forthcoming)</div>
+                <h3>Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</h3>
+                <p class="authors">Stelmaszak, M., Joshi, M., & Constantiou, I. (2025)*</p>
+                <p style="color: var(--text-light); margin-top: 0.5rem; font-size: 0.95rem;">*Equal authorship; authors listed (reverse) alphabetically.</p>
+                <p style="margin-top: 0.5rem;"><a href="https://onlinelibrary.wiley.com/doi/10.1111/joms.70003" target="_blank">PDF</a></p>
             </div>
 
-            <div style="margin-top: 4rem; padding: 3rem; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border);">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text);">Office Hours</h3>
-                <p style="color: var(--text-light); line-height: 1.8;">
-                    I welcome discussions with students, researchers, and practitioners. Please feel free to 
-                    reach out via email to schedule a meeting or to discuss potential collaborations.
+            <div class="pub-card">
+                <div class="journal">Edward Elgar Publishing Ltd. (2024)</div>
+                <h3>Research Handbook on Artificial Intelligence and Decision Making in Organizations</h3>
+                <p class="authors">Constantiou, I., Joshi, M. P., & Stelmaszak, M. (Eds.)</p>
+            </div>
+
+            <div class="pub-card">
+                <div class="journal">Journal of the Association for Information Systems, 24(6):1770-1798</div>
+                <h3>Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies in Organizational Scanning, Interpretation, and Learning</h3>
+                <p class="authors">Constantiou, I., Joshi, M.P., & Stelmaszak, M. (2023)*</p>
+                <p style="margin-top: 0.5rem;"><a href="https://aisel.aisnet.org/jais/vol24/iss6/1/" target="_blank">PDF</a></p>
+            </div>
+
+            <div class="pub-card">
+                <div class="journal">MIT Sloan Management Review, 62(3):85-89</div>
+                <h3>Why So Many Data Science Projects Fail to Deliver</h3>
+                <p class="authors">Joshi, M.P., Su, N., Austin, R.D., & Sundaram, A.K. (2021)</p>
+                <p style="margin-top: 0.5rem;"><a href="https://sloanreview.mit.edu/article/why-so-many-data-science-projects-fail-to-deliver/" target="_blank">Read Article</a></p>
+                <p style="color: var(--secondary); font-weight: 600; margin-top: 0.75rem;">
+                    🏆 Outreach Practice Publication Award from AIS 2022<br>
+                    ⭐ Featured in top 10 most popular articles of 2021 @ MIT SMR
                 </p>
+            </div>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Awards & Honors</h3>
+            
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="year">2025</div>
+                    <h3>Best Paper Proceedings</h3>
+                    <p>CTO Division of the Academy of Management</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2023</div>
+                    <h3>Outstanding Associate Editor Award</h3>
+                    <p>CTO Division of the Academy of Management</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2023</div>
+                    <h3>Best Associate Editor Award</h3>
+                    <p>European Conference on Information Systems</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2022</div>
+                    <h3>Outreach Practice Publication Award</h3>
+                    <p>Association for Information Systems</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2022</div>
+                    <h3>OMT Division Showcase Symposium Recognition</h3>
+                    <p>Symposium on data workers at AOM 2022</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2021</div>
+                    <h3>Top 10 Most Popular Articles</h3>
+                    <p>MIT Sloan Management Review</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2020</div>
+                    <h3>Best ERF (Short) Paper - Runner-up</h3>
+                    <p>AMCIS 2020</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2019</div>
+                    <h3>Best Student Paper</h3>
+                    <p>SIG DSA ICIS 2019 (paper on data science)</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2019</div>
+                    <h3>Honorable Mention</h3>
+                    <p>OT Division at ASAC 2019</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2018</div>
+                    <h3>Best Paper in Strategic IT Track</h3>
+                    <p>AMCIS 2018 (paper on India's demonetization)</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2017, 2018, 2019</div>
+                    <h3>Excellent Progress in Doctoral Studies</h3>
+                    <p>Ivey Business School</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Research Grants & Funding</h3>
+            
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="year">2024-2026</div>
+                    <h3>SSHRC Insight Development Grant</h3>
+                    <p>Social Sciences and Humanities Research Council</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2023-2025</div>
+                    <h3>Startup Fund</h3>
+                    <p>Telfer School of Management</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2023</div>
+                    <h3>Seed Funding</h3>
+                    <p>University of Ottawa</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2022</div>
+                    <h3>Startup Grant</h3>
+                    <p>Centre for Digital Trust and Society (DTS), The University of Manchester</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2021</div>
+                    <h3>Manchester-Melbourne Research Fund</h3>
+                    <p>FinTech Research</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2019-2020</div>
+                    <h3>Dean's Conference Scholarship</h3>
+                    <p>Ivey Business School</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2019-2020</div>
+                    <h3>Brock Scholarship</h3>
+                    <p>Ivey Business School</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2019</div>
+                    <h3>Professor Al Mikalachki PhD Research Fund</h3>
+                    <p>Ivey Business School</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2016-2020</div>
+                    <h3>Plan for Excellence Doctoral Fellowship</h3>
+                    <p>Ivey Business School</p>
+                </div>
+                <div class="award-card">
+                    <div class="year">2016-2020</div>
+                    <h3>Dean's Scholarship</h3>
+                    <p>Ivey Business School</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teaching Page -->
+        <div id="teaching" class="page">
+            <h2 class="section-title">Teaching</h2>
+            
+            <div class="teaching-section">
+                <div class="teaching-card">
+                    <h3>Alliance Manchester Business School, UK</h3>
+                    
+                    <div class="course-item">
+                        <h4>Module Developer & Course Instructor</h4>
+                        <p class="details"><strong>Financial Data Analytics and AI in Finance</strong><br>
+                        MSc Business Analytics / Data Science<br>
+                        Winter 2022, 2023</p>
+                        <span class="award">🏅 Teaching Excellence Award from the Dean (2021-22)</span>
+                    </div>
+                    
+                    <div class="course-item">
+                        <h4>Course Instructor</h4>
+                        <p class="details"><strong>Marketing Analytics</strong><br>
+                        MSc Marketing, MSc Operations and Supply Chain Management<br>
+                        Winter 2023</p>
+                        <span class="award">🏅 Teaching Excellence Award from the Dean (2022-23)</span>
+                    </div>
+                </div>
+
+                <div class="teaching-card">
+                    <h3>Ivey Business School, Canada</h3>
+                    
+                    <div class="course-item">
+                        <h4>Session / Course Instructor</h4>
+                        <p class="details"><strong>Data Management</strong> (HBA and MSc)<br>
+                        Spring 2020<br>
+                        Session Taught: Database Architecture and Data Warehouses<br>
+                        Supervising Professor: Derrick Neufeld</p>
+                    </div>
+                    
+                    <div class="course-item">
+                        <h4>Session / Course Instructor</h4>
+                        <p class="details"><strong>Project Management</strong> (HBA)<br>
+                        Spring 2020<br>
+                        Section Taught: Hands-on with Microsoft Project<br>
+                        Supervising Professor: Ning Su</p>
+                    </div>
+                    
+                    <div class="course-item">
+                        <h4>Course Instructor</h4>
+                        <p class="details"><strong>Analytics Bootcamp</strong> (Pre-HBA)<br>
+                        Fall 2019<br>
+                        Duties: Teaching basics of analytics to incoming Ivey students</p>
+                    </div>
+                    
+                    <div class="course-item">
+                        <h4>Teaching Assistant</h4>
+                        <p class="details">
+                        • Data Management (HBA) - Spring 2020<br>
+                        • Data Management (MSc) - Spring 2019<br>
+                        • Leveraging Information Technology (HBA) - Spring 2018
+                        </p>
+                    </div>
+                </div>
+
+                <div class="teaching-card">
+                    <h3>Pedagogical Training</h3>
+                    <div class="course-item">
+                        <p class="details"><strong>Advanced Teaching Program (Teaching Workshop)</strong><br>
+                        Teaching Support Centre, Summer 2017</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service & Professional Development Page -->
+        <div id="service" class="page">
+            <h2 class="section-title">Service & Professional Development</h2>
+            
+            <div class="service-category">
+                <h3>Conference Organizing and Associate Editor Roles</h3>
+                
+                <div class="service-item">
+                    <h4>Associate Editor</h4>
+                    <p>
+                        • CTO Division, Academy of Management Annual Meeting, Boston, August 2023<br>
+                        • Track on "Human-AI Collaboration: Challenges and Opportunities," European Conference on Information Systems, Kristiansand, Norway, June 2023<br>
+                        • Track on "Data Analytics for Business and Societal Challenges," International Conference on Information Systems, Copenhagen, December 2022<br>
+                        • Track on "The Token Economy – Blockchain Applications beyond FinTech," European Conference on Information Systems, Timisoara, June 2022
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Panel Discussions</h3>
+                
+                <div class="service-item">
+                    <h4>Panel Discussant</h4>
+                    <p>
+                        • Symposium on "Algorithmic Bias and Data Injustice: Dark Side or Dark Matter" at AoM, Boston, August 2023<br>
+                        • Panel on "How can AI interact with humans during decision-making in organizations?" at Copenhagen Business School, December 2021<br>
+                        • Panel on "How can your organization become the new Google? Or at least, improve the value creation from data!" at Digital Tech Summit, Copenhagen, December 2021
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Professional Development Workshops and Minitracks</h3>
+                
+                <div class="service-item">
+                    <h4>Workshop and Minitrack Organization</h4>
+                    <p>
+                        • Co-organized a PDW on <strong>Rationality in the Era of AI</strong> at AOM 2023<br>
+                        • Co-organized a Symposium on <strong>Data Workers in Organizations: What do they do, how they do and why they do it!</strong> at AOM 2022<br>
+                        <span style="color: var(--secondary); font-weight: 600;">Recognized as a Showcase Symposium by OMT Division</span><br>
+                        • Co-hosted a minitrack on <strong>Service Innovation in Data-Ecosystems</strong>, AMCIS 2022<br>
+                        • Co-hosted a minitrack on <strong>Digital Transformation through Data Analytics, Artificial Intelligence and Other Epistemic Technologies</strong>, AMCIS 2020
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Editorial Board Membership</h3>
+                
+                <div class="service-item">
+                    <h4>Editorial Board Member</h4>
+                    <p>
+                        • <strong>Information Systems Journal</strong> (2024 - Present)<br>
+                        • <strong>Journal of Strategic Information Systems</strong>, Early Career Editorial Board (2022 - Present)
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Ad-hoc Reviewing</h3>
+                
+                <div class="service-item">
+                    <h4>Journal Reviewer</h4>
+                    <p>Information Systems Research (2019-), Journal of Strategic Information Systems (2020-2021), Information Systems Journal (2020-), ACM Transactions on Modeling and Computer Simulation (2020)</p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>Conference Reviewer</h4>
+                    <p>ICIS 2021, 2020, 2019, 2018, 2017 / HICSS 2019 / AMCIS 2020, 2019, 2018 / ECIS 2022, 2019, 2018 / AOM 2023, 2022, 2021, 2020, 2019, 2018 / AOM Big Data Conference 2018</p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Academic Seminars</h3>
+                
+                <div class="service-item">
+                    <h4>Seminar Organization</h4>
+                    <p>
+                        • Organizing <strong>FinTech Seminar Series</strong> at Alliance Manchester Business School (2021-2023)<br>
+                        • Helping coordinate <strong>Digital Transformation Seminar Series</strong> at Alliance Manchester Business School (2021-2023)
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Academic Blog Contributions</h3>
+                
+                <div class="service-item">
+                    <h4>ASQ Blog (2023)</h4>
+                    <p><a href="https://asqblog.com/2023/01/18/the-rhetoric-and-reality-of-total-quality-management/" target="_blank">Mark Zbaracki's interview for his ASQ Article, "The Rhetoric and Reality of Total Quality Management"</a></p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>Original Thinking Blog (2021)</h4>
+                    <p><a href="https://www.alliancembs.manchester.ac.uk/original-thinking-applied/original-thinkers/the-rhetoric-and-reality-of-data-science/" target="_blank">The Rhetoric and Reality of Data Science</a></p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>ASQ Blog (2020)</h4>
+                    <p><a href="https://asqblog.com/2020/05/01/beane-2019-shadow-learning-building-robotic-surgical-skill-when-approved-means-fail/" target="_blank">Matthew Beane's interview for his ASQ Article, "Shadow Learning: Building Robotic Surgical Skill When Approved Means Fail"</a></p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>ASQ Blog (2019)</h4>
+                    <p><a href="https://asqblog.com/2019/11/22/bechky-2019-evaluative-spillovers-from-technological-change-the-effects-of-dna-envy-on-occupational-practices-in-forensic-science/" target="_blank">Beth Bechky's interview for her ASQ Article, "Evaluative Spillovers from Technological Change: The Effects of "DNA Envy" on Occupational Practices in Forensic Science"</a></p>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3>Volunteering and Leadership</h3>
+                
+                <div class="service-item">
+                    <h4>Conference Volunteer</h4>
+                    <p>ICIS 2019, AMCIS 2019, FinTech Panel at Canadian Business Frontiers 2018, Digital Disruption in Financial Services 2016</p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>Academic Vice President</h4>
+                    <p>PhD Association, Ivey Business School (Academic Year 2018-19)</p>
+                </div>
+                
+                <div class="service-item">
+                    <h4>Student Representative</h4>
+                    <p>Executive Board, AIS Special Interest Group in Organizational Systems Research (SIGOSRA) (September 2020 - June 2021)</p>
+                </div>
             </div>
         </div>
     </main>
@@ -889,32 +1151,28 @@
         let currentPage = 'home';
 
         function showPage(pageName) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             
-            // Show selected page
             const selectedPage = document.getElementById(pageName);
             if (selectedPage) {
                 selectedPage.classList.add('active');
                 currentPage = pageName;
             }
             
-            // Update nav buttons
             const navButtons = document.querySelectorAll('.nav-btn');
             navButtons.forEach(btn => btn.classList.remove('active'));
             
-            const activeBtn = Array.from(navButtons).find(btn => 
-                btn.textContent.toLowerCase() === pageName
-            );
+            const activeBtn = Array.from(navButtons).find(btn => {
+                const btnText = btn.textContent.toLowerCase().replace(/ & /g, '');
+                const pageText = pageName.toLowerCase().replace(/ & /g, '');
+                return btnText.includes(pageText) || pageText.includes(btnText.split(' ')[0]);
+            });
             if (activeBtn) {
                 activeBtn.classList.add('active');
             }
             
-            // Close mobile menu
             closeMenu();
-            
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -928,12 +1186,11 @@
             localStorage.setItem('theme', newTheme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.getElementById('themeIcon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-        // Mobile menu toggle
+        // Mobile menu
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
@@ -944,39 +1201,19 @@
             navLinks.classList.remove('active');
         }
 
-        // Publication filters
-        function filterPubs(type) {
-            const cards = document.querySelectorAll('.pub-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            cards.forEach(card => {
-                if (type === 'all' || card.getAttribute('data-type') === type) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Handle browser back/forward buttons
+        // Browser navigation
         window.addEventListener('popstate', function(e) {
             if (e.state && e.state.page) {
                 showPage(e.state.page);
             }
         });
 
-        // Initialize
         window.addEventListener('load', function() {
-            // Set initial state
             history.replaceState({ page: 'home' }, '', '');
             
-            // Add click listeners to nav buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const pageName = this.textContent.toLowerCase();
+                    const pageName = this.textContent.toLowerCase().split(' ')[0];
                     history.pushState({ page: pageName }, '', '#' + pageName);
                 });
             });
