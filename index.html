@@ -568,7 +568,31 @@
         .service-item a:hover {
             text-decoration: underline;
         }
-
+/* Blog cards */
+.blog-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.blog-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.3s ease;
+}
+.blog-card:hover { box-shadow: 0 8px 24px var(--shadow); transform: translateY(-2px); }
+.blog-card .meta { color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.4rem; }
+.blog-card h3 { color: var(--text); font-size: 1.15rem; margin: 0.2rem 0 0.5rem; }
+.blog-card p { color: var(--text); }
+.blog-card a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+.blog-card a:hover { text-decoration: underline; }
+/* external-link arrow for blog links */
+.blog-card a::after { content: " ↗"; font-size: 0.9rem; color: var(--primary); }
         /* Footer */
         footer {
             background: var(--bg-secondary);
@@ -674,6 +698,7 @@
                 <li><button class="nav-btn" onclick="showPage('research')">Research & Publications</button></li>
                 <li><button class="nav-btn" onclick="showPage('teaching')">Teaching</button></li>
                 <li><button class="nav-btn" onclick="showPage('service')">Service & Professional Development</button></li>
+                <li><button class="nav-btn" onclick="showPage('blog')">Blog</button></li>
             </ul>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                 <span id="themeIcon">🌙</span>
@@ -1333,6 +1358,57 @@
     </div>
   </div>
 </div>
+    <!-- Blog Page -->
+<div id="blog" class="page">
+  <h2 class="section-title">Blog</h2>
+
+  <p style="color:var(--text-light); margin-bottom:1rem;">
+    Short takes and longer pieces on AI, digital transformation, and research practice.
+  </p>
+
+  <div class="blog-grid">
+
+    <!-- Example post 1 -->
+    <article class="blog-card">
+      <div class="meta">Nov 2025 • 5 min read • AI & Organizations</div>
+      <h3>
+        <a href="https://mayurpjoshi.com/your-post-slug-1" target="_blank" rel="noopener">
+          The Bright and Dark Sides of Digital Transformation: A Field View
+        </a>
+      </h3>
+      <p>
+        A practitioner-friendly summary of what “digital” really changes inside organizations—and what it quietly breaks.
+      </p>
+    </article>
+
+    <!-- Example post 2 -->
+    <article class="blog-card">
+      <div class="meta">Sep 2025 • 7 min read • Methods</div>
+      <h3>
+        <a href="https://mayurpjoshi.com/your-post-slug-2" target="_blank" rel="noopener">
+          Teaching Research Methods as Craft, Not Compliance
+        </a>
+      </h3>
+      <p>
+        How response points, reflection memos, and theory-from-methods raise the ceiling in graduate seminars.
+      </p>
+    </article>
+
+    <!-- Example post 3 -->
+    <article class="blog-card">
+      <div class="meta">Aug 2025 • 4 min read • Generative AI</div>
+      <h3>
+        <a href="https://mayurpjoshi.com/your-post-slug-3" target="_blank" rel="noopener">
+          When Generative AI Substitutes Predictive Models
+        </a>
+      </h3>
+      <p>
+        A decision framework students used in ADM 4396 to evaluate GenAI substitutions in high-stakes workflows.
+      </p>
+    </article>
+
+  </div>
+</div>
     </main>
 
     <!-- Footer -->
@@ -1416,6 +1492,7 @@
     </script>
 </body>
 </html>
+
 
 
 
