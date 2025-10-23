@@ -294,27 +294,29 @@
             margin-bottom: 2rem;
         }
 
-        .contact-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
+       .contact-buttons {
+  display: flex;
+  gap: 0.6rem; /* slightly tighter spacing */
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-        .contact-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.contact-btn {
+  padding: 0.6rem 1.1rem; /* reduced padding */
+  min-width: 130px;       /* narrower buttons */
+  text-align: center;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
 
         .contact-btn:hover {
             border-color: var(--primary);
@@ -663,14 +665,12 @@
                 padding-left: 1.5rem;
             }
 
-            .contact-buttons {
-                flex-direction: column;
-            }
-
-            .contact-btn {
-                width: 100%;
-                justify-content: center;
-            }
+          .contact-buttons {
+    flex-wrap: wrap;
+  }
+  .contact-btn {
+    flex: 1 1 40%; /* two per row when screen narrows */
+  }
             .contact-btn svg {
     margin-right: 0.5rem;
     vertical-align: middle;
@@ -735,6 +735,12 @@
     </svg>
     LinkedIn
 </a>
+              <a href="https://telfer.uottawa.ca/en/directory/mayur-joshi/" 
+   target="_blank" 
+   class="contact-btn">
+   🏛️ University Profile
+</a>
+
             <a href="https://github.com/mayurpjoshi/mayurpjoshi.github.io/blob/main/CV_MayurJoshi_October2025.pdf"
                target="_blank"
                class="contact-btn cv-btn">📄 Download CV</a>
@@ -1723,6 +1729,7 @@
     </script>
 </body>
 </html>
+
 
 
 
