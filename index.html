@@ -1002,7 +1002,9 @@
 
     <!-- THEME 1: Digital Technologies and Organizing -->
     <div class="accordion-section" id="theme-organizing">
-      <div class="accordion-header" onclick="toggleTheme('theme-organizing','chev-organizing')" role="button" tabindex="0">
+      <div class="accordion-header" role="button" tabindex="0"
+     data-target="#theme-organizing .accordion-body"
+     data-chevron="#chev-organizing">
         <h3>Digital Technologies and Organizing</h3>
         <div class="accordion-meta">
           <span class="pub-count">3 publications</span>
@@ -1119,7 +1121,9 @@
 
     <!-- THEME 2: Digital Technologies and Knowledge Work -->
     <div class="accordion-section" id="theme-knowledgework">
-      <div class="accordion-header" onclick="toggleTheme('theme-knowledgework','chev-knowledgework')" role="button" tabindex="0">
+     <div class="accordion-header" role="button" tabindex="0"
+     data-target="#theme-knowledgework .accordion-body"
+     data-chevron="#chev-knowledgework">
         <h3>Digital Technologies and Knowledge Work</h3>
         <div class="accordion-meta">
           <span class="pub-count">2 publications</span>
@@ -1200,7 +1204,9 @@
 
     <!-- THEME 3: Computational Tools in Research -->
     <div class="accordion-section" id="theme-computational">
-      <div class="accordion-header" onclick="toggleTheme('theme-computational','chev-computational')" role="button" tabindex="0">
+     <div class="accordion-header" role="button" tabindex="0"
+     data-target="#theme-computational .accordion-body"
+     data-chevron="#chev-computational">
         <h3>Computational Tools in Research</h3>
         <div class="accordion-meta">
           <span class="pub-count">2 publications</span>
@@ -1414,36 +1420,47 @@
        Put this once on the page (or in your main JS file).
   ========================== -->
   <script>
-    function toggleTheme(sectionId, chevronId) {
-      const section = document.getElementById(sectionId);
-      if (!section) return;
+(function () {
+  function toggleBody(bodyEl, chevronEl) {
+    if (!bodyEl) return;
 
-      const body = section.querySelector('.accordion-body');
-      const chevron = document.getElementById(chevronId);
-      if (!body) return;
+    const isOpen =
+      bodyEl.style.display === 'block' ||
+      window.getComputedStyle(bodyEl).display === 'block';
 
-      const isOpen = body.style.display === 'block';
-      body.style.display = isOpen ? 'none' : 'block';
+    bodyEl.style.display = isOpen ? 'none' : 'block';
 
-      if (chevron) {
-        if (isOpen) chevron.classList.remove('rotated');
-        else chevron.classList.add('rotated');
-      }
+    if (chevronEl) {
+      chevronEl.classList.toggle('rotated', !isOpen);
     }
+  }
 
-    // Optional: allow Enter/Space on headers (accessibility)
-    (function bindAccordionKeyboard() {
-      const headers = document.querySelectorAll('#research .accordion-header');
-      headers.forEach(h => {
-        h.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            h.click();
-          }
-        });
-      });
-    })();
-  </script>
+  // Event delegation: one listener handles all accordion headers
+  document.addEventListener('click', function (e) {
+    const header = e.target.closest('#research .accordion-header');
+    if (!header) return;
+
+    const bodySelector = header.getAttribute('data-target');
+    const chevSelector = header.getAttribute('data-chevron');
+
+    const bodyEl = bodySelector ? document.querySelector(bodySelector) : null;
+    const chevronEl = chevSelector ? document.querySelector(chevSelector) : null;
+
+    toggleBody(bodyEl, chevronEl);
+  });
+
+  // Keyboard accessibility (Enter/Space)
+  document.addEventListener('keydown', function (e) {
+    const header = e.target.closest('#research .accordion-header');
+    if (!header) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      header.click();
+    }
+  });
+})();
+</script>
 </div>
 
         <!-- Teaching Page -->
@@ -1983,6 +2000,7 @@
     </script>
 </body>
 </html>
+
 
 
 
