@@ -912,390 +912,709 @@
     </div>
 </div>
 
-     <!-- Research & Awards Page -->
+   <!-- Research & Publications Page -->
 <div id="research" class="page">
-  <h2 class="section-title">Research & Awards</h2>
+  <h2 class="section-title">Research & Publications</h2>
 
-  <!-- =========================
-       ADD: Accordion CSS (scoped)
-       Place this in your main CSS if you prefer.
-  ========================== -->
   <style>
-    /* Accordion (scoped to Research page to avoid global side-effects) */
-    #research .theme-accordion { margin-top: 0.5rem; }
+    #research .research-intro {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+      font-size: 0.95rem;
+      color: var(--text);
+      max-width: 1100px;
+    }
 
-    #research .accordion-section{
-      margin-bottom: 1.75rem;
+    #research .layout {
+      display: flex;
+      gap: 2.25rem;
+      align-items: flex-start;
+    }
+
+    #research .venn-panel {
+      flex: 0 0 380px;
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    #research .venn-panel-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    #research .venn-wrap {
+      background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px var(--shadow);
-      background: var(--bg);
+      padding: 1rem;
+      box-shadow: 0 2px 10px var(--shadow);
+      min-height: 430px;
     }
 
-    #research .accordion-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 1.25rem 1.75rem;
-      cursor:pointer;
-      background: var(--bg-secondary);
-      transition: background 0.2s ease;
-      user-select:none;
+    #research .paper-badge {
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    #research .accordion-header:hover{ background: #eee; }
-
-    #research .accordion-header h3{
-      margin:0;
-      color: var(--primary);
-      font-size: 1.2rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-weight: 700;
+    #research .paper-badge circle {
+      transition: all 0.2s;
     }
 
-    #research .accordion-meta{
-      display:flex;
-      align-items:center;
-      gap: 0.75rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    #research .paper-badge:hover circle {
+      r: 14;
     }
 
-    #research .pub-count{
+    #research .legend {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    #research .legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
       font-size: 0.82rem;
-      font-weight: 600;
+      line-height: 1.4;
+      cursor: pointer;
+      padding: 0.3rem 0.45rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    #research .legend-item:hover {
+      background: #f0ece4;
+    }
+
+    #research .legend-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #research .legend-text {
+      color: var(--text);
+    }
+
+    #research .legend-journal {
       color: var(--text-light);
-      background: var(--bg);
+      font-style: italic;
+    }
+
+    #research .theme-dots {
+      display: flex;
+      gap: 3px;
+      margin-top: 2px;
+    }
+
+    #research .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    #research .theme-legend {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    #research .theme-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    #research .theme-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    #research .papers-panel {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #research .paper-ribbon {
       border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      background: var(--bg);
+    }
+
+    #research .paper-ribbon.highlighted {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(113,97,64,0.2);
+    }
+
+    #research .ribbon-header {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.95rem 1.2rem;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      transition: background 0.2s;
+      user-select: none;
+    }
+
+    #research .ribbon-header:hover {
+      background: #eee8df;
+    }
+
+    #research .paper-num-badge {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #research .ribbon-journal {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      background: var(--primary);
+      padding: 0.2rem 0.6rem;
       border-radius: 20px;
-      padding: 0.2rem 0.75rem;
       white-space: nowrap;
     }
 
-    #research .chevron{
-      font-size: 1rem;
+    #research .ribbon-title {
+      flex: 1;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    #research .ribbon-themes {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    #research .ribbon-chevron {
+      flex-shrink: 0;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.3s;
+      margin-left: auto;
+      min-width: 16px;
+      text-align: center;
+      opacity: 1;
+    }
+
+    #research .ribbon-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    #research .ribbon-body {
+      display: none;
+      padding: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    #research .ribbon-body.open {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    #research .pub-img-wrap {
+      flex: 0 0 380px;
+      max-width: 100%;
+    }
+
+    #research .pub-img-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--shadow);
+      object-fit: cover;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    }
+
+    #research .pub-img-wrap img.no-fade {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    #research .pub-details {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    #research .pub-journal-label {
       color: var(--primary);
-      transition: transform 0.25s ease;
-      display:inline-block;
-      line-height: 1;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
     }
 
-    #research .chevron.rotated{ transform: rotate(180deg); }
-
-    #research .accordion-body{
-      padding: 1.5rem;
-      display:none; /* closed by default */
+    #research .pub-details h3 {
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
     }
 
-    /* Keep your existing pub-card styles; this only adds a tiny polish */
-    #research .pub-card:hover{
-      box-shadow: 0 8px 24px var(--shadow);
-      transition: box-shadow 0.25s ease;
+    #research .pub-authors {
+      color: var(--text-light);
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    #research .pub-abstract {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    #research .pub-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    #research .pub-link::after {
+      content: " ↗";
+    }
+
+    #research .pub-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 980px) {
+      #research .layout {
+        flex-direction: column;
+      }
+
+      #research .venn-panel {
+        position: static;
+        flex: none;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #research .ribbon-header {
+        flex-wrap: wrap;
+      }
+
+      #research .ribbon-journal {
+        order: 2;
+      }
+
+      #research .ribbon-title {
+        flex-basis: 100%;
+        order: 3;
+      }
+
+      #research .ribbon-themes {
+        order: 4;
+      }
+
+      #research .ribbon-chevron {
+        order: 5;
+        margin-left: auto;
+      }
     }
   </style>
 
-  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1.5rem;">
-    Publications
-  </h3>
+  <div class="research-intro">
+    My research examines how digital technologies shape organizing, expert work, and research practice. Across qualitative field studies, conceptual work, and computational methods, I study how organizational intelligence emerges through relations among human experts, data, algorithms, and models. The publications below are organized through three overlapping themes: <strong>Digital Technologies and Organizing in Practice</strong>, <strong>Digital Technologies and Expert Work</strong>, and <strong>Computational Tools in Research</strong>.
+  </div>
 
-  <div class="theme-accordion">
+  <div class="layout">
 
-    <!-- THEME 1: Digital Technologies and Organizing -->
-    <div class="accordion-section" id="theme-organizing">
-      <div class="accordion-header" role="button" tabindex="0"
-     data-target="#theme-organizing .accordion-body"
-     data-chevron="#chev-organizing">
-        <h3>Digital Technologies and Organizing</h3>
-        <div class="accordion-meta">
-          <span class="pub-count">3 publications</span>
-          <span class="chevron" id="chev-organizing">▼</span>
+    <!-- LEFT: THEME MAP -->
+    <div class="venn-panel">
+      <div class="venn-panel-title">Research Themes</div>
+
+      <div class="venn-wrap">
+        <svg viewBox="0 0 360 380" width="100%" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Circles -->
+          <circle cx="130" cy="142" r="108" fill="rgba(113,97,64,0.12)" stroke="#716140" stroke-width="2"/>
+          <circle cx="230" cy="142" r="108" fill="rgba(79,111,168,0.11)" stroke="#4f6fa8" stroke-width="2"/>
+          <circle cx="180" cy="252" r="108" fill="rgba(122,103,166,0.11)" stroke="#7a67a6" stroke-width="2"/>
+
+          <!-- Theme labels -->
+          <text x="104" y="88" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">Digital Technologies</text>
+          <text x="104" y="100" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">and Organizing</text>
+          <text x="104" y="112" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">in Practice</text>
+
+          <text x="268" y="84" font-size="8.6" font-weight="700" fill="#4f6fa8" text-anchor="middle">Digital Technologies</text>
+          <text x="268" y="96" font-size="8.6" font-weight="700" fill="#4f6fa8" text-anchor="middle">and Expert Work</text>
+
+          <text x="180" y="328" font-size="8.8" font-weight="700" fill="#7a67a6" text-anchor="middle">Computational Tools</text>
+          <text x="180" y="340" font-size="8.8" font-weight="700" fill="#7a67a6" text-anchor="middle">in Research</text>
+
+          <!-- T1 only: JAIS -->
+          <g class="paper-badge" onclick="highlightPaper(5)" data-paper="5">
+            <circle cx="80" cy="150" r="13" fill="#716140" stroke="white" stroke-width="2"/>
+            <text x="80" y="154" font-size="10" font-weight="700" fill="white" text-anchor="middle">5</text>
+          </g>
+
+          <!-- T1 + T2 only: JMS / RSO / MIT SMR -->
+          <g class="paper-badge" onclick="highlightPaper(2)" data-paper="2">
+            <circle cx="180" cy="88" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
+            <text x="180" y="92" font-size="10" font-weight="700" fill="white" text-anchor="middle">2</text>
+          </g>
+
+          <g class="paper-badge" onclick="highlightPaper(4)" data-paper="4">
+            <circle cx="152" cy="112" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
+            <text x="152" y="116" font-size="10" font-weight="700" fill="white" text-anchor="middle">4</text>
+          </g>
+
+          <g class="paper-badge" onclick="highlightPaper(7)" data-paper="7">
+            <circle cx="208" cy="112" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
+            <text x="208" y="116" font-size="10" font-weight="700" fill="white" text-anchor="middle">7</text>
+          </g>
+
+          <!-- T1 + T2 + T3 -->
+          <g class="paper-badge" onclick="highlightPaper(3)" data-paper="3">
+            <circle cx="180" cy="198" r="14" fill="#2d2d2d" stroke="white" stroke-width="2.5"/>
+            <text x="180" y="202.5" font-size="10" font-weight="700" fill="white" text-anchor="middle">3</text>
+          </g>
+
+          <!-- T3 only -->
+          <g class="paper-badge" onclick="highlightPaper(1)" data-paper="1">
+            <circle cx="156" cy="306" r="13" fill="#7a67a6" stroke="white" stroke-width="2"/>
+            <text x="156" y="310" font-size="10" font-weight="700" fill="white" text-anchor="middle">1</text>
+          </g>
+
+          <g class="paper-badge" onclick="highlightPaper(6)" data-paper="6">
+            <circle cx="204" cy="306" r="13" fill="#7a67a6" stroke="white" stroke-width="2"/>
+            <text x="204" y="310" font-size="10" font-weight="700" fill="white" text-anchor="middle">6</text>
+          </g>
+        </svg>
+
+        <div class="legend">
+          <div class="legend-item" onclick="highlightPaper(1)">
+            <div class="legend-num" style="background:#7a67a6;">1</div>
+            <div>
+              <div class="legend-text">Trustworthiness in Computational Theory Construction</div>
+              <div class="legend-journal">MISQ, 2026</div>
+              <div class="theme-dots"><span class="dot" style="background:#7a67a6;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(2)">
+            <div class="legend-num" style="background:#5a5876;">2</div>
+            <div>
+              <div class="legend-text">Artificial Intelligence as an Organizing Capability</div>
+              <div class="legend-journal">JMS, 2026</div>
+              <div class="theme-dots"><span class="dot" style="background:#716140;"></span><span class="dot" style="background:#4f6fa8;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(3)">
+            <div class="legend-num" style="background:#2d2d2d;">3</div>
+            <div>
+              <div class="legend-text">Research Handbook on AI and Decision-Making</div>
+              <div class="legend-journal">Edward Elgar, 2024</div>
+              <div class="theme-dots"><span class="dot" style="background:#716140;"></span><span class="dot" style="background:#4f6fa8;"></span><span class="dot" style="background:#7a67a6;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(4)">
+            <div class="legend-num" style="background:#5a5876;">4</div>
+            <div>
+              <div class="legend-text">Data-Based Craft</div>
+              <div class="legend-journal">RSO, 2025</div>
+              <div class="theme-dots"><span class="dot" style="background:#716140;"></span><span class="dot" style="background:#4f6fa8;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(5)">
+            <div class="legend-num" style="background:#716140;">5</div>
+            <div>
+              <div class="legend-text">Organizations as Digital Enactment Systems</div>
+              <div class="legend-journal">JAIS, 2023</div>
+              <div class="theme-dots"><span class="dot" style="background:#716140;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(6)">
+            <div class="legend-num" style="background:#7a67a6;">6</div>
+            <div>
+              <div class="legend-text">Algorithms as Co-Researchers</div>
+              <div class="legend-journal">Cambridge Handbook, 2023</div>
+              <div class="theme-dots"><span class="dot" style="background:#7a67a6;"></span></div>
+            </div>
+          </div>
+
+          <div class="legend-item" onclick="highlightPaper(7)">
+            <div class="legend-num" style="background:#5a5876;">7</div>
+            <div>
+              <div class="legend-text">Why So Many Data Science Projects Fail to Deliver</div>
+              <div class="legend-journal">MIT SMR, 2021</div>
+              <div class="theme-dots"><span class="dot" style="background:#716140;"></span><span class="dot" style="background:#4f6fa8;"></span></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="accordion-body">
 
-        <!-- PUB: Journal of Management Studies (2026) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JMS%202025.png"
-              alt="JMS 2026 - AI as an Organizing Capability"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
-          </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">Journal of Management Studies (2026)</div>
-            <h3>Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</h3>
-            <p class="authors">Stelmaszak, M., Joshi, M., &amp; Constantiou, I. (Equal authorship; authors listed in reverse alphabetical order.)</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              In this article, we move beyond the prevailing view of artificial intelligence (AI) as an independent entity within organizations, which, we argue, risks obscuring potential explanations of the effects of AI on organizing. Drawing on posthumanism, we propose an ontological shift in conceptualizing AI. We theorize that, instead of residing within algorithmic actors, AI arises from the relations among human and algorithmic actors as an organizing capability. This capability is characterized by connectivity, codependence, and emergence as core properties, and contributes to organizational analysing, learning, and acting in pursuit of organizational goals. The shift from the entity view to the organizing capability view of AI has significant implications for understanding its organizational effects and opens new avenues for research in human-algorithm collaboration, algorithmic management, and organizational intelligence, while counterbalancing tendencies to treat AI as autonomous agents.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://onlinelibrary.wiley.com/doi/10.1111/joms.70003" target="_blank">Read Article</a>
-            </p>
-          </div>
+        <div class="theme-legend">
+          <div class="theme-legend-item"><div class="theme-swatch" style="background:#716140;"></div> Digital Technologies and Organizing in Practice</div>
+          <div class="theme-legend-item"><div class="theme-swatch" style="background:#4f6fa8;"></div> Digital Technologies and Expert Work</div>
+          <div class="theme-legend-item"><div class="theme-swatch" style="background:#7a67a6;"></div> Computational Tools in Research</div>
         </div>
-
-        <!-- PUB: Research Handbook on AI and Decision-Making in Organizations (2024) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/AI%20and%20DecisionMaking%202023.png"
-              alt="Research Handbook on AI and Decision-Making in Organizations"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
-          </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">Edward Elgar Publishing (2024)</div>
-            <h3>Research Handbook on Artificial Intelligence and Decision-Making in Organizations</h3>
-            <p class="authors">Constantiou, I., Joshi, M. P., &amp; Stelmaszak, M. (Eds.)</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              Featuring state-of-the-art research from leading academics in technology and organization studies, this research handbook provides a comprehensive overview of how AI becomes embedded in decisionmaking in organizations, from the initial considerations when implementing AI to the use ofsuch solutions in strategic decision making. We advance a framework of decision redistribution defined as the migration of human decision making (with or without an existing technology) across the three facets of AI and organizational decision making: Making decisions about AI, making decisions with AI, and implications of decision-making with AI.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://www.e-elgar.com/shop/usd/research-handbook-on-artificial-intelligence-and-decision-making-in-organizations-9781803926209.html"
-                 target="_blank">Read Book</a>
-            </p>
-          </div>
-        </div>
-
-        <!-- PUB: Journal of the Association for Information Systems (2023) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JAIS2023.png"
-              alt="JAIS 2023 - Organizations as Digital Enactment Systems"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
-          </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">Journal of the Association for Information Systems (2023)</div>
-            <h3>Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies in Organizational Scanning, Interpretation, and Learning</h3>
-            <p class="authors">Constantiou, I., Joshi, M. P., &amp; Stelmaszak, M. (Equal authorship; authors listed alphabetically.)</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              Digital transformation has become a dominant phenomenon of interest among information systems scholars. To account for this phenomenon, it is imperative to develop a theoretical understanding of its processes and objects. We adapt a seminal organizational theory that conceptualizes organizations as interpretation systems to a possible future of organizations. We theorize digital transformation as a progressive replacement of humans by digital technologies in performing an organization’s fundamental activities underpinning the processes of scanning, interpretation, and learning that encompass an organization’s interaction with its environment. As a result, organizations cease to be human interpretation systems and instead turn into digital enactment systems, where digital technologies, instead of humans, nearly autonomously create and act upon information. We illustrate this digital transformation theory using the example of high-frequency trading. This transformation redefines the relationship among organizations, information, and the environment, changing the role of humans and reshaping strategic decision-making. Thus conceived, digital transformation offers a concrete way of theorizing and accounts for deep implications on the nature of organizations and organizing in the digital age.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://aisel.aisnet.org/jais/vol24/iss6/1/" target="_blank">Read Article</a>
-            </p>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- THEME 2: Digital Technologies and Knowledge Work -->
-    <div class="accordion-section" id="theme-knowledgework">
-     <div class="accordion-header" role="button" tabindex="0"
-     data-target="#theme-knowledgework .accordion-body"
-     data-chevron="#chev-knowledgework">
-        <h3>Digital Technologies and Knowledge Work</h3>
-        <div class="accordion-meta">
-          <span class="pub-count">2 publications</span>
-          <span class="chevron" id="chev-knowledgework">▼</span>
+    <!-- RIGHT: PAPERS -->
+    <div class="papers-panel">
+
+      <!-- 1 MISQ -->
+      <div class="paper-ribbon" id="paper-1">
+        <div class="ribbon-header" onclick="togglePaper(1)">
+          <div class="paper-num-badge" style="background:#7a67a6;">1</div>
+          <div class="ribbon-journal" style="background:#7a67a6;">MISQ 2026</div>
+          <div class="ribbon-title">Trustworthiness in Computational Theory Construction: Dimensionalization and Category Surfacing</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-1">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-1">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MISQ%202026.png" alt="MISQ 2026">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">MIS Quarterly (2026)</div>
+            <h3>Trustworthiness in Computational Theory Construction: Dimensionalization and Category Surfacing</h3>
+            <p class="pub-authors">Günther, W.A., Joshi, M., &amp; Constantinides, P. (First two authors contributed equally and listed alphabetically.)</p>
+            <p class="pub-abstract">In this methods article, we unpack how researchers can foster trustworthiness in dimensionalization and category surfacing (DCS), a key method family within the genre of computational theory construction (CTC). Information systems (IS), management, and organizational scholars are increasingly leveraging DCS tools such as topic modeling, word embeddings, and clustering to surface latent categories and dimensions from textual data for theory construction. Yet they struggle because evaluations of such research often default to transparency, operationalized as replicability and accountability, which obscures the analytical choices that actually make DCS research rigorous. In this study, we recast transparency as a means toward trustworthiness. We treat researchers' analytical moves as the primary unit of methodological reasoning in how they design, conduct, and disclose their choices across research phases. We develop a framework that authors, reviewers, and editors can use to construct and evaluate DCS research.</p>
+            <a class="pub-link" href="https://misq.umn.edu/misq/article/doi/10.25300/MISQ/2026/18511/3786/Trustworthiness-in-Computational-Theory" target="_blank">Read Article</a>
+          </div>
         </div>
       </div>
-      <div class="accordion-body">
 
-        <!-- PUB: RSO 2025 (Data-Based Craft) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail -->
-          <div style="flex:0 0 400px;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/RSO%202025.jpg"
-              alt="Algorithmic Organizing - Data-Based Craft"
-              style="width:100%;border-radius:12px;box-shadow:0 6px 12px var(--shadow);"
-            >
+      <!-- 2 JMS -->
+      <div class="paper-ribbon" id="paper-2">
+        <div class="ribbon-header" onclick="togglePaper(2)">
+          <div class="paper-num-badge" style="background:#5a5876;">2</div>
+          <div class="ribbon-journal" style="background:#5a5876;">JMS 2026</div>
+          <div class="ribbon-title">Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
           </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">Research in the Sociology of Organizations (2025)</div>
-            <h3>Data-Based Craft: How Data Scientists Craft Their Data, Models, and Products</h3>
-            <p class="authors">Hopf, K., Joshi, M., Shollo, A., &amp; Stelmaszak, M. (Equal authorship; authors listed alphabetically.)</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              In this study, we examine the work of data scientists, members of an emerging technical occupation, through the lens of craft. Drawing on 65 in‐depth interviews with data scientists, we show that their work cannot be adequately explained by the human–machine configurations characterized in the existing literature on craft in technical occupations, which primarily focuses on crafting products using ready‐to‐use tools and ready‐to‐be‐processed materials. Instead, we find that data scientists craft not only their products, but also their tools and materials, often in an iterative and non‐linear fashion. This distinct approach entails a unique human–machine‐data configuration that we refer to as data‐based craft, which stems from the unique nature of digital data and learning algorithms that data scientists simultaneously craft and use. This study advances our understanding of craft in the digital age by highlighting the need to reconceptualize human–machine relationships in data‐intensive occupations.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://www.emerald.com/books/edited-volume/17839/chapter-abstract/98016391/Data-Based-Craft-How-Data-Scientists-Craft-Their?redirectedFrom=fulltext"
-                 target="_blank">Read Article</a>
-            </p>
+          <div class="ribbon-chevron" id="chev-2">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-2">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JMS%202025.png" alt="JMS 2026">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Journal of Management Studies (2026)</div>
+            <h3>Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</h3>
+            <p class="pub-authors">Stelmaszak, M., Joshi, M., &amp; Constantiou, I. (Equal authorship; authors listed in reverse alphabetical order.)</p>
+            <p class="pub-abstract">In this article, we move beyond the prevailing view of artificial intelligence (AI) as an independent entity within organizations, which, we argue, risks obscuring potential explanations of the effects of AI on organizing. Drawing on posthumanism, we propose an ontological shift in conceptualizing AI. We theorize that, instead of residing within algorithmic actors, AI arises from the relations among human and algorithmic actors as an organizing capability. This capability is characterized by connectivity, codependence, and emergence as core properties, and contributes to organizational analysing, learning, and acting in pursuit of organizational goals. The shift from the entity view to the organizing capability view of AI has significant implications for understanding its organizational effects and opens new avenues for research in human-algorithm collaboration, algorithmic management, and organizational intelligence, while counterbalancing tendencies to treat AI as autonomous agents.</p>
+            <a class="pub-link" href="https://onlinelibrary.wiley.com/doi/10.1111/joms.70003" target="_blank">Read Article</a>
           </div>
         </div>
+      </div>
 
-        <!-- PUB: MIT Sloan Management Review (2021) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MIT%20SMR%202021.jpg"
-              alt="MIT Sloan Management Review 2021 - Why So Many Data Science Projects Fail to Deliver"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
+      <!-- 3 ELGAR -->
+      <div class="paper-ribbon" id="paper-3">
+        <div class="ribbon-header" onclick="togglePaper(3)">
+          <div class="paper-num-badge" style="background:#2d2d2d;">3</div>
+          <div class="ribbon-journal" style="background:#2d2d2d;">Elgar 2024</div>
+          <div class="ribbon-title">Research Handbook on Artificial Intelligence and Decision-Making in Organizations</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
           </div>
+          <div class="ribbon-chevron" id="chev-3">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-3">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/AI%20and%20DecisionMaking%202023.png" alt="Elgar 2024">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Edward Elgar Publishing (2024)</div>
+            <h3>Research Handbook on Artificial Intelligence and Decision-Making in Organizations</h3>
+            <p class="pub-authors">Constantiou, I., Joshi, M. P., &amp; Stelmaszak, M. (Eds.)</p>
+            <p class="pub-abstract">Featuring state-of-the-art research from leading academics in technology and organization studies, this research handbook provides a comprehensive overview of how AI becomes embedded in decision-making in organizations, from the initial considerations when implementing AI to the use of such solutions in strategic decision making. We advance a framework of decision redistribution defined as the migration of human decision making (with or without an existing technology) across the three facets of AI and organizational decision making: Making decisions about AI, making decisions with AI, and implications of decision-making with AI.</p>
+            <a class="pub-link" href="https://www.e-elgar.com/shop/usd/research-handbook-on-artificial-intelligence-and-decision-making-in-organizations-9781803926209.html" target="_blank">Read Book</a>
+          </div>
+        </div>
+      </div>
 
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">MIT Sloan Management Review (2021)</div>
+      <!-- 4 RSO -->
+      <div class="paper-ribbon" id="paper-4">
+        <div class="ribbon-header" onclick="togglePaper(4)">
+          <div class="paper-num-badge" style="background:#5a5876;">4</div>
+          <div class="ribbon-journal" style="background:#5a5876;">RSO 2025</div>
+          <div class="ribbon-title">Data-Based Craft: How Data Scientists Craft Their Data, Models, and Products</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-4">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-4">
+          <div class="pub-img-wrap">
+            <img class="no-fade" src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/RSO%202025.jpg" alt="RSO 2025">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Research in the Sociology of Organizations (2025)</div>
+            <h3>Data-Based Craft: How Data Scientists Craft Their Data, Models, and Products</h3>
+            <p class="pub-authors">Hopf, K., Joshi, M., Shollo, A., &amp; Stelmaszak, M. (Equal authorship; authors listed alphabetically.)</p>
+            <p class="pub-abstract">In this study, we examine the work of data scientists, members of an emerging technical occupation, through the lens of craft. Drawing on 65 in‐depth interviews with data scientists, we show that their work cannot be adequately explained by the human–machine configurations characterized in the existing literature on craft in technical occupations, which primarily focuses on crafting products using ready‐to‐use tools and ready‐to‐be‐processed materials. Instead, we find that data scientists craft not only their products, but also their tools and materials, often in an iterative and non‐linear fashion. This distinct approach entails a unique human–machine‐data configuration that we refer to as data‐based craft, which stems from the unique nature of digital data and learning algorithms that data scientists simultaneously craft and use. This study advances our understanding of craft in the digital age by highlighting the need to reconceptualize human–machine relationships in data‐intensive occupations.</p>
+            <a class="pub-link" href="https://www.emerald.com/books/edited-volume/17839/chapter-abstract/98016391/Data-Based-Craft-How-Data-Scientists-Craft-Their?redirectedFrom=fulltext" target="_blank">Read Article</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 JAIS -->
+      <div class="paper-ribbon" id="paper-5">
+        <div class="ribbon-header" onclick="togglePaper(5)">
+          <div class="paper-num-badge" style="background:#716140;">5</div>
+          <div class="ribbon-journal" style="background:#716140;">JAIS 2023</div>
+          <div class="ribbon-title">Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-5">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-5">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JAIS2023.png" alt="JAIS 2023">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Journal of the Association for Information Systems (2023)</div>
+            <h3>Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies in Organizational Scanning, Interpretation, and Learning</h3>
+            <p class="pub-authors">Constantiou, I., Joshi, M. P., &amp; Stelmaszak, M. (Equal authorship; authors listed alphabetically.)</p>
+            <p class="pub-abstract">Digital transformation has become a dominant phenomenon of interest among information systems scholars. To account for this phenomenon, it is imperative to develop a theoretical understanding of its processes and objects. We adapt a seminal organizational theory that conceptualizes organizations as interpretation systems to a possible future of organizations. We theorize digital transformation as a progressive replacement of humans by digital technologies in performing an organization's fundamental activities underpinning the processes of scanning, interpretation, and learning that encompass an organization's interaction with its environment. As a result, organizations cease to be human interpretation systems and instead turn into digital enactment systems, where digital technologies, instead of humans, nearly autonomously create and act upon information. We illustrate this digital transformation theory using the example of high-frequency trading. This transformation redefines the relationship among organizations, information, and the environment, changing the role of humans and reshaping strategic decision-making.</p>
+            <a class="pub-link" href="https://aisel.aisnet.org/jais/vol24/iss6/1/" target="_blank">Read Article</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 CAMBRIDGE -->
+      <div class="paper-ribbon" id="paper-6">
+        <div class="ribbon-header" onclick="togglePaper(6)">
+          <div class="paper-num-badge" style="background:#7a67a6;">6</div>
+          <div class="ribbon-journal" style="background:#7a67a6;">Cambridge 2023</div>
+          <div class="ribbon-title">Algorithms as Co-Researchers: Exploring Meaning and Bias in Qualitative Research</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-6">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-6">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/Cambridge%20Handbook%202023.jpg" alt="Cambridge 2023">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Cambridge Handbook of Qualitative Digital Research (2023)</div>
+            <h3>Algorithms as Co-Researchers: Exploring Meaning and Bias in Qualitative Research</h3>
+            <p class="pub-authors">Günther, W., Thompson, M., Joshi, M., &amp; Polykarpou, S.</p>
+            <p class="pub-abstract">We examine how augmenting qualitative inquiry with computational tools—what we call <em>algorithmic qualitative research</em>—raises foundational epistemological and methodological questions. Using Father Busa's early collaborations with IBM as a touchstone, we show that algorithms and researchers co-produce data and meaning, challenging empiricist assumptions about data's naturalness, objectivity, and equivalence. We argue for a reflexive "dance" between researcher and algorithm, in which choices about data, models, and parameters are made transparent rather than masked by claims of objectivity. Illustrated through topic modeling, we outline practical checks and balances that help transform algorithmic assistance from a source of opacity and bias into a vehicle for clarity, rigor, and interpretive depth.</p>
+            <a class="pub-link" href="https://www.cambridge.org/core/books/abs/cambridge-handbook-of-qualitative-digital-research/algorithms-as-coresearchers/17A22EE6282E2D3B10C2B345065ED7D4" target="_blank">Read Chapter</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 MIT SMR -->
+      <div class="paper-ribbon" id="paper-7">
+        <div class="ribbon-header" onclick="togglePaper(7)">
+          <div class="paper-num-badge" style="background:#5a5876;">7</div>
+          <div class="ribbon-journal" style="background:#5a5876;">MIT SMR 2021</div>
+          <div class="ribbon-title">Why So Many Data Science Projects Fail to Deliver</div>
+          <div class="ribbon-themes">
+            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-7">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-7">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MIT%20SMR%202021.jpg" alt="MIT SMR 2021">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">MIT Sloan Management Review (2021)</div>
             <h3>Why So Many Data Science Projects Fail to Deliver</h3>
-            <p class="authors">Joshi, M. P., Su, N., Austin, R. D., &amp; Sundaram, A. K.</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              More and more companies are embracing data science as a function and a capability. But many of them have not been able to consistently derive business value from their investments in big data, artificial intelligence, and machine learning. Moreover, evidence suggests that the gap is widening between organizations successfully gaining value from data science and those struggling to do so. To better understand the mistakes that companies make when implementing profitable data science projects, and discover how to avoid them, we conducted in-depth studies of the data science activities in three of India’s top 10 private-sector banks with well-established analytics departments. We identified five common mistakes, as exemplified by the following cases we encountered, and we suggest corresponding solutions to address them.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://sloanreview.mit.edu/article/why-so-many-data-science-projects-fail-to-deliver/" target="_blank">Read Article</a>
-            </p>
-
+            <p class="pub-authors">Joshi, M. P., Su, N., Austin, R. D., &amp; Sundaram, A. K.</p>
+            <p class="pub-abstract">More and more companies are embracing data science as a function and a capability. But many of them have not been able to consistently derive business value from their investments in big data, artificial intelligence, and machine learning. Moreover, evidence suggests that the gap is widening between organizations successfully gaining value from data science and those struggling to do so. To better understand the mistakes that companies make when implementing profitable data science projects, and discover how to avoid them, we conducted in-depth studies of the data science activities in three of India's top 10 private-sector banks with well-established analytics departments. We identified five common mistakes, as exemplified by the following cases we encountered, and we suggest corresponding solutions to address them.</p>
+            <a class="pub-link" href="https://sloanreview.mit.edu/article/why-so-many-data-science-projects-fail-to-deliver/" target="_blank">Read Article</a>
             <p style="color:var(--secondary);font-weight:600;margin-top:0.75rem;">
               🏆 AIS Outreach Practice Publication Award (2022)<br>
               ⭐ Top 10 Most Popular Articles of 2021 @ MIT SMR
             </p>
           </div>
         </div>
-
       </div>
+
     </div>
-
-    <!-- THEME 3: Computational Tools in Research -->
-    <div class="accordion-section" id="theme-computational">
-     <div class="accordion-header" role="button" tabindex="0"
-     data-target="#theme-computational .accordion-body"
-     data-chevron="#chev-computational">
-        <h3>Computational Tools in Research</h3>
-        <div class="accordion-meta">
-          <span class="pub-count">2 publications</span>
-          <span class="chevron" id="chev-computational">▼</span>
-        </div>
-      </div>
-      <div class="accordion-body">
-
-        <!-- PUB: MIS Quarterly (2026) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MISQ%202026.png"
-              alt="MISQ 2026 - Computational Theory Construction"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
-          </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">MIS Quarterly (2026) -<em>forthcoming</em></div>
-            <h3>Trustworthiness in Computational Theory Construction: Dimensionalization and Category Surfacing</h3>
-            <p class="authors">Günther, W.A., Joshi, M., &amp; Constantinides, P. (First two authors contributed equally and listed alphabetically.)</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              In this methods article, we unpack how researchers can foster trustworthiness in dimensionalization and category surfacing (DCS), a key method family within the genre of computational theory construction (CTC). Information systems (IS), management, and organizational scholars are increasingly leveraging DCS tools such as topic modeling, word embeddings, and clustering to surface latent categories and dimensions from textual data for theory construction. Yet they struggle because evaluations of such research often default to transparency, operationalized as replicability and accountability, which obscures the analytical choices that actually make DCS research rigorous. In this study, we recast transparency as a means toward trustworthiness. We treat researchers' analytical moves as the primary unit of methodological reasoning in how they design, conduct, and disclose their choices across research phases. We develop a framework that authors, reviewers, and editors can use to construct and evaluate DCS research. The framework specifies how trustworthiness arises from the interplay of two research design choices: primacy to theoretical versus practice lexicons, and whether the content of texts or the structure of the corpus carries the theoretical load. We articulate expectations for conduct and disclosure across these design choices, clarifying how proportionate reasoning anchors trustworthiness. We conclude with implications for advancing trustworthiness within the broader CTC community and across other computational approaches to research.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://misq.umn.edu/misq/article/doi/10.25300/MISQ/2026/18511/3786/Trustworthiness-in-Computational-Theory"
-                 target="_blank">Read Article</a>
-            </p>
-          </div>
-        </div>
-
-        <!-- PUB: Cambridge Handbook of Qualitative Digital Research (2023) -->
-        <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
-          <!-- Thumbnail with mask/fade -->
-          <div style="flex:0 0 400px;max-width:100%;">
-            <img
-              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/Cambridge%20Handbook%202023.jpg"
-              alt="Cambridge Handbook 2023 - Algorithms as Co-Researchers"
-              style="
-                width:100%;
-                border-radius:12px;
-                box-shadow:0 6px 12px var(--shadow);
-                object-fit:cover;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-              "
-            >
-          </div>
-
-          <!-- Details -->
-          <div style="flex:1;min-width:280px;">
-            <div class="journal">Cambridge Handbook of Qualitative Digital Research (2023)</div>
-            <h3>Algorithms as Co-Researchers: Exploring Meaning and Bias in Qualitative Research</h3>
-            <p class="authors">Günther, W., Thompson, M., Joshi, M., &amp; Polykarpou, S.</p>
-
-            <p style="margin-top:0.75rem;line-height:1.6;">
-              We examine how augmenting qualitative inquiry with computational tools—what we call
-              <em>algorithmic qualitative research</em>—raises foundational epistemological and methodological questions.
-              Using Father Busa’s early collaborations with IBM as a touchstone, we show that algorithms and researchers
-              co-produce data and meaning, challenging empiricist assumptions about data’s naturalness, objectivity, and
-              equivalence. We argue for a reflexive “dance” between researcher and algorithm, in which choices about data,
-              models, and parameters are made transparent rather than masked by claims of objectivity. Illustrated through
-              topic modeling, we outline practical checks and balances that help transform algorithmic assistance from a
-              source of opacity and bias into a vehicle for clarity, rigor, and interpretive depth.
-            </p>
-
-            <p style="margin-top:0.75rem;">
-              <a href="https://www.cambridge.org/core/books/abs/cambridge-handbook-of-qualitative-digital-research/algorithms-as-coresearchers/17A22EE6282E2D3B10C2B345065ED7D4"
-                 target="_blank">Read Chapter</a>
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
+
+  <script>
+    function togglePaper(n) {
+      const body = document.getElementById('body-' + n);
+      const chev = document.getElementById('chev-' + n);
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chev.classList.toggle('open', !isOpen);
+    }
+
+    function highlightPaper(n) {
+      document.querySelectorAll('#research .paper-ribbon').forEach(r => r.classList.remove('highlighted'));
+      const ribbon = document.getElementById('paper-' + n);
+      ribbon.classList.add('highlighted');
+
+      const body = document.getElementById('body-' + n);
+      const chev = document.getElementById('chev-' + n);
+      body.classList.add('open');
+      chev.classList.add('open');
+
+      ribbon.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => ribbon.classList.remove('highlighted'), 2000);
+    }
+  </script>
+</div>
 
   <!-- =========================
        Awards (UNCHANGED)
@@ -1434,6 +1753,23 @@
       chevronEl.classList.toggle('rotated', !isOpen);
     }
   }
+    function togglePaper(n) {
+    const body = document.getElementById('rbody-' + n);
+    const chev = document.getElementById('rchev-' + n);
+    const isOpen = body.classList.contains('ropen');
+    body.classList.toggle('ropen', !isOpen);
+    chev.classList.toggle('ropen', !isOpen);
+}
+
+function highlightPaper(n) {
+    document.querySelectorAll('.paper-ribbon').forEach(r => r.classList.remove('highlighted'));
+    const ribbon = document.getElementById('paper-' + n);
+    ribbon.classList.add('highlighted');
+    document.getElementById('rbody-' + n).classList.add('ropen');
+    document.getElementById('rchev-' + n).classList.add('ropen');
+    ribbon.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => ribbon.classList.remove('highlighted'), 2000);
+}
 
   // Event delegation: one listener handles all accordion headers
   document.addEventListener('click', function (e) {
@@ -1460,6 +1796,7 @@
     }
   });
 })();
+      
 </script>
 </div>
 
@@ -2000,6 +2337,7 @@
     </script>
 </body>
 </html>
+
 
 
 
