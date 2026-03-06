@@ -912,41 +912,108 @@
     </div>
 </div>
 
-       <!-- Research & Awards Page -->
+     <!-- Research & Awards Page -->
 <div id="research" class="page">
   <h2 class="section-title">Research & Awards</h2>
 
-  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem;">
+  <!-- =========================
+       ADD: Accordion CSS (scoped)
+       Place this in your main CSS if you prefer.
+  ========================== -->
+  <style>
+    /* Accordion (scoped to Research page to avoid global side-effects) */
+    #research .theme-accordion { margin-top: 0.5rem; }
+
+    #research .accordion-section{
+      margin-bottom: 1.75rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow);
+      background: var(--bg);
+    }
+
+    #research .accordion-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 1.25rem 1.75rem;
+      cursor:pointer;
+      background: var(--bg-secondary);
+      transition: background 0.2s ease;
+      user-select:none;
+    }
+
+    #research .accordion-header:hover{ background: #eee; }
+
+    #research .accordion-header h3{
+      margin:0;
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 700;
+    }
+
+    #research .accordion-meta{
+      display:flex;
+      align-items:center;
+      gap: 0.75rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    #research .pub-count{
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.2rem 0.75rem;
+      white-space: nowrap;
+    }
+
+    #research .chevron{
+      font-size: 1rem;
+      color: var(--primary);
+      transition: transform 0.25s ease;
+      display:inline-block;
+      line-height: 1;
+    }
+
+    #research .chevron.rotated{ transform: rotate(180deg); }
+
+    #research .accordion-body{
+      padding: 1.5rem;
+      display:none; /* closed by default */
+    }
+
+    /* Keep your existing pub-card styles; this only adds a tiny polish */
+    #research .pub-card:hover{
+      box-shadow: 0 8px 24px var(--shadow);
+      transition: box-shadow 0.25s ease;
+    }
+  </style>
+
+  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1.5rem;">
     Publications
   </h3>
 
-  <p style="color:var(--text-light); margin-top:0; margin-bottom:1.25rem; max-width: 900px;">
-    Overarching theme: <strong>Technology and Organizing</strong>. Browse publications by stream.
-  </p>
-
-  <!-- Theme accordion -->
   <div class="theme-accordion">
 
     <!-- THEME 1: Digital Technologies and Organizing -->
-    <div class="theme-block" id="theme-organizing">
-      <button class="theme-header" type="button"
-              onclick="toggleThemeBlock('theme-organizing')"
-              aria-expanded="false"
-              aria-controls="theme-organizing-content">
-        <div class="theme-title">
-          <h3>Digital Technologies and Organizing</h3>
-          <p>AI and digital technologies as part of socio-technical arrangements that shape organizing, decision-making, and organizational intelligence.</p>
+    <div class="accordion-section" id="theme-organizing">
+      <div class="accordion-header" onclick="toggleTheme('theme-organizing','chev-organizing')" role="button" tabindex="0">
+        <h3>Digital Technologies and Organizing</h3>
+        <div class="accordion-meta">
+          <span class="pub-count">3 publications</span>
+          <span class="chevron" id="chev-organizing">▼</span>
         </div>
-        <div class="theme-meta">
-          <span class="theme-count">3 items</span>
-          <span class="theme-chevron">▾</span>
-        </div>
-      </button>
-
-      <div class="theme-content" id="theme-organizing-content">
+      </div>
+      <div class="accordion-body">
 
         <!-- PUB: Journal of Management Studies (2026) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JMS%202025.png"
@@ -962,6 +1029,7 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">Journal of Management Studies (2026)</div>
             <h3>Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</h3>
@@ -979,6 +1047,7 @@
 
         <!-- PUB: Research Handbook on AI and Decision-Making in Organizations (2024) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/AI%20and%20DecisionMaking%202023.png"
@@ -994,6 +1063,7 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">Edward Elgar Publishing (2024)</div>
             <h3>Research Handbook on Artificial Intelligence and Decision-Making in Organizations</h3>
@@ -1012,6 +1082,7 @@
 
         <!-- PUB: Journal of the Association for Information Systems (2023) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/JAIS2023.png"
@@ -1027,6 +1098,7 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">Journal of the Association for Information Systems (2023)</div>
             <h3>Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies in Organizational Scanning, Interpretation, and Learning</h3>
@@ -1046,31 +1118,28 @@
     </div>
 
     <!-- THEME 2: Digital Technologies and Knowledge Work -->
-    <div class="theme-block" id="theme-knowledgework">
-      <button class="theme-header" type="button"
-              onclick="toggleThemeBlock('theme-knowledgework')"
-              aria-expanded="false"
-              aria-controls="theme-knowledgework-content">
-        <div class="theme-title">
-          <h3>Digital Technologies and Knowledge Work</h3>
-          <p>How data scientists and other professionals craft data, models, and organizational value in practice.</p>
+    <div class="accordion-section" id="theme-knowledgework">
+      <div class="accordion-header" onclick="toggleTheme('theme-knowledgework','chev-knowledgework')" role="button" tabindex="0">
+        <h3>Digital Technologies and Knowledge Work</h3>
+        <div class="accordion-meta">
+          <span class="pub-count">2 publications</span>
+          <span class="chevron" id="chev-knowledgework">▼</span>
         </div>
-        <div class="theme-meta">
-          <span class="theme-count">2 items</span>
-          <span class="theme-chevron">▾</span>
-        </div>
-      </button>
-
-      <div class="theme-content" id="theme-knowledgework-content">
+      </div>
+      <div class="accordion-body">
 
         <!-- PUB: RSO 2025 (Data-Based Craft) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail -->
           <div style="flex:0 0 400px;">
-            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/RSO%202025.jpg"
-                 alt="Algorithmic Organizing - Data-Based Craft"
-                 style="width:100%;border-radius:12px;box-shadow:0 6px 12px var(--shadow);">
+            <img
+              src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/RSO%202025.jpg"
+              alt="Algorithmic Organizing - Data-Based Craft"
+              style="width:100%;border-radius:12px;box-shadow:0 6px 12px var(--shadow);"
+            >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">Research in the Sociology of Organizations (2025)</div>
             <h3>Data-Based Craft: How Data Scientists Craft Their Data, Models, and Products</h3>
@@ -1089,6 +1158,7 @@
 
         <!-- PUB: MIT Sloan Management Review (2021) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MIT%20SMR%202021.jpg"
@@ -1104,6 +1174,7 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">MIT Sloan Management Review (2021)</div>
             <h3>Why So Many Data Science Projects Fail to Deliver</h3>
@@ -1114,8 +1185,7 @@
             </p>
 
             <p style="margin-top:0.75rem;">
-              <a href="https://sloanreview.mit.edu/article/why-so-many-data-science-projects-fail-to-deliver/"
-                 target="_blank">Read Article</a>
+              <a href="https://sloanreview.mit.edu/article/why-so-many-data-science-projects-fail-to-deliver/" target="_blank">Read Article</a>
             </p>
 
             <p style="color:var(--secondary);font-weight:600;margin-top:0.75rem;">
@@ -1129,25 +1199,19 @@
     </div>
 
     <!-- THEME 3: Computational Tools in Research -->
-    <div class="theme-block" id="theme-methods">
-      <button class="theme-header" type="button"
-              onclick="toggleThemeBlock('theme-methods')"
-              aria-expanded="false"
-              aria-controls="theme-methods-content">
-        <div class="theme-title">
-          <h3>Computational Tools in Research</h3>
-          <p>Computational theory construction and algorithmic qualitative research; trustworthiness, meaning, and bias.</p>
+    <div class="accordion-section" id="theme-computational">
+      <div class="accordion-header" onclick="toggleTheme('theme-computational','chev-computational')" role="button" tabindex="0">
+        <h3>Computational Tools in Research</h3>
+        <div class="accordion-meta">
+          <span class="pub-count">2 publications</span>
+          <span class="chevron" id="chev-computational">▼</span>
         </div>
-        <div class="theme-meta">
-          <span class="theme-count">2 items</span>
-          <span class="theme-chevron">▾</span>
-        </div>
-      </button>
+      </div>
+      <div class="accordion-body">
 
-      <div class="theme-content" id="theme-methods-content">
-
-        <!-- PUB: MIS Quarterly (2026)-->
+        <!-- PUB: MIS Quarterly (2026) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MISQ%202026.png"
@@ -1163,8 +1227,9 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
-            <div class="journal">MIS Quarterly (2026) -<em>forthcoming</em> </div>
+            <div class="journal">MIS Quarterly (2026) -<em>forthcoming</em></div>
             <h3>Trustworthiness in Computational Theory Construction: Dimensionalization and Category Surfacing</h3>
             <p class="authors">Günther, W.A., Joshi, M., &amp; Constantinides, P. (First two authors contributed equally and listed alphabetically.)</p>
 
@@ -1181,6 +1246,7 @@
 
         <!-- PUB: Cambridge Handbook of Qualitative Digital Research (2023) -->
         <div class="pub-card" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+          <!-- Thumbnail with mask/fade -->
           <div style="flex:0 0 400px;max-width:100%;">
             <img
               src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/Cambridge%20Handbook%202023.jpg"
@@ -1196,6 +1262,7 @@
             >
           </div>
 
+          <!-- Details -->
           <div style="flex:1;min-width:280px;">
             <div class="journal">Cambridge Handbook of Qualitative Digital Research (2023)</div>
             <h3>Algorithms as Co-Researchers: Exploring Meaning and Bias in Qualitative Research</h3>
@@ -1223,125 +1290,161 @@
     </div>
 
   </div>
-  <!-- End theme accordion -->
 
-  
+  <!-- =========================
+       Awards (UNCHANGED)
+  ========================== -->
+  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Awards & Honors</h3>
 
-            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Awards & Honors</h3>
-            
-            <div class="awards-grid">
-                <div class="award-card">
-                    <div class="year">2025</div>
-                    <h3>Best Paper Proceedings</h3>
-                    <p>CTO Division of the Academy of Management</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2023</div>
-                    <h3>Outstanding Associate Editor Award</h3>
-                    <p>CTO Division of the Academy of Management</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2023</div>
-                    <h3>Best Associate Editor Award</h3>
-                    <p>European Conference on Information Systems</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2022</div>
-                    <h3>Outreach Practice Publication Award</h3>
-                    <p>Association for Information Systems</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2022</div>
-                    <h3>OMT Division Showcase Symposium Recognition</h3>
-                    <p>Symposium on data workers at AOM 2022</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2021</div>
-                    <h3>Top 10 Most Popular Articles</h3>
-                    <p>MIT Sloan Management Review</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2020</div>
-                    <h3>Best ERF (Short) Paper - Runner-up</h3>
-                    <p>AMCIS 2020</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2019</div>
-                    <h3>Best Student Paper</h3>
-                    <p>SIG DSA ICIS 2019 (paper on data science)</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2019</div>
-                    <h3>Honorable Mention</h3>
-                    <p>OT Division at ASAC 2019</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2018</div>
-                    <h3>Best Paper in Strategic IT Track</h3>
-                    <p>AMCIS 2018 (paper on India's demonetization)</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2017, 2018, 2019</div>
-                    <h3>Excellent Progress in Doctoral Studies</h3>
-                    <p>Ivey Business School</p>
-                </div>
-            </div>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="year">2025</div>
+      <h3>Best Paper Proceedings</h3>
+      <p>CTO Division of the Academy of Management</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2023</div>
+      <h3>Outstanding Associate Editor Award</h3>
+      <p>CTO Division of the Academy of Management</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2023</div>
+      <h3>Best Associate Editor Award</h3>
+      <p>European Conference on Information Systems</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2022</div>
+      <h3>Outreach Practice Publication Award</h3>
+      <p>Association for Information Systems</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2022</div>
+      <h3>OMT Division Showcase Symposium Recognition</h3>
+      <p>Symposium on data workers at AOM 2022</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2021</div>
+      <h3>Top 10 Most Popular Articles</h3>
+      <p>MIT Sloan Management Review</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2020</div>
+      <h3>Best ERF (Short) Paper - Runner-up</h3>
+      <p>AMCIS 2020</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2019</div>
+      <h3>Best Student Paper</h3>
+      <p>SIG DSA ICIS 2019 (paper on data science)</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2019</div>
+      <h3>Honorable Mention</h3>
+      <p>OT Division at ASAC 2019</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2018</div>
+      <h3>Best Paper in Strategic IT Track</h3>
+      <p>AMCIS 2018 (paper on India's demonetization)</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2017, 2018, 2019</div>
+      <h3>Excellent Progress in Doctoral Studies</h3>
+      <p>Ivey Business School</p>
+    </div>
+  </div>
 
-            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Research Grants & Funding</h3>
-            
-            <div class="awards-grid">
-                <div class="award-card">
-                    <div class="year">2024-2026</div>
-                    <h3>SSHRC Insight Development Grant</h3>
-                    <p>Social Sciences and Humanities Research Council</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2023-2025</div>
-                    <h3>Startup Fund</h3>
-                    <p>Telfer School of Management</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2023</div>
-                    <h3>Seed Funding</h3>
-                    <p>University of Ottawa</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2022</div>
-                    <h3>Startup Grant</h3>
-                    <p>Centre for Digital Trust and Society (DTS), The University of Manchester</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2021</div>
-                    <h3>Manchester-Melbourne Research Fund</h3>
-                    <p>FinTech Research</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2019-2020</div>
-                    <h3>Dean's Conference Scholarship</h3>
-                    <p>Ivey Business School</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2019-2020</div>
-                    <h3>Brock Scholarship</h3>
-                    <p>Ivey Business School</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2019</div>
-                    <h3>Professor Al Mikalachki PhD Research Fund</h3>
-                    <p>Ivey Business School</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2016-2020</div>
-                    <h3>Plan for Excellence Doctoral Fellowship</h3>
-                    <p>Ivey Business School</p>
-                </div>
-                <div class="award-card">
-                    <div class="year">2016-2020</div>
-                    <h3>Dean's Scholarship</h3>
-                    <p>Ivey Business School</p>
-                </div>
-            </div>
-        </div>
+  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Research Grants & Funding</h3>
+
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="year">2024-2026</div>
+      <h3>SSHRC Insight Development Grant</h3>
+      <p>Social Sciences and Humanities Research Council</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2023-2025</div>
+      <h3>Startup Fund</h3>
+      <p>Telfer School of Management</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2023</div>
+      <h3>Seed Funding</h3>
+      <p>University of Ottawa</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2022</div>
+      <h3>Startup Grant</h3>
+      <p>Centre for Digital Trust and Society (DTS), The University of Manchester</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2021</div>
+      <h3>Manchester-Melbourne Research Fund</h3>
+      <p>FinTech Research</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2019-2020</div>
+      <h3>Dean's Conference Scholarship</h3>
+      <p>Ivey Business School</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2019-2020</div>
+      <h3>Brock Scholarship</h3>
+      <p>Ivey Business School</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2019</div>
+      <h3>Professor Al Mikalachki PhD Research Fund</h3>
+      <p>Ivey Business School</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2016-2020</div>
+      <h3>Plan for Excellence Doctoral Fellowship</h3>
+      <p>Ivey Business School</p>
+    </div>
+    <div class="award-card">
+      <div class="year">2016-2020</div>
+      <h3>Dean's Scholarship</h3>
+      <p>Ivey Business School</p>
+    </div>
+  </div>
+
+  <!-- =========================
+       ADD: Accordion JS
+       Put this once on the page (or in your main JS file).
+  ========================== -->
+  <script>
+    function toggleTheme(sectionId, chevronId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const body = section.querySelector('.accordion-body');
+      const chevron = document.getElementById(chevronId);
+      if (!body) return;
+
+      const isOpen = body.style.display === 'block';
+      body.style.display = isOpen ? 'none' : 'block';
+
+      if (chevron) {
+        if (isOpen) chevron.classList.remove('rotated');
+        else chevron.classList.add('rotated');
+      }
+    }
+
+    // Optional: allow Enter/Space on headers (accessibility)
+    (function bindAccordionKeyboard() {
+      const headers = document.querySelectorAll('#research .accordion-header');
+      headers.forEach(h => {
+        h.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            h.click();
+          }
+        });
+      });
+    })();
+  </script>
+</div>
 
         <!-- Teaching Page -->
         <div id="teaching" class="page">
@@ -1880,6 +1983,7 @@
     </script>
 </body>
 </html>
+
 
 
 
