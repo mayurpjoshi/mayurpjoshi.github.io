@@ -464,43 +464,70 @@
         }
 
         /* Awards Section */
-        .awards-grid {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+       /* Two-column layout */
+#research .awards-funding-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: start;
+}
 
-        .award-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
-        }
+/* Column */
+#research .awards-column h3 {
+  color: var(--primary);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.4rem;
+}
 
-        .award-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 24px var(--shadow);
-        }
+/* Card stack */
+#research .award-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
 
-        .award-card .year {
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
+/* Card */
+#research .award-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--secondary);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 
-        .award-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
+#research .award-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
 
-        .award-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
+#research .award-card .year {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 0.15rem;
+}
+
+#research .award-card h4 {
+  font-size: 0.96rem;
+  margin-bottom: 0.2rem;
+}
+
+#research .award-card p {
+  color: var(--text-light);
+  font-size: 0.86rem;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  #research .awards-funding-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
         /* Teaching Section */
         .teaching-section {
@@ -1553,119 +1580,153 @@
   ========================== -->
   <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Awards & Honors</h3>
 
-  <div class="awards-grid">
-    <div class="award-card">
-      <div class="year">2025</div>
-      <h3>Best Paper Proceedings</h3>
-      <p>CTO Division of the Academy of Management</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2023</div>
-      <h3>Outstanding Associate Editor Award</h3>
-      <p>CTO Division of the Academy of Management</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2023</div>
-      <h3>Best Associate Editor Award</h3>
-      <p>European Conference on Information Systems</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2022</div>
-      <h3>Outreach Practice Publication Award</h3>
-      <p>Association for Information Systems</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2022</div>
-      <h3>OMT Division Showcase Symposium Recognition</h3>
-      <p>Symposium on data workers at AOM 2022</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2021</div>
-      <h3>Top 10 Most Popular Articles</h3>
-      <p>MIT Sloan Management Review</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2020</div>
-      <h3>Best ERF (Short) Paper - Runner-up</h3>
-      <p>AMCIS 2020</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2019</div>
-      <h3>Best Student Paper</h3>
-      <p>SIG DSA ICIS 2019 (paper on data science)</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2019</div>
-      <h3>Honorable Mention</h3>
-      <p>OT Division at ASAC 2019</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2018</div>
-      <h3>Best Paper in Strategic IT Track</h3>
-      <p>AMCIS 2018 (paper on India's demonetization)</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2017, 2018, 2019</div>
-      <h3>Excellent Progress in Doctoral Studies</h3>
-      <p>Ivey Business School</p>
+ <div class="awards-funding-grid">
+
+  <!-- Awards Column -->
+  <div class="awards-column">
+    <h3>Awards & Honors</h3>
+
+    <div class="award-stack">
+
+      <div class="award-card">
+        <div class="year">2025</div>
+        <h4>Best Paper Proceedings</h4>
+        <p>CTO Division, Academy of Management</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2023</div>
+        <h4>Outstanding Associate Editor Award</h4>
+        <p>CTO Division, Academy of Management</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2023</div>
+        <h4>Best Associate Editor Award</h4>
+        <p>European Conference on Information Systems</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2022</div>
+        <h4>Outreach Practice Publication Award</h4>
+        <p>Association for Information Systems</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2022</div>
+        <h4>OMT Division Showcase Symposium</h4>
+        <p>Academy of Management</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2021</div>
+        <h4>Top 10 Most Popular Articles</h4>
+        <p>MIT Sloan Management Review</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2020</div>
+        <h4>Best ERF Paper – Runner-up</h4>
+        <p>AMCIS</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2019</div>
+        <h4>Best Student Paper</h4>
+        <p>SIG DSA, ICIS</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2019</div>
+        <h4>Honorable Mention</h4>
+        <p>OT Division, ASAC</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2018</div>
+        <h4>Best Paper – Strategic IT Track</h4>
+        <p>AMCIS</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2017–2019</div>
+        <h4>Excellent Progress in Doctoral Studies</h4>
+        <p>Ivey Business School</p>
+      </div>
+
     </div>
   </div>
 
-  <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem;">Research Grants & Funding</h3>
+  <!-- Grants Column -->
+  <div class="awards-column">
+    <h3>Research Grants & Funding</h3>
 
-  <div class="awards-grid">
-    <div class="award-card">
-      <div class="year">2024-2026</div>
-      <h3>SSHRC Insight Development Grant</h3>
-      <p>Social Sciences and Humanities Research Council</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2023-2025</div>
-      <h3>Startup Fund</h3>
-      <p>Telfer School of Management</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2023</div>
-      <h3>Seed Funding</h3>
-      <p>University of Ottawa</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2022</div>
-      <h3>Startup Grant</h3>
-      <p>Centre for Digital Trust and Society (DTS), The University of Manchester</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2021</div>
-      <h3>Manchester-Melbourne Research Fund</h3>
-      <p>FinTech Research</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2019-2020</div>
-      <h3>Dean's Conference Scholarship</h3>
-      <p>Ivey Business School</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2019-2020</div>
-      <h3>Brock Scholarship</h3>
-      <p>Ivey Business School</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2019</div>
-      <h3>Professor Al Mikalachki PhD Research Fund</h3>
-      <p>Ivey Business School</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2016-2020</div>
-      <h3>Plan for Excellence Doctoral Fellowship</h3>
-      <p>Ivey Business School</p>
-    </div>
-    <div class="award-card">
-      <div class="year">2016-2020</div>
-      <h3>Dean's Scholarship</h3>
-      <p>Ivey Business School</p>
+    <div class="award-stack">
+
+      <div class="award-card">
+        <div class="year">2024–2026</div>
+        <h4>SSHRC Insight Development Grant</h4>
+        <p>Social Sciences and Humanities Research Council</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2023–2025</div>
+        <h4>Startup Fund</h4>
+        <p>Telfer School of Management</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2023</div>
+        <h4>Seed Funding</h4>
+        <p>University of Ottawa</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2022</div>
+        <h4>Startup Grant</h4>
+        <p>Centre for Digital Trust and Society, University of Manchester</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2021</div>
+        <h4>Manchester–Melbourne Research Fund</h4>
+        <p>FinTech Research</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2019–2020</div>
+        <h4>Dean's Conference Scholarship</h4>
+        <p>Ivey Business School</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2019–2020</div>
+        <h4>Brock Scholarship</h4>
+        <p>Ivey Business School</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2019</div>
+        <h4>Prof. Al Mikalachki PhD Research Fund</h4>
+        <p>Ivey Business School</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2016–2020</div>
+        <h4>Plan for Excellence Doctoral Fellowship</h4>
+        <p>Ivey Business School</p>
+      </div>
+
+      <div class="award-card">
+        <div class="year">2016–2020</div>
+        <h4>Dean's Scholarship</h4>
+        <p>Ivey Business School</p>
+      </div>
+
     </div>
   </div>
 
+</div>
   <!-- =========================
        ADD: Accordion JS
        Put this once on the page (or in your main JS file).
@@ -2269,6 +2330,7 @@ function highlightPaper(n) {
     </script>
 </body>
 </html>
+
 
 
 
