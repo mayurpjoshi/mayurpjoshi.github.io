@@ -1411,10 +1411,10 @@
 
 <!-- Overarching RQ at left -->
 <g>
-  <rect x="32" y="385" width="360" height="160" rx="16"
+  <rect x="32" y="410" width="360" height="160" rx="16"
         fill="#faf7f2" stroke="#cfc5bb" stroke-width="1.4"/>
-  <text x="212" y="417" text-anchor="middle" class="qhead">OVERARCHING RESEARCH QUESTION</text>
-  <text x="212" y="448" text-anchor="middle" class="qtext">
+  <text x="212" y="442" text-anchor="middle" class="qhead">OVERARCHING RESEARCH QUESTION</text>
+  <text x="212" y="473" text-anchor="middle" class="qtext">
     <tspan x="212" dy="0">How do digital technologies shape and</tspan>
     <tspan x="212" dy="20">are shaped by the systems through which</tspan>
     <tspan x="212" dy="20">organizations and institutions know,</tspan>
@@ -1422,197 +1422,122 @@
   </text>
 </g>
 
-<!-- Forming segments: each is the beginning of the same stream -->
-<!-- Stream 1: exact TOP midpoint of RQ box -> Pub1 -->
-<path id="formingOrg"
-      d="M212 385
-         C240 315, 335 270, 440 275
-         C485 277, 520 290, 555 300"
+
+<!-- Straight-line research-stream architecture -->
+<!-- Stream y positions:
+     Stream 1 = 250
+     Shared 1+2 lane = 330
+     Stream 2 = 410
+     Stream 3 = 570
+     Stream 4 = 730 -->
+
+<!-- Forming / dotted segments before the first node on each stream -->
+<path d="M212 410 L405 250 L555 250"
       fill="none" stroke="#6f5f3e" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
 
-<!-- Streams 2 and 3: leave the right side of the RQ and diverge -->
-<path id="formingProf"
-      d="M392 448
-         C430 448, 455 425, 475 400
-         C500 370, 525 330, 555 300"
+<path d="M392 473 L420 410 L555 410"
       fill="none" stroke="#43689f" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
 
-<path id="formingInst"
-      d="M392 482
-         C455 482, 500 492, 550 505
-         C690 535, 850 555, 1040 575"
+<path d="M392 507 L420 570 L1040 570"
       fill="none" stroke="#3f7d6e" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".72"/>
 
-<!-- Stream 4: exact BOTTOM midpoint of RQ box -> Pub2 -->
-<path id="formingComp"
-      d="M212 545
-         C275 610, 375 675, 500 705
-         C580 724, 645 730, 705 730"
+<path d="M212 570 L420 730 L705 730"
       fill="none" stroke="#7a67a6" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
 
-
-<path id="labelOrg"
-      d="M212 385
-         C240 315, 335 270, 440 275
-         C485 277, 520 290, 555 300"
-      transform="translate(0,-17)"
-      fill="none" stroke="none"/>
-
-
-<path id="labelProf"
-      d="M392 448
-         C430 448, 455 425, 475 400
-         C500 370, 525 330, 555 300"
-      transform="translate(0,-10)"
-      fill="none" stroke="none"/>
-
-
-<path id="labelProf2"
-      d="M392 448
-         C430 448, 455 425, 475 400
-         C500 370, 525 330, 555 300"
-      transform="translate(0,18)"
-      fill="none" stroke="none"/>
-
-<path id="labelInst"
-      d="M392 482
-         C455 482, 500 492, 550 505
-         C690 535, 850 555, 1040 575"
-      transform="translate(0,18)"
-      fill="none" stroke="none"/>
-
-<path id="labelComp"
-      d="M212 545
-         C275 610, 375 675, 500 705
-         C580 724, 645 730, 705 730"
-      transform="translate(0,18)"
-      fill="none" stroke="none"/>
-
-<!-- Stream names: carried by the forming trajectories, with whitespace from the paths -->
+<!-- Stream names -->
 <g>
-  <text class="stream-path-label" fill="#6f5f3e" dy="0" style="stroke:none;paint-order:normal">
-    <textPath href="#labelOrg" startOffset="14%">AI &amp; Organizational Intelligence</textPath>
+  <text x="420" y="216" class="stream" fill="#6f5f3e">
+    <tspan x="420" dy="0">AI &amp; Organizational</tspan>
+    <tspan x="420" dy="20">Intelligence</tspan>
   </text>
 
-  <g>
-  <text class="stream-path-label" fill="#43689f" dy="0" style="stroke:none;paint-order:normal">
-    <textPath href="#labelProf" startOffset="22%">AI, Professional</textPath>
+  <text x="420" y="438" class="stream" fill="#43689f">
+    <tspan x="420" dy="0">AI, Professional</tspan>
+    <tspan x="420" dy="20">Work &amp; Expertise</tspan>
   </text>
-  <text class="stream-path-label" fill="#43689f" dy="0" style="stroke:none;paint-order:normal">
-    <textPath href="#labelProf2" startOffset="21%">Work &amp; Expertise</textPath>
+
+  <text x="420" y="533" class="stream" fill="#3f7d6e">
+    <tspan x="420" dy="0">Digital Technologies</tspan>
+    <tspan x="420" dy="20">&amp; Institutions</tspan>
+  </text>
+
+  <text x="420" y="693" class="stream" fill="#7a67a6">
+    <tspan x="420" dy="0">Computational Tools</tspan>
+    <tspan x="420" dy="20">&amp; Theory Construction</tspan>
   </text>
 </g>
 
-  <text class="stream-path-label" fill="#3f7d6e" dy="0" style="stroke:none;paint-order:normal">
-    <textPath href="#labelInst" startOffset="13%">Digital Technologies &amp; Institutions</textPath>
-  </text>
+<!-- Solid straight streams after the first node -->
+<line x1="555" y1="250" x2="1725" y2="250"
+      stroke="#6f5f3e" stroke-width="3.5" opacity=".96"
+      marker-end="url(#aOrg)"/>
 
-  <text class="stream-path-label" fill="#7a67a6" dy="0" style="stroke:none;paint-order:normal">
-    <textPath href="#labelComp" startOffset="18%">Computational Tools &amp; Theory Construction</textPath>
-  </text>
-</g>
+<line x1="555" y1="410" x2="1725" y2="410"
+      stroke="#43689f" stroke-width="3.5" opacity=".96"
+      marker-end="url(#aProf)"/>
 
-<!-- Solid stream 1 -->
-<path d="M555 300
- C610 300,650 230,705 230
- C735 230,760 278,780 300
- C825 300,875 300,930 300
- C975 300,1010 300,1040 300
- C1070 300,1090 245,1120 245
- C1180 245,1230 300,1300 300
- C1360 300,1420 235,1530 235
- C1580 235,1615 335,1660 365
- C1685 380,1700 350,1725 335"
- fill="none" stroke="#6f5f3e" stroke-width="3.5" opacity=".96" marker-end="url(#aOrg)"/>
+<line x1="1040" y1="570" x2="1725" y2="570"
+      stroke="#3f7d6e" stroke-width="3.5" opacity=".96"
+      marker-end="url(#aInst)"/>
 
-<!-- Solid stream 2 -->
-<path d="M555 300
- C625 300,690 350,740 350
- C760 350,772 325,780 300
- C800 270,825 390,855 390
- C890 390,905 325,930 300
- C965 270,1005 300,1040 300
- C1090 300,1120 410,1180 410
- C1225 410,1250 320,1300 300
- C1350 285,1395 410,1460 410
- C1530 410,1590 365,1660 365
- C1685 365,1705 390,1725 405"
- fill="none" stroke="#43689f" stroke-width="3.5" opacity=".96" marker-end="url(#aProf)"/>
+<line x1="705" y1="730" x2="1725" y2="730"
+      stroke="#7a67a6" stroke-width="3.5" opacity=".96"
+      marker-end="url(#aComp)"/>
 
-<!-- Solid Stream 3 after its first node -->
-<path d="M1040 575
- C1080 575 1105 610 1140 610
- C1180 610 1215 575 1260 575
- C1305 575 1330 610 1380 610
- C1435 610 1460 575 1510 575
- C1560 575 1595 610 1640 610
- C1680 610 1700 590 1725 585"
- fill="none" stroke="#3f7d6e" stroke-width="3.5"
- stroke-linecap="round" opacity=".96" marker-end="url(#aInst)"/>
-
-<!-- Solid stream 4 -->
-<path d="M705 730
- C760 730 805 715 855 715
- C900 715 925 735 960 735
- C1005 735 1045 720 1080 735
- C1170 755 1260 700 1350 715
- C1440 730 1545 700 1630 735
- C1665 748 1695 730 1725 720"
- fill="none" stroke="#7a67a6" stroke-width="3.5" opacity=".96" marker-end="url(#aComp)"/>
 
 <!-- Published nodes -->
 <g class="paper-badge" onclick="highlightPaper(1)" data-paper="1">
   <title>MIT Sloan Management Review — Why So Many Data Science Projects Fail to Deliver</title>
-  <circle cx="555" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
-  <text x="555" y="240" text-anchor="middle" class="pid" fill="#6f5f3e">Pub1 · MIT SMR</text>
-  <text x="555" y="258" text-anchor="middle" class="plabel">Why Data Science</text>
-  <text x="555" y="273" text-anchor="middle" class="plabel">Projects Fail</text>
+  <circle cx="555" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="555" y="360" text-anchor="middle" class="pid" fill="#6f5f3e">Pub1 · MIT SMR</text>
+  <text x="555" y="378" text-anchor="middle" class="plabel">Why Data Science</text>
+  <text x="555" y="396" text-anchor="middle" class="plabel">Projects Fail</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(3)" data-paper="3">
   <title>JAIS — Organizations as Digital Enactment Systems</title>
-  <circle cx="705" cy="230" r="12" fill="#6f5f3e" stroke="#fff" stroke-width="2.5"/>
-  <text x="705" y="170" text-anchor="middle" class="pid" fill="#6f5f3e">Pub3 · JAIS</text>
-  <text x="705" y="188" text-anchor="middle" class="plabel">Orgs as Digital</text>
-  <text x="705" y="203" text-anchor="middle" class="plabel">Enactment Systems</text>
+  <circle cx="705" cy="250" r="12" fill="#6f5f3e" stroke="#fff" stroke-width="2.5"/>
+  <text x="705" y="195" text-anchor="middle" class="pid" fill="#6f5f3e">Pub3 · JAIS</text>
+  <text x="705" y="213" text-anchor="middle" class="plabel">Orgs as Digital</text>
+  <text x="705" y="231" text-anchor="middle" class="plabel">Enactment Systems</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(4)" data-paper="4">
   <title>Research Handbook on AI and Decision-Making in Organizations</title>
-  <circle cx="780" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
-  <text x="825" y="207" text-anchor="middle" class="pid" fill="#6f5f3e">Pub4</text>
-  <text x="825" y="225" text-anchor="middle" class="pid" fill="#6f5f3e">Research Handbook</text>
-  <text x="825" y="243" text-anchor="middle" class="plabel">AI &amp; Decision Making</text>
+  <circle cx="780" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="780" y="360" text-anchor="middle" class="pid" fill="#6f5f3e">Pub4</text>
+  <text x="780" y="378" text-anchor="middle" class="pid" fill="#6f5f3e">Research Handbook</text>
+  <text x="780" y="396" text-anchor="middle" class="plabel">AI &amp; Decision Making</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(5)" data-paper="5">
   <title>Research in the Sociology of Organizations — Data Science as Craft</title>
-  <circle cx="855" cy="390" r="12" fill="#43689f" stroke="#fff" stroke-width="2.5"/>
-  <text x="855" y="420" text-anchor="middle" class="pid" fill="#43689f">Pub5 · RSO</text>
-  <text x="855" y="438" text-anchor="middle" class="plabel">Data Science as Craft</text>
+  <circle cx="855" cy="410" r="12" fill="#43689f" stroke="#fff" stroke-width="2.5"/>
+  <text x="855" y="440" text-anchor="middle" class="pid" fill="#43689f">Pub5 · RSO</text>
+  <text x="855" y="458" text-anchor="middle" class="plabel">Data Science as Craft</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(6)" data-paper="6">
   <title>Journal of Management Studies — AI as an Organizing Capability</title>
-  <circle cx="930" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
-  <text x="930" y="258" text-anchor="middle" class="pid" fill="#6f5f3e">Pub6 · JMS</text>
-  <text x="930" y="278" text-anchor="middle" class="plabel">AI as Org Capability</text>
+  <circle cx="930" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="930" y="360" text-anchor="middle" class="pid" fill="#6f5f3e">Pub6 · JMS</text>
+  <text x="930" y="378" text-anchor="middle" class="plabel">AI as Org Capability</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(2)" data-paper="2">
   <title>Cambridge University Press — Algorithms as Co-Researchers</title>
   <circle cx="705" cy="730" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
-  <text x="705" y="760" text-anchor="middle" class="pid" fill="#7a67a6">Pub2 · CUP</text>
-  <text x="705" y="778" text-anchor="middle" class="plabel">Algorithms as Co-Researchers</text>
+  <text x="705" y="765" text-anchor="middle" class="pid" fill="#7a67a6">Pub2 · CUP</text>
+  <text x="705" y="783" text-anchor="middle" class="plabel">Algorithms as Co-Researchers</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(7)" data-paper="7">
   <title>MIS Quarterly — Trustworthiness in Computational Theory Construction</title>
-  <circle cx="960" cy="735" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
+  <circle cx="960" cy="730" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
   <text x="960" y="690" text-anchor="middle" class="pid" fill="#7a67a6">Pub7 · MISQ</text>
   <text x="960" y="708" text-anchor="middle" class="plabel">Trustworthiness in CTC</text>
 </g>
@@ -1621,20 +1546,20 @@
 <!-- WP1: Streams 1 + 2; provisionally accepted -->
 <g>
   <title>Organization Science — Bridging Epistemic Stances</title>
-  <circle cx="1040" cy="300" r="10" fill="#fff"/>
-  <path d="M1040 290 A10 10 0 0 0 1040 310" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1040 310 A10 10 0 0 0 1040 290" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <circle cx="1040" cy="300" r="3" fill="#666"/>
-  <text x="1085" y="300" text-anchor="start" class="pid" fill="#43689f">WP1 · OrgSci</text>
-  <text x="1085" y="318" text-anchor="start" class="plabel">Bridging Epistemic Stances</text>
+  <circle cx="1080" cy="330" r="10" fill="#fff"/>
+  <path d="M1080 320 A10 10 0 0 0 1080 340" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1080 340 A10 10 0 0 0 1080 320" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <circle cx="1080" cy="330" r="3" fill="#666"/>
+  <text x="1080" y="360" text-anchor="middle" class="pid" fill="#43689f">WP1 · OrgSci</text>
+  <text x="1080" y="378" text-anchor="middle" class="plabel">Bridging Epistemic Stances</text>
 </g>
 
 <!-- WP4: Stream 1; R&R -->
 <g>
   <title>Organization Studies — AI as an Assemblage</title>
-  <circle cx="1120" cy="245" r="10" fill="url(#halfOrg)" stroke="#6f5f3e" stroke-width="2.4"/>
-  <text x="1120" y="207" text-anchor="middle" class="pid" fill="#6f5f3e">WP4 · OrgStud</text>
-  <text x="1120" y="225" text-anchor="middle" class="plabel">AI as an Assemblage</text>
+  <circle cx="1120" cy="250" r="10" fill="url(#halfOrg)" stroke="#6f5f3e" stroke-width="2.4"/>
+  <text x="1120" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP4 · OrgStud</text>
+  <text x="1120" y="228" text-anchor="middle" class="plabel">AI as an Assemblage</text>
 </g>
 
 <!-- WP2: Stream 2; MISQ R&R -->
@@ -1648,12 +1573,12 @@
 <!-- WP3: Streams 1 + 2; MISQ R&R -->
 <g>
   <title>MIS Quarterly — Data Scientists, AI, and Garbage Cans</title>
-  <circle cx="1300" cy="300" r="10" fill="url(#halfNeutral)"/>
-  <path d="M1300 290 A10 10 0 0 0 1300 310" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1300 310 A10 10 0 0 0 1300 290" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <text x="1300" y="240" text-anchor="middle" class="pid" fill="#6f5f3e">WP3 · MISQ</text>
-  <text x="1300" y="258" text-anchor="middle" class="plabel">Data Scientists, AI,</text>
-  <text x="1300" y="273" text-anchor="middle" class="plabel">&amp; Garbage Cans</text>
+  <circle cx="1300" cy="330" r="10" fill="url(#halfNeutral)"/>
+  <path d="M1300 320 A10 10 0 0 0 1300 340" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1300 340 A10 10 0 0 0 1300 320" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1300" y="360" text-anchor="middle" class="pid" fill="#6f5f3e">WP3 · MISQ</text>
+  <text x="1300" y="378" text-anchor="middle" class="plabel">Data Scientists, AI,</text>
+  <text x="1300" y="396" text-anchor="middle" class="plabel">&amp; Garbage Cans</text>
 </g>
 
 <!-- WP10: Stream 2 -->
@@ -1667,88 +1592,88 @@
 <!-- WP8: Stream 1 -->
 <g>
   <title>AI and New Sciences of the Artificial</title>
-  <circle cx="1530" cy="235" r="10" fill="#fff" stroke="#6f5f3e" stroke-width="2.3"/>
-  <text x="1530" y="198" text-anchor="middle" class="pid" fill="#6f5f3e">WP8</text>
-  <text x="1530" y="216" text-anchor="middle" class="plabel">AI &amp; New Sciences of the Artificial</text>
+  <circle cx="1530" cy="250" r="10" fill="#fff" stroke="#6f5f3e" stroke-width="2.3"/>
+  <text x="1530" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP8</text>
+  <text x="1530" y="228" text-anchor="middle" class="plabel">AI &amp; New Sciences of the Artificial</text>
 </g>
 
 <!-- WP16: Streams 1 + 2 -->
 <g>
   <title>Generative AI and Software Developers</title>
-  <circle cx="1660" cy="365" r="10.5" fill="#fff"/>
-  <path d="M1660 354.5 A10.5 10.5 0 0 0 1660 375.5" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1660 375.5 A10.5 10.5 0 0 0 1660 354.5" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <text x="1545" y="318" text-anchor="middle" class="pid" fill="#43689f">WP16</text>
-  <text x="1545" y="336" text-anchor="middle" class="plabel">GenAI &amp; Software</text>
-  <text x="1545" y="351" text-anchor="middle" class="plabel">Developers</text>
+  <circle cx="1660" cy="330" r="10.5" fill="#fff"/>
+  <path d="M1660 319.5 A10.5 10.5 0 0 0 1660 340.5" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1660 340.5 A10.5 10.5 0 0 0 1660 319.5" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1660" y="360" text-anchor="middle" class="pid" fill="#43689f">WP16</text>
+  <text x="1660" y="378" text-anchor="middle" class="plabel">GenAI &amp; Software</text>
+  <text x="1660" y="396" text-anchor="middle" class="plabel">Developers</text>
 </g>
 
 <!-- Institutional nodes: Stream 3 -->
 <g>
   <title>Information Systems Research — GDPR and Regulatory Decoupling</title>
-  <circle cx="1040" cy="575" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
-  <text x="1040" y="514" text-anchor="middle" class="pid" fill="#3f7d6e">WP5 · ISR</text>
-  <text x="1040" y="532" text-anchor="middle" class="plabel">GDPR &amp; Regulatory</text>
-  <text x="1040" y="547" text-anchor="middle" class="plabel">Decoupling</text>
+  <circle cx="1040" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1040" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP5 · ISR</text>
+  <text x="1040" y="530" text-anchor="middle" class="plabel">GDPR &amp; Regulatory</text>
+  <text x="1040" y="548" text-anchor="middle" class="plabel">Decoupling</text>
 </g>
 
 <g>
   <title>Information Systems Journal — Risk Work in AI Regulation</title>
-  <circle cx="1140" cy="610" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
-  <text x="1140" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP6 · ISJ</text>
-  <text x="1140" y="658" text-anchor="middle" class="plabel">Risk Work in AI Regulation</text>
+  <circle cx="1140" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1140" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP6 · ISJ</text>
+  <text x="1140" y="618" text-anchor="middle" class="plabel">Risk Work in AI Regulation</text>
 </g>
 
 <g>
   <title>Digital Currencies and State Capitalism</title>
-  <circle cx="1260" cy="575" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1260" y="514" text-anchor="middle" class="pid" fill="#3f7d6e">WP7</text>
-  <text x="1260" y="532" text-anchor="middle" class="plabel">Digital Currencies &amp;</text>
-  <text x="1260" y="547" text-anchor="middle" class="plabel">State Capitalism</text>
+  <circle cx="1260" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1260" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP7</text>
+  <text x="1260" y="530" text-anchor="middle" class="plabel">Digital Currencies &amp;</text>
+  <text x="1260" y="548" text-anchor="middle" class="plabel">State Capitalism</text>
 </g>
 
 <g>
   <title>Digital Technologies and Issue Fields</title>
-  <circle cx="1380" cy="610" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1380" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP9</text>
-  <text x="1380" y="658" text-anchor="middle" class="plabel">Digital Technologies &amp; Issue Fields</text>
+  <circle cx="1380" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1380" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP9</text>
+  <text x="1380" y="618" text-anchor="middle" class="plabel">Digital Technologies &amp; Issue Fields</text>
 </g>
 
 <g>
   <title>Canadian Open Banking</title>
-  <circle cx="1510" cy="575" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1510" y="537" text-anchor="middle" class="pid" fill="#3f7d6e">WP12</text>
-  <text x="1510" y="555" text-anchor="middle" class="plabel">Canadian Open Banking</text>
+  <circle cx="1510" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1510" y="530" text-anchor="middle" class="pid" fill="#3f7d6e">WP12</text>
+  <text x="1510" y="548" text-anchor="middle" class="plabel">Canadian Open Banking</text>
 </g>
 
 <g>
   <title>Digital Rights Activism</title>
-  <circle cx="1640" cy="610" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1640" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP15</text>
-  <text x="1640" y="658" text-anchor="middle" class="plabel">Digital Rights Activism</text>
+  <circle cx="1640" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1640" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP15</text>
+  <text x="1640" y="618" text-anchor="middle" class="plabel">Digital Rights Activism</text>
 </g>
 
 <!-- Computational nodes: Stream 4 -->
 <g>
   <title>Configurational Meta-Theorizing</title>
-  <circle cx="1080" cy="735" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1080" y="765" text-anchor="middle" class="pid" fill="#7a67a6">WP11</text>
-  <text x="1080" y="783" text-anchor="middle" class="plabel">Configurational Meta-Theorizing</text>
+  <circle cx="1080" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1080" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP11</text>
+  <text x="1080" y="778" text-anchor="middle" class="plabel">Configurational Meta-Theorizing</text>
 </g>
 
 <g>
   <title>Surfacing Theory from Text</title>
-  <circle cx="1350" cy="715" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1350" y="678" text-anchor="middle" class="pid" fill="#7a67a6">WP13</text>
-  <text x="1350" y="696" text-anchor="middle" class="plabel">Surfacing Theory from Text</text>
+  <circle cx="1350" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1350" y="690" text-anchor="middle" class="pid" fill="#7a67a6">WP13</text>
+  <text x="1350" y="708" text-anchor="middle" class="plabel">Surfacing Theory from Text</text>
 </g>
 
 <g>
   <title>Computational Tools and Epistemic Communities</title>
-  <circle cx="1630" cy="735" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1630" y="765" text-anchor="middle" class="pid" fill="#7a67a6">WP14</text>
-  <text x="1630" y="783" text-anchor="middle" class="plabel">Computational Tools &amp;</text>
-  <text x="1630" y="798" text-anchor="middle" class="plabel">Epistemic Communities</text>
+  <circle cx="1630" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1630" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP14</text>
+  <text x="1630" y="778" text-anchor="middle" class="plabel">Computational Tools &amp;</text>
+  <text x="1630" y="796" text-anchor="middle" class="plabel">Epistemic Communities</text>
 </g>
 
 <!-- Legend -->
