@@ -974,33 +974,31 @@
     }
 
     #research .layout {
-      display: flex;
-      gap: 2.25rem;
-      align-items: flex-start;
+      display: block;
+      width: 100%;
     }
 
+    /* Full-width research-program figure */
     #research .venn-panel {
-      flex: 0 0 460px;
-      position: sticky;
-      top: 1.5rem;
-    }
-
-    #research .venn-panel-title {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-light);
-      margin-bottom: 1rem;
+      width: 100%;
+      position: static;
+      margin-bottom: 2.25rem;
     }
 
     #research .venn-wrap {
-      background: var(--bg-secondary);
+      width: 100%;
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1rem;
+      padding: 0.6rem;
       box-shadow: 0 2px 10px var(--shadow);
-      min-height: 430px;
+      overflow-x: auto;
+    }
+
+    #research .venn-wrap > svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     #research .paper-badge {
@@ -1098,7 +1096,7 @@
     }
 
     #research .papers-panel {
-      flex: 1;
+      width: 100%;
       min-width: 0;
     }
 
@@ -1267,14 +1265,8 @@
     }
 
     @media (max-width: 980px) {
-      #research .layout {
-        flex-direction: column;
-      }
-
-      #research .venn-panel {
-        position: static;
-        flex: none;
-        width: 100%;
+      #research .venn-wrap > svg {
+        min-width: 900px;
       }
     }
 
@@ -1304,82 +1296,445 @@
   </style>
 
  <div class="research-intro">
-  <p>My research examines the phenomenon of <em>technology, work, and organizing</em>: how organizations produce knowledge and make decisions when artificial intelligence (AI) systems and other digital technologies become embedded in professional and organizational work. Situated at the intersection of information systems (IS) and organization theory (OT), my work investigates how organizational intelligence emerges from interactions among human experts, data, algorithms, and models. Rather than treating AI as a standalone technological artifact or autonomous decision-maker, I conceptualize it as part of socio-technical arrangements through which knowledge is generated, evaluated, and enacted in organizations. Drawing on qualitative field studies and computational methods, my research develops theoretical explanations of how professional expertise, decision-making, and learning evolve as predictive models and data-driven tools become integrated into work.</p>
+  <p>My research examines the phenomenon of <em>technology, work, and organizing</em>: how artificial intelligence (AI), data, and other digital technologies reshape the ways organizations produce knowledge, make decisions, organize work, and respond to institutional change. Situated at the intersection of information systems (IS) and organization theory (OT), I study technology relationally—as part of systems of work, expertise, organizational intelligence, and institutional arrangements—rather than as a standalone artifact. Drawing on qualitative field research, conceptual theorizing, and computational methods, I examine how technologies and organizing practices become mutually constituted over time.</p>
   <br>
-     <p>My work cuts across three overlapping themes: <strong>Digital Technologies and Organizing in Practice</strong>, <strong>Digital Technologies and Expert Work</strong>, and <strong>Computational Tools in Research</strong>. Across a set of interrelated projects on data science work, AI-enabled decision-making, and computational approaches to theory construction, I advance contributions that engage both the IS and OT communities. Empirically, I examine how predictive AI systems become embedded in organizational practices, particularly in data-intensive sectors such as financial services. Conceptually, I develop theories explaining how emerging epistemic technologies transform organizational expertise and decision processes. Methodologically, I contribute to strengthening computational approaches to theory construction in management and IS research. This work has appeared in <em>MIS Quarterly</em>, <em>Journal of Management Studies</em>, <em>Journal of the Association for Information Systems</em>, <em>MIT Sloan Management Review</em>, and <em>Research in the Sociology of Organizations</em>, reflecting its cross-domain positioning at the intersection of IS and OT.</p>
+  <p>This research program develops across four interrelated streams: <strong>AI &amp; Organizational Intelligence</strong>, <strong>AI, Professional Work &amp; Expertise</strong>, <strong>Digital Technologies &amp; Institutions</strong>, and <strong>Computational Tools &amp; Theory Construction</strong>. The first two streams form the mature core of my work on how AI changes organizational knowledge, decision-making, expertise, and professional work. The third extends this agenda to institutional and regulatory settings in which digital technologies reshape governance, fields, and public issues. The fourth develops computational approaches for constructing and evaluating theory. Across these streams, my work engages both IS and OT audiences and has appeared in <em>MIS Quarterly</em>, <em>Journal of Management Studies</em>, <em>Journal of the Association for Information Systems</em>, <em>MIT Sloan Management Review</em>, and <em>Research in the Sociology of Organizations</em>.</p>
 </div>
 
   <div class="layout">
 
-    <!-- LEFT: THEME MAP -->
+    <!-- FULL-WIDTH RESEARCH PROGRAM FIGURE -->
     <div class="venn-panel">
-      <div class="venn-panel-title">Research Themes</div>
-
       <div class="venn-wrap">
-       <svg viewBox="0 0 360 380" width="100%" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1800 900" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Technology, Work, and Organizing research program">
+<defs>
+  <style>
+    text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+    .title{font-family:Georgia,"Times New Roman",serif;font-size:32px;font-weight:700;fill:#252525}
+    .subtitle{font-size:15px;fill:#666}
+    .year{font-size:13px;fill:#929292;font-weight:700}
+    .stream{font-size:17px;font-weight:700}.stream-path-label{font-size:16px;font-weight:700;paint-order:stroke;stroke:#ffffff;stroke-width:8px;stroke-linejoin:round}
+    .pid{font-size:13px;font-weight:800;stroke:none}
+    .plabel{font-size:13px;fill:#333;stroke:none}
+    .qhead{font-size:13px;font-weight:800;letter-spacing:.06em;fill:#a5587c}
+    .qtext{font-family:Georgia,"Times New Roman",serif;font-size:15px;font-style:italic;fill:#555}
+    .legend{font-size:12.5px;fill:#666}
+    .paper-badge{cursor:pointer}
+    .paper-badge:hover circle{filter:brightness(1.08)}
+  </style>
+  <linearGradient id="splitIE" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="50%" stop-color="#6f5f3e"/><stop offset="50%" stop-color="#43689f"/>
+  </linearGradient>
+  <linearGradient id="halfOrg" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="50%" stop-color="#6f5f3e"/><stop offset="50%" stop-color="#fff"/>
+  </linearGradient>
+  <linearGradient id="halfProf" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="50%" stop-color="#43689f"/><stop offset="50%" stop-color="#fff"/>
+  </linearGradient>
+  <linearGradient id="halfInst" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="50%" stop-color="#3f7d6e"/><stop offset="50%" stop-color="#fff"/>
+  </linearGradient>
+  <linearGradient id="halfNeutral" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="50%" stop-color="#8a8a8a"/><stop offset="50%" stop-color="#fff"/>
+  </linearGradient>
+  <marker id="aOrg" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#6f5f3e"/></marker>
+  <marker id="aProf" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#43689f"/></marker>
+  <marker id="aInst" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#3f7d6e"/></marker>
+  <marker id="aComp" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#7a67a6"/></marker>
+</defs>
 
-  <!-- Circles -->
-  <circle cx="130" cy="142" r="108" fill="rgba(113,97,64,0.12)" stroke="#716140" stroke-width="2"/>
-  <circle cx="230" cy="142" r="108" fill="rgba(79,111,168,0.11)" stroke="#4f6fa8" stroke-width="2"/>
-  <circle cx="180" cy="252" r="108" fill="rgba(122,103,166,0.11)" stroke="#7a67a6" stroke-width="2"/>
+<rect width="1800" height="900" fill="#fff"/>
 
-  <!-- Theme 1 label -->
-  <text x="92" y="88" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">Digital Technologies</text>
-  <text x="92" y="100" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">and Organizing</text>
-  <text x="92" y="112" font-size="8.8" font-weight="700" fill="#716140" text-anchor="middle">in Practice</text>
+<!-- Header -->
+<text x="900" y="52" text-anchor="middle" class="title">Technology, Work, and Organizing</text>
 
-  <!-- Theme 2 label -->
-  <text x="268" y="88" font-size="8.8" font-weight="700" fill="#4f6fa8" text-anchor="middle">Digital Technologies</text>
-  <text x="268" y="100" font-size="8.8" font-weight="700" fill="#4f6fa8" text-anchor="middle">and Expert Work</text>
+<!-- Timeline -->
+<g>
+  <line x1="555" y1="120" x2="555" y2="805" stroke="#eeeeee"/>
+  <text x="555" y="108" text-anchor="middle" class="year">2021</text>
 
-  <!-- Theme 3 label -->
-  <text x="180" y="328" font-size="8.8" font-weight="700" fill="#7a67a6" text-anchor="middle">Computational Tools</text>
-  <text x="180" y="340" font-size="8.8" font-weight="700" fill="#7a67a6" text-anchor="middle">in Research</text>
+  <line x1="630" y1="120" x2="630" y2="805" stroke="#eeeeee"/>
+  <text x="630" y="108" text-anchor="middle" class="year">2022</text>
 
-  <!-- T1 only: JAIS 2023 -->
-<g class="paper-badge" onclick="highlightPaper(3)" data-paper="3">
-  <circle cx="80" cy="150" r="13" fill="#716140" stroke="white" stroke-width="2"/>
-  <text x="80" y="154" font-size="10" font-weight="700" fill="white" text-anchor="middle">3</text>
+  <line x1="705" y1="120" x2="705" y2="805" stroke="#eeeeee"/>
+  <text x="705" y="108" text-anchor="middle" class="year">2023</text>
+
+  <line x1="780" y1="120" x2="780" y2="805" stroke="#eeeeee"/>
+  <text x="780" y="108" text-anchor="middle" class="year">2024</text>
+
+  <line x1="855" y1="120" x2="855" y2="805" stroke="#eeeeee"/>
+  <text x="855" y="108" text-anchor="middle" class="year">2025</text>
+
+  <line x1="930" y1="120" x2="930" y2="805" stroke="#eeeeee"/>
+  <text x="930" y="108" text-anchor="middle" class="year">2026</text>
+
+  <line x1="985" y1="92" x2="985" y2="815" stroke="#d9c9c0" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <text x="1002" y="108" class="year" fill="#a5587c">WORKS IN PROGRESS →</text>
 </g>
 
-<!-- T1 + T2 only: JMS / RSO / MIT SMR -->
-<g class="paper-badge" onclick="highlightPaper(6)" data-paper="6">
-  <circle cx="180" cy="88" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
-  <text x="180" y="92" font-size="10" font-weight="700" fill="white" text-anchor="middle">6</text>
+<!-- Stream labels removed; they will be placed on the forming dotted lines -->
+
+<!-- Overarching RQ at left -->
+<g>
+  <rect x="32" y="385" width="360" height="160" rx="16"
+        fill="#faf7f2" stroke="#cfc5bb" stroke-width="1.4"/>
+  <text x="212" y="417" text-anchor="middle" class="qhead">OVERARCHING RESEARCH QUESTION</text>
+  <text x="212" y="448" text-anchor="middle" class="qtext">
+    <tspan x="212" dy="0">How do digital technologies shape and</tspan>
+    <tspan x="212" dy="20">are shaped by the systems through which</tspan>
+    <tspan x="212" dy="20">organizations and institutions know,</tspan>
+    <tspan x="212" dy="20">decide, work, and govern?</tspan>
+  </text>
+</g>
+
+<!-- Forming segments: each is the beginning of the same stream -->
+<!-- Stream 1: exact TOP midpoint of RQ box -> Pub1 -->
+<path id="formingOrg"
+      d="M212 385
+         C240 315, 335 270, 440 275
+         C485 277, 520 290, 555 300"
+      fill="none" stroke="#6f5f3e" stroke-width="3"
+      stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
+
+<!-- Streams 2 and 3: leave the right side of the RQ and diverge -->
+<path id="formingProf"
+      d="M392 448
+         C430 448, 455 425, 475 400
+         C500 370, 525 330, 555 300"
+      fill="none" stroke="#43689f" stroke-width="3"
+      stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
+
+<path id="formingInst"
+      d="M392 482
+         C455 482, 500 492, 550 505
+         C690 535, 850 555, 1040 575"
+      fill="none" stroke="#3f7d6e" stroke-width="3"
+      stroke-dasharray="4 6" stroke-linecap="round" opacity=".72"/>
+
+<!-- Stream 4: exact BOTTOM midpoint of RQ box -> Pub2 -->
+<path id="formingComp"
+      d="M212 545
+         C275 610, 375 675, 500 705
+         C580 724, 645 730, 705 730"
+      fill="none" stroke="#7a67a6" stroke-width="3"
+      stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
+
+
+<path id="labelOrg"
+      d="M212 385
+         C240 315, 335 270, 440 275
+         C485 277, 520 290, 555 300"
+      transform="translate(0,-17)"
+      fill="none" stroke="none"/>
+
+
+<path id="labelProf"
+      d="M392 448
+         C430 448, 455 425, 475 400
+         C500 370, 525 330, 555 300"
+      transform="translate(0,-10)"
+      fill="none" stroke="none"/>
+
+
+<path id="labelProf2"
+      d="M392 448
+         C430 448, 455 425, 475 400
+         C500 370, 525 330, 555 300"
+      transform="translate(0,18)"
+      fill="none" stroke="none"/>
+
+<path id="labelInst"
+      d="M392 482
+         C455 482, 500 492, 550 505
+         C690 535, 850 555, 1040 575"
+      transform="translate(0,18)"
+      fill="none" stroke="none"/>
+
+<path id="labelComp"
+      d="M212 545
+         C275 610, 375 675, 500 705
+         C580 724, 645 730, 705 730"
+      transform="translate(0,18)"
+      fill="none" stroke="none"/>
+
+<!-- Stream names: carried by the forming trajectories, with whitespace from the paths -->
+<g>
+  <text class="stream-path-label" fill="#6f5f3e" dy="0" style="stroke:none;paint-order:normal">
+    <textPath href="#labelOrg" startOffset="14%">AI &amp; Organizational Intelligence</textPath>
+  </text>
+
+  <g>
+  <text class="stream-path-label" fill="#43689f" dy="0" style="stroke:none;paint-order:normal">
+    <textPath href="#labelProf" startOffset="22%">AI, Professional</textPath>
+  </text>
+  <text class="stream-path-label" fill="#43689f" dy="0" style="stroke:none;paint-order:normal">
+    <textPath href="#labelProf2" startOffset="21%">Work &amp; Expertise</textPath>
+  </text>
+</g>
+
+  <text class="stream-path-label" fill="#3f7d6e" dy="0" style="stroke:none;paint-order:normal">
+    <textPath href="#labelInst" startOffset="13%">Digital Technologies &amp; Institutions</textPath>
+  </text>
+
+  <text class="stream-path-label" fill="#7a67a6" dy="0" style="stroke:none;paint-order:normal">
+    <textPath href="#labelComp" startOffset="18%">Computational Tools &amp; Theory Construction</textPath>
+  </text>
+</g>
+
+<!-- Solid stream 1 -->
+<path d="M555 300
+ C610 300,650 230,705 230
+ C735 230,760 278,780 300
+ C825 300,875 300,930 300
+ C975 300,1010 300,1040 300
+ C1070 300,1090 245,1120 245
+ C1180 245,1230 300,1300 300
+ C1360 300,1420 235,1530 235
+ C1580 235,1615 335,1660 365
+ C1685 380,1700 350,1725 335"
+ fill="none" stroke="#6f5f3e" stroke-width="3.5" opacity=".96" marker-end="url(#aOrg)"/>
+
+<!-- Solid stream 2 -->
+<path d="M555 300
+ C625 300,690 350,740 350
+ C760 350,772 325,780 300
+ C800 270,825 390,855 390
+ C890 390,905 325,930 300
+ C965 270,1005 300,1040 300
+ C1090 300,1120 410,1180 410
+ C1225 410,1250 320,1300 300
+ C1350 285,1395 410,1460 410
+ C1530 410,1590 365,1660 365
+ C1685 365,1705 390,1725 405"
+ fill="none" stroke="#43689f" stroke-width="3.5" opacity=".96" marker-end="url(#aProf)"/>
+
+<!-- Institutional stream remains forming/dotted because no published anchor yet -->
+<path d="M1040 575
+ C1080 575 1105 610 1140 610
+ C1180 610 1215 575 1260 575
+ C1305 575 1330 610 1380 610
+ C1435 610 1460 575 1510 575
+ C1560 575 1595 610 1640 610
+ C1680 610 1700 590 1725 585"
+ fill="none" stroke="#3f7d6e" stroke-width="3.3" stroke-dasharray="5 6" stroke-linecap="round" opacity=".88" marker-end="url(#aInst)"/>
+
+<!-- Solid stream 4 -->
+<path d="M705 730
+ C760 730 805 715 855 715
+ C900 715 925 735 960 735
+ C1005 735 1045 720 1080 735
+ C1170 755 1260 700 1350 715
+ C1440 730 1545 700 1630 735
+ C1665 748 1695 730 1725 720"
+ fill="none" stroke="#7a67a6" stroke-width="3.5" opacity=".96" marker-end="url(#aComp)"/>
+
+<!-- Published nodes -->
+<g class="paper-badge" onclick="highlightPaper(1)" data-paper="1">
+  <title>MIT Sloan Management Review — Why So Many Data Science Projects Fail to Deliver</title>
+  <circle cx="555" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="555" y="240" text-anchor="middle" class="pid" fill="#6f5f3e">Pub1 · MIT SMR</text>
+  <text x="555" y="258" text-anchor="middle" class="plabel">Why Data Science</text>
+  <text x="555" y="273" text-anchor="middle" class="plabel">Projects Fail</text>
+</g>
+
+<g class="paper-badge" onclick="highlightPaper(3)" data-paper="3">
+  <title>JAIS — Organizations as Digital Enactment Systems</title>
+  <circle cx="705" cy="230" r="12" fill="#6f5f3e" stroke="#fff" stroke-width="2.5"/>
+  <text x="705" y="170" text-anchor="middle" class="pid" fill="#6f5f3e">Pub3 · JAIS</text>
+  <text x="705" y="188" text-anchor="middle" class="plabel">Orgs as Digital</text>
+  <text x="705" y="203" text-anchor="middle" class="plabel">Enactment Systems</text>
+</g>
+
+<g class="paper-badge" onclick="highlightPaper(4)" data-paper="4">
+  <title>Research Handbook on AI and Decision-Making in Organizations</title>
+  <circle cx="780" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="825" y="207" text-anchor="middle" class="pid" fill="#6f5f3e">Pub4</text>
+  <text x="825" y="225" text-anchor="middle" class="pid" fill="#6f5f3e">Research Handbook</text>
+  <text x="825" y="243" text-anchor="middle" class="plabel">AI &amp; Decision Making</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(5)" data-paper="5">
-  <circle cx="152" cy="112" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
-  <text x="152" y="116" font-size="10" font-weight="700" fill="white" text-anchor="middle">5</text>
+  <title>Research in the Sociology of Organizations — Data Science as Craft</title>
+  <circle cx="855" cy="390" r="12" fill="#43689f" stroke="#fff" stroke-width="2.5"/>
+  <text x="855" y="420" text-anchor="middle" class="pid" fill="#43689f">Pub5 · RSO</text>
+  <text x="855" y="438" text-anchor="middle" class="plabel">Data Science as Craft</text>
 </g>
 
-<g class="paper-badge" onclick="highlightPaper(1)" data-paper="1">
-  <circle cx="208" cy="112" r="13" fill="#5a5876" stroke="white" stroke-width="2"/>
-  <text x="208" y="116" font-size="10" font-weight="700" fill="white" text-anchor="middle">1</text>
-</g>
-
-<!-- T1 + T2 + T3: Research Handbook -->
-<g class="paper-badge" onclick="highlightPaper(4)" data-paper="4">
-  <circle cx="180" cy="198" r="14" fill="#2d2d2d" stroke="white" stroke-width="2.5"/>
-  <text x="180" y="202.5" font-size="10" font-weight="700" fill="white" text-anchor="middle">4</text>
-</g>
-
-<!-- T3 only: MISQ / Cambridge -->
-<g class="paper-badge" onclick="highlightPaper(7)" data-paper="7">
-  <circle cx="156" cy="306" r="13" fill="#7a67a6" stroke="white" stroke-width="2"/>
-  <text x="156" y="310" font-size="10" font-weight="700" fill="white" text-anchor="middle">7</text>
+<g class="paper-badge" onclick="highlightPaper(6)" data-paper="6">
+  <title>Journal of Management Studies — AI as an Organizing Capability</title>
+  <circle cx="930" cy="300" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="930" y="258" text-anchor="middle" class="pid" fill="#6f5f3e">Pub6 · JMS</text>
+  <text x="930" y="278" text-anchor="middle" class="plabel">AI as Org Capability</text>
 </g>
 
 <g class="paper-badge" onclick="highlightPaper(2)" data-paper="2">
-  <circle cx="204" cy="306" r="13" fill="#7a67a6" stroke="white" stroke-width="2"/>
-  <text x="204" y="310" font-size="10" font-weight="700" fill="white" text-anchor="middle">2</text>
+  <title>Cambridge University Press — Algorithms as Co-Researchers</title>
+  <circle cx="705" cy="730" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
+  <text x="705" y="760" text-anchor="middle" class="pid" fill="#7a67a6">Pub2 · CUP</text>
+  <text x="705" y="778" text-anchor="middle" class="plabel">Algorithms as Co-Researchers</text>
+</g>
+
+<g class="paper-badge" onclick="highlightPaper(7)" data-paper="7">
+  <title>MIS Quarterly — Trustworthiness in Computational Theory Construction</title>
+  <circle cx="960" cy="735" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
+  <text x="960" y="690" text-anchor="middle" class="pid" fill="#7a67a6">Pub7 · MISQ</text>
+  <text x="960" y="708" text-anchor="middle" class="plabel">Trustworthiness in CTC</text>
+</g>
+
+<!-- Current nodes -->
+<!-- WP1: Streams 1 + 2; provisionally accepted -->
+<g>
+  <title>Organization Science — Bridging Epistemic Stances</title>
+  <circle cx="1040" cy="300" r="10" fill="#fff"/>
+  <path d="M1040 290 A10 10 0 0 0 1040 310" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1040 310 A10 10 0 0 0 1040 290" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <circle cx="1040" cy="300" r="3" fill="#666"/>
+  <text x="1085" y="300" text-anchor="start" class="pid" fill="#43689f">WP1 · OrgSci</text>
+  <text x="1085" y="318" text-anchor="start" class="plabel">Bridging Epistemic Stances</text>
+</g>
+
+<!-- WP4: Stream 1; R&R -->
+<g>
+  <title>Organization Studies — AI as an Assemblage</title>
+  <circle cx="1120" cy="245" r="10" fill="url(#halfOrg)" stroke="#6f5f3e" stroke-width="2.4"/>
+  <text x="1120" y="207" text-anchor="middle" class="pid" fill="#6f5f3e">WP4 · OrgStud</text>
+  <text x="1120" y="225" text-anchor="middle" class="plabel">AI as an Assemblage</text>
+</g>
+
+<!-- WP2: Stream 2; MISQ R&R -->
+<g>
+  <title>MIS Quarterly — Experts’ Epistemic Encounters</title>
+  <circle cx="1180" cy="410" r="10" fill="url(#halfProf)" stroke="#43689f" stroke-width="2.4"/>
+  <text x="1180" y="440" text-anchor="middle" class="pid" fill="#43689f">WP2 · MISQ</text>
+  <text x="1180" y="458" text-anchor="middle" class="plabel">Experts’ Epistemic Encounters</text>
+</g>
+
+<!-- WP3: Streams 1 + 2; MISQ R&R -->
+<g>
+  <title>MIS Quarterly — Data Scientists, AI, and Garbage Cans</title>
+  <circle cx="1300" cy="300" r="10" fill="url(#halfNeutral)"/>
+  <path d="M1300 290 A10 10 0 0 0 1300 310" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1300 310 A10 10 0 0 0 1300 290" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1300" y="240" text-anchor="middle" class="pid" fill="#6f5f3e">WP3 · MISQ</text>
+  <text x="1300" y="258" text-anchor="middle" class="plabel">Data Scientists, AI,</text>
+  <text x="1300" y="273" text-anchor="middle" class="plabel">&amp; Garbage Cans</text>
+</g>
+
+<!-- WP10: Stream 2 -->
+<g>
+  <title>AI, Stigma, and Spoiled Expertise</title>
+  <circle cx="1460" cy="410" r="10" fill="#fff" stroke="#43689f" stroke-width="2.3"/>
+  <text x="1460" y="440" text-anchor="middle" class="pid" fill="#43689f">WP10</text>
+  <text x="1460" y="458" text-anchor="middle" class="plabel">AI, Stigma, &amp; Spoiled Expertise</text>
+</g>
+
+<!-- WP8: Stream 1 -->
+<g>
+  <title>AI and New Sciences of the Artificial</title>
+  <circle cx="1530" cy="235" r="10" fill="#fff" stroke="#6f5f3e" stroke-width="2.3"/>
+  <text x="1530" y="198" text-anchor="middle" class="pid" fill="#6f5f3e">WP8</text>
+  <text x="1530" y="216" text-anchor="middle" class="plabel">AI &amp; New Sciences of the Artificial</text>
+</g>
+
+<!-- WP16: Streams 1 + 2 -->
+<g>
+  <title>Generative AI and Software Developers</title>
+  <circle cx="1660" cy="365" r="10.5" fill="#fff"/>
+  <path d="M1660 354.5 A10.5 10.5 0 0 0 1660 375.5" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1660 375.5 A10.5 10.5 0 0 0 1660 354.5" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1545" y="318" text-anchor="middle" class="pid" fill="#43689f">WP16</text>
+  <text x="1545" y="336" text-anchor="middle" class="plabel">GenAI &amp; Software</text>
+  <text x="1545" y="351" text-anchor="middle" class="plabel">Developers</text>
+</g>
+
+<!-- Institutional nodes: Stream 3 -->
+<g>
+  <title>Information Systems Research — GDPR and Regulatory Decoupling</title>
+  <circle cx="1040" cy="575" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1040" y="514" text-anchor="middle" class="pid" fill="#3f7d6e">WP5 · ISR</text>
+  <text x="1040" y="532" text-anchor="middle" class="plabel">GDPR &amp; Regulatory</text>
+  <text x="1040" y="547" text-anchor="middle" class="plabel">Decoupling</text>
+</g>
+
+<g>
+  <title>Information Systems Journal — Risk Work in AI Regulation</title>
+  <circle cx="1140" cy="610" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1140" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP6 · ISJ</text>
+  <text x="1140" y="658" text-anchor="middle" class="plabel">Risk Work in AI Regulation</text>
+</g>
+
+<g>
+  <title>Digital Currencies and State Capitalism</title>
+  <circle cx="1260" cy="575" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1260" y="514" text-anchor="middle" class="pid" fill="#3f7d6e">WP7</text>
+  <text x="1260" y="532" text-anchor="middle" class="plabel">Digital Currencies &amp;</text>
+  <text x="1260" y="547" text-anchor="middle" class="plabel">State Capitalism</text>
+</g>
+
+<g>
+  <title>Digital Technologies and Issue Fields</title>
+  <circle cx="1380" cy="610" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1380" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP9</text>
+  <text x="1380" y="658" text-anchor="middle" class="plabel">Digital Technologies &amp; Issue Fields</text>
+</g>
+
+<g>
+  <title>Canadian Open Banking</title>
+  <circle cx="1510" cy="575" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1510" y="537" text-anchor="middle" class="pid" fill="#3f7d6e">WP12</text>
+  <text x="1510" y="555" text-anchor="middle" class="plabel">Canadian Open Banking</text>
+</g>
+
+<g>
+  <title>Digital Rights Activism</title>
+  <circle cx="1640" cy="610" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1640" y="640" text-anchor="middle" class="pid" fill="#3f7d6e">WP15</text>
+  <text x="1640" y="658" text-anchor="middle" class="plabel">Digital Rights Activism</text>
+</g>
+
+<!-- Computational nodes: Stream 4 -->
+<g>
+  <title>Configurational Meta-Theorizing</title>
+  <circle cx="1080" cy="735" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1080" y="765" text-anchor="middle" class="pid" fill="#7a67a6">WP11</text>
+  <text x="1080" y="783" text-anchor="middle" class="plabel">Configurational Meta-Theorizing</text>
+</g>
+
+<g>
+  <title>Surfacing Theory from Text</title>
+  <circle cx="1350" cy="715" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1350" y="678" text-anchor="middle" class="pid" fill="#7a67a6">WP13</text>
+  <text x="1350" y="696" text-anchor="middle" class="plabel">Surfacing Theory from Text</text>
+</g>
+
+<g>
+  <title>Computational Tools and Epistemic Communities</title>
+  <circle cx="1630" cy="735" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1630" y="765" text-anchor="middle" class="pid" fill="#7a67a6">WP14</text>
+  <text x="1630" y="783" text-anchor="middle" class="plabel">Computational Tools &amp;</text>
+  <text x="1630" y="798" text-anchor="middle" class="plabel">Epistemic Communities</text>
+</g>
+
+<!-- Legend -->
+<g transform="translate(190,852)">
+  <circle cx="0" cy="0" r="6" fill="#444"/>
+  <text x="14" y="4" class="legend">published</text>
+
+  <circle cx="96" cy="0" r="6" fill="#fff" stroke="#666" stroke-width="1.5"/>
+  <circle cx="96" cy="0" r="2.4" fill="#666"/>
+  <text x="110" y="4" class="legend">provisionally accepted</text>
+
+  <circle cx="280" cy="0" r="6" fill="url(#halfOrg)" stroke="#666" stroke-width="1.3"/>
+  <text x="294" y="4" class="legend">under review / R&amp;R</text>
+
+  <circle cx="452" cy="0" r="6" fill="#fff" stroke="#666" stroke-width="1.3"/>
+  <text x="466" y="4" class="legend">in progress</text>
 </g>
 </svg>
-
       </div>
     </div>
 
-    <!-- RIGHT: PAPERS -->
+    <!-- PAPERS -->
     <div class="papers-panel">
 
       <!-- 7 MISQ -->
@@ -1389,7 +1744,7 @@
           <div class="ribbon-journal" style="background:#7a67a6;">MISQ 2026</div>
           <div class="ribbon-title">Trustworthiness in Computational Theory Construction: Dimensionalization and Category Surfacing</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 4" aria-label="Stream 4" style="background:#7a67a6;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-7">▼</div>
         </div>
@@ -1410,12 +1765,12 @@
       <!-- 6 JMS -->
       <div class="paper-ribbon" id="paper-6">
         <div class="ribbon-header" onclick="togglePaper(6)">
-          <div class="paper-num-badge" style="background:#5a5876;">6</div>
-          <div class="ribbon-journal" style="background:#5a5876;">JMS 2026</div>
+          <div class="paper-num-badge" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">6</div>
+          <div class="ribbon-journal" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">JMS 2026</div>
           <div class="ribbon-title">Artificial Intelligence as an Organizing Capability Arising from Human-Algorithm Relations</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
-            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 1" aria-label="Stream 1" style="background:#6f5f3e;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 2" aria-label="Stream 2" style="background:#43689f;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-6">▼</div>
         </div>
@@ -1436,12 +1791,11 @@
           <!-- 5 RSO -->
       <div class="paper-ribbon" id="paper-5">
         <div class="ribbon-header" onclick="togglePaper(5)">
-          <div class="paper-num-badge" style="background:#5a5876;">5</div>
-          <div class="ribbon-journal" style="background:#5a5876;">RSO 2025</div>
+          <div class="paper-num-badge" style="background:#43689f;">5</div>
+          <div class="ribbon-journal" style="background:#43689f;">RSO 2025</div>
           <div class="ribbon-title">Data-Based Craft: How Data Scientists Craft Their Data, Models, and Products</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
-            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 2" aria-label="Stream 2" style="background:#43689f;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-5">▼</div>
         </div>
@@ -1461,13 +1815,12 @@
       <!-- 4 Edited Research Handbook -->
       <div class="paper-ribbon" id="paper-4">
         <div class="ribbon-header" onclick="togglePaper(4)">
-          <div class="paper-num-badge" style="background:#2d2d2d;">4</div>
-          <div class="ribbon-journal" style="background:#2d2d2d;">Research Handbook 2024</div>
+          <div class="paper-num-badge" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">4</div>
+          <div class="ribbon-journal" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">Research Handbook 2024</div>
           <div class="ribbon-title">Research Handbook on Artificial Intelligence and Decision-Making in Organizations</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
-            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
-            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 1" aria-label="Stream 1" style="background:#6f5f3e;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 2" aria-label="Stream 2" style="background:#43689f;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-4">▼</div>
         </div>
@@ -1490,11 +1843,11 @@
       <!-- 3 JAIS -->
       <div class="paper-ribbon" id="paper-3">
         <div class="ribbon-header" onclick="togglePaper(3)">
-          <div class="paper-num-badge" style="background:#716140;">3</div>
-          <div class="ribbon-journal" style="background:#716140;">JAIS 2023</div>
+          <div class="paper-num-badge" style="background:#6f5f3e;">3</div>
+          <div class="ribbon-journal" style="background:#6f5f3e;">JAIS 2023</div>
           <div class="ribbon-title">Organizations as Digital Enactment Systems: A Theory of Replacement of Humans by Digital Technologies</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 1" aria-label="Stream 1" style="background:#6f5f3e;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-3">▼</div>
         </div>
@@ -1519,7 +1872,7 @@
           <div class="ribbon-journal" style="background:#7a67a6;">Book Chapter 2023</div>
           <div class="ribbon-title">Algorithms as Co-Researchers: Exploring Meaning and Bias in Qualitative Research</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#7a67a6;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 4" aria-label="Stream 4" style="background:#7a67a6;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-2">▼</div>
         </div>
@@ -1540,12 +1893,12 @@
       <!-- 1 MIT SMR -->
       <div class="paper-ribbon" id="paper-1">
         <div class="ribbon-header" onclick="togglePaper(1)">
-          <div class="paper-num-badge" style="background:#5a5876;">1</div>
-          <div class="ribbon-journal" style="background:#5a5876;">MIT SMR 2021</div>
+          <div class="paper-num-badge" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">1</div>
+          <div class="ribbon-journal" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">MIT SMR 2021</div>
           <div class="ribbon-title">Why So Many Data Science Projects Fail to Deliver</div>
           <div class="ribbon-themes">
-            <span class="dot" style="background:#716140;width:10px;height:10px;"></span>
-            <span class="dot" style="background:#4f6fa8;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 1" aria-label="Stream 1" style="background:#6f5f3e;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 2" aria-label="Stream 2" style="background:#43689f;width:10px;height:10px;"></span>
           </div>
           <div class="ribbon-chevron" id="chev-1">▼</div>
         </div>
@@ -2358,100 +2711,3 @@ function highlightPaper(n) {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
