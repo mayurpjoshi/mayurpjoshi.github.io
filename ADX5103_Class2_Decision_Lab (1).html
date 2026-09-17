@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interview each form of AI on one small-business lending decision. An after-class practice lab for ADX 5103.">
+<title>The Decision Lab · ADX 5103</title>
+<style>
+  :root{
+    --garnet:#8F1739; --garnet-d:#6f1229; --teal:#2E9C9A; --gold:#D69B2D; --purple:#8A3A7A;
+    --green:#4f8a4d; --slate:#3F6B73; --ink:#252525; --muted:#5A5A5A; --faint:#7d7d7d;
+    --hair:#e2e2df; --panel:#F5F5F4; --paper:#ffffff; --bad:#B23A48;
+    --tealsoft:#E5F2F1; --garnetsoft:#F5E7EB; --goldsoft:#F8EED6; --greensoft:#E7F1E6;
+    --serif:Georgia,"DejaVu Serif","Times New Roman",serif;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SFMono-Regular",Consolas,Menlo,monospace; --r:12px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  button,input{font:inherit}
+  button:focus-visible,input:focus-visible,a:focus-visible,.era-btn:focus-visible{outline:3px solid rgba(46,156,154,.5);outline-offset:2px}
+  .ribbon{display:flex;height:7px} .ribbon span{flex:1}
+  .ribbon .g{background:#B7D43C}.ribbon .t{background:#2E9C9A}.ribbon .r{background:#8F1739}.ribbon .y{background:#D69B2D}.ribbon .m{background:#8A3A7A}
+
+  header.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 22px}
+  .brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+  .wm{font-family:var(--serif);font-weight:700;color:var(--garnet);font-size:18px;letter-spacing:.04em}
+  .wm em{font-style:normal;font-weight:400;color:var(--ink)}
+  .kick{font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+  .top-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .chip{border:1px solid var(--hair);border-radius:999px;padding:5px 11px;color:var(--muted);font-size:12px;white-space:nowrap}
+  .ghost{border:1px solid var(--hair);background:var(--paper);color:var(--ink);border-radius:8px;padding:6px 11px;font-size:12.5px;cursor:pointer}
+  .ghost:hover{border-color:var(--garnet);color:var(--garnet)}
+
+  .layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr)}
+  aside.rail{position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto;border-right:1px solid var(--hair);padding:18px 12px;background:var(--panel)}
+  .prog{display:flex;justify-content:space-between;font-size:11px;color:var(--faint);margin:0 6px 7px;letter-spacing:.04em}
+  .track{height:5px;border-radius:20px;background:#e3e3df;overflow:hidden;margin:0 6px 16px}
+  .bar{height:100%;width:0;background:var(--garnet);transition:.3s}
+  .steps{display:grid;gap:3px}
+  .era-btn{width:100%;display:grid;grid-template-columns:26px 1fr;gap:9px;align-items:center;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer}
+  .era-btn:hover{background:#ececea}
+  .era-btn.active{background:var(--garnet);color:#fff}
+  .era-btn.active .num{border-color:rgba(255,255,255,.55);color:#fff}
+  .num{width:24px;height:24px;border:1px solid var(--hair);border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;background:var(--paper)}
+  .era-btn.done .num{border-color:var(--teal);color:var(--teal)}
+  .era-btn.active.done .num{border-color:rgba(255,255,255,.6);color:#fff;background:transparent}
+  .lbl{font-size:13.5px;font-weight:650;line-height:1.15}
+  .sub{font-size:11px;color:var(--faint)} .era-btn.active .sub{color:rgba(255,255,255,.8)}
+
+  main{min-width:0;padding:30px clamp(18px,3.5vw,48px) 90px}
+  .stage{display:none;animation:in .2s ease}
+  .stage.active{display:block}
+  @media(prefers-reduced-motion:reduce){.stage{animation:none}html{scroll-behavior:auto}}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}}
+  .eyebrow{color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  h1{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.08;color:var(--garnet);margin:0 0 8px;font-weight:700}
+  h2{font-family:var(--serif);font-size:1.35rem;color:var(--garnet);margin:0;font-weight:700}
+  h3{font-size:1rem;margin:0 0 6px}
+  p{margin:0 0 13px} .lede{color:var(--muted);font-size:1.05rem;max-width:70ch;margin:12px 0 22px}
+  strong{font-weight:700}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--hair);border-radius:var(--r);padding:18px}
+  .card.tint{background:var(--panel)}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .micro{color:var(--faint);font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .pill{border:1px solid var(--hair);border-radius:999px;padding:3px 10px;font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .pill.teal{color:var(--teal);border-color:#bfe0dd;background:var(--tealsoft)}
+  .pill.gold{color:#8a6414;border-color:#e6d3a3;background:var(--goldsoft)}
+  .pill.garnet{color:var(--garnet);border-color:#e6c9cf;background:var(--garnetsoft)}
+  .pill.bad{color:#fff;background:var(--bad);border-color:var(--bad)}
+  .facts .fact{display:grid;grid-template-columns:1fr auto;gap:14px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:14px}
+  .facts .fact:last-child{border:0}.fact span{color:var(--muted)}.fact strong{text-align:right}
+  .callout{border-left:3px solid var(--teal);background:var(--tealsoft);padding:12px 14px;border-radius:0 10px 10px 0;font-size:14px;color:var(--ink)}
+  .callout.gold{border-color:var(--gold);background:var(--goldsoft)}
+  .callout.garnet{border-color:var(--garnet);background:var(--garnetsoft)}
+
+  .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px}
+  .choice{text-align:left;background:var(--paper);border:1px solid var(--hair);color:var(--muted);border-radius:10px;padding:11px;font-weight:600;cursor:pointer;font-size:13.5px}
+  .choice:hover{border-color:var(--teal)} .choice.sel{background:var(--garnet);border-color:var(--garnet);color:#fff}
+  .choice small{font-weight:400;opacity:.8}
+  .range{margin:13px 0}.range-top{display:flex;justify-content:space-between;margin-bottom:5px;font-size:13.5px}
+  .range-top label{font-weight:650}.value{color:var(--garnet);font-weight:700;font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;accent-color:var(--garnet)}
+  input[type=text]{width:100%;padding:10px 11px;border:1px solid var(--hair);border-radius:9px;background:#fff;color:var(--ink)}
+  .btn{border:1px solid var(--hair);background:var(--panel);color:var(--ink);border-radius:9px;padding:9px 13px;font-weight:600;cursor:pointer}
+  .btn:hover{border-color:var(--garnet);color:var(--garnet)}
+  .primary{background:var(--garnet);border-color:var(--garnet);color:#fff}.primary:hover{background:var(--garnet-d);color:#fff}
+  .btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  .result{margin-top:13px;border:1px solid var(--hair);border-radius:11px;background:var(--panel);padding:15px;min-height:80px}
+  .result.empty{display:grid;place-items:center;text-align:center;color:var(--faint);font-size:14px}
+  .result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px;font-size:14px}
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .metric{border:1px solid var(--hair);border-radius:9px;background:#fff;padding:9px;text-align:center}
+  .metric strong{display:block;font-size:1.05rem}.metric span{font-size:11px;color:var(--faint)}
+  .check{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px}
+  .check:last-child{border:0}.check input{width:18px;height:18px;accent-color:var(--teal);margin-top:2px}
+  .check small{display:block;color:var(--faint)}
+  .switch-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px}
+  .switch-row:last-of-type{border:0}
+  .switch{position:relative;width:44px;height:24px;flex:0 0 44px}.switch input{opacity:0;width:0;height:0}
+  .switch span{position:absolute;inset:0;background:#c9c9c6;border-radius:30px;cursor:pointer;transition:.2s}
+  .switch span:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s}
+  .switch input:checked+span{background:var(--teal)}.switch input:checked+span:before{transform:translateX(20px)}
+
+  .gauge{width:min(230px,74vw);aspect-ratio:2/1;margin:6px auto 0;position:relative;overflow:hidden}
+  .ring,.fill{position:absolute;inset:0;border:24px solid #e0e0dc;border-bottom:0;border-radius:230px 230px 0 0}
+  .fill{border-color:var(--garnet);clip-path:polygon(0 0,100% 0,100% 100%,50% 100%);transform-origin:50% 100%;transform:rotate(var(--rot,-90deg));transition:.4s}
+  .score{position:absolute;inset:auto 0 0;text-align:center;font-size:2.2rem;font-weight:800;letter-spacing:-.04em;color:var(--garnet)}
+  .caption{text-align:center;color:var(--muted);font-size:13px;margin-top:4px}
+
+  .memo{font-family:var(--serif);font-size:15px;line-height:1.65}
+  .memo p{margin:0 0 9px}
+  .lens .sup{background:rgba(79,138,77,.22)}.lens .inf{background:rgba(214,155,45,.24)}
+  .lens .uns{background:rgba(178,58,72,.20)}.lens .omit{text-decoration:underline dotted var(--slate) 2px;text-underline-offset:3px}
+  .legend{display:none;gap:12px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:12px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+  .trace{display:grid;gap:7px}
+  .trace-item{display:grid;grid-template-columns:22px 1fr auto;gap:9px;padding:8px 9px;border:1px solid var(--hair);border-radius:8px;background:#fff;font-size:13.5px}
+  .trace-item b{color:var(--teal)}
+  .status{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+  .status.done{color:var(--green)}.status.stop{color:#8a6414}.status.risk{color:var(--bad)}
+
+  /* interview card */
+  .iv{border:1px solid var(--hair);border-radius:11px;overflow:hidden}
+  .iv .act{padding:6px 12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+  .iv .actI{background:var(--teal)} .iv .actII{background:var(--garnet)}
+  .iv .q{display:grid;grid-template-columns:20px 92px 1fr;gap:9px;padding:9px 12px;border-bottom:1px solid var(--hair);font-size:13px;align-items:start}
+  .iv .q:last-child{border:0}
+  .iv .qn{width:19px;height:19px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+  .iv .q.i .qn{background:var(--teal)} .iv .q.ii .qn{background:var(--garnet)}
+  .iv .qname{font-weight:700;color:var(--ink)}
+  .iv .qval{color:var(--muted)}
+  .iv .q.focus{background:var(--goldsoft)}
+  .iv .q.focus .qval{color:var(--ink)}
+
+  .compose .row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--hair)}
+  .compose .row:last-child{border:0}
+  .compose select{font:inherit;font-size:13px;padding:7px 8px;border:1px solid var(--hair);border-radius:8px;background:#fff;width:100%}
+  .stress-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}
+  @media(max-width:760px){.stress-choices{grid-template-columns:1fr}.choices{grid-template-columns:1fr}}
+  .scenario{text-align:left;border:1px solid var(--hair);background:#fff;border-radius:11px;padding:13px;cursor:pointer}
+  .scenario:hover{border-color:var(--gold)} .scenario.sel{border-color:var(--gold);background:var(--goldsoft)}
+  .scenario p{margin:5px 0 0;color:var(--muted);font-size:13px}
+
+  /* self-check */
+  .q-block{border:1px solid var(--hair);border-radius:11px;padding:16px;margin-bottom:14px;background:#fff}
+  .q-opts{display:grid;gap:7px;margin-top:10px}
+  .q-opt{text-align:left;border:1px solid var(--hair);background:#fff;border-radius:9px;padding:10px 12px;cursor:pointer;font-size:14px}
+  .q-opt:hover{border-color:var(--teal)}
+  .q-opt.correct{background:var(--greensoft);border-color:var(--green);color:#2f5e2e;font-weight:600}
+  .q-opt.wrong{background:var(--garnetsoft);border-color:var(--bad);color:var(--bad)}
+  .q-fb{margin-top:9px;font-size:13.5px;color:var(--muted);display:none}
+  .q-fb.show{display:block}
+  .score-line{font-size:15px;font-weight:700;color:var(--garnet);margin-top:6px}
+
+  table.cmp{width:100%;border-collapse:collapse;font-size:13px}
+  table.cmp th,table.cmp td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--hair);vertical-align:top}
+  table.cmp th{background:var(--garnet);color:#fff;font-weight:600;font-size:12px}
+  table.cmp td:first-child{font-weight:700}
+  table.cmp tr:nth-child(even) td{background:var(--panel)}
+
+  .decision{border:1px solid #cdb; border:1px solid var(--hair);background:var(--panel);border-radius:16px;padding:22px}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:16px}
+  @media(max-width:760px){.dgrid{grid-template-columns:1fr}}
+  .field{border-top:1px solid var(--hair);padding-top:8px}.field span{display:block;color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+  .rec{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.6rem);line-height:1.25;color:var(--ink);margin:14px 0}
+
+  .nav{display:flex;gap:10px;justify-content:space-between;margin-top:26px;padding-top:18px;border-top:1px solid var(--hair)}
+  .nav .next{margin-left:auto}
+  .toast{position:fixed;right:18px;bottom:18px;z-index:50;padding:10px 14px;border:1px solid var(--teal);border-radius:10px;background:var(--tealsoft);color:var(--ink);opacity:0;transform:translateY(8px);transition:.2s;font-size:14px}
+  .toast.show{opacity:1;transform:none}
+  .mobile{display:none}
+  @media(max-width:880px){.layout{grid-template-columns:1fr}aside.rail{display:none}.mobile{display:block;padding:10px 18px 0}main{padding-top:20px}}
+  @media print{header.top,aside.rail,.nav,.mobile,.ghost{display:none!important}.stage{display:block!important;page-break-inside:avoid}.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="ribbon"><span class="g"></span><span class="t"></span><span class="r"></span><span class="y"></span><span class="m"></span></div>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><div><div class="kick">ADX 5103 · AI for Executives · Class 2</div><div class="wm">TELFER <em>Executive MBA</em> — The Decision Lab</div></div></div>
+    <div class="top-meta"><span class="chip">After-class practice · ~25 min</span><button class="ghost" id="exportBtn">Download my work</button><button class="ghost" id="resetBtn">Reset ↺</button></div>
+  </div>
+</header>
+<div class="mobile"><div class="track"><div class="bar"></div></div></div>
+<div class="layout">
+  <aside class="rail"><div class="prog"><strong>YOUR PROGRESS</strong><span id="progText">0 of 9</span></div><div class="track"><div class="bar"></div></div><nav class="steps" id="steps"></nav></aside>
+  <main id="main">
+
+  <!-- 0 -->
+  <section class="stage" data-stage="0">
+    <div class="eyebrow">The decision · make your call first</div>
+    <h1>Should Riverbend Bank launch FlexLine?</h1>
+    <p class="lede">You run the small-business division of a fictional regional bank. Growth has stalled and your team proposes <strong>FlexLine</strong>, an unsecured working-capital line for small firms. You must decide whether to launch, at what price, and how big. We'll then interview each form of AI on this same decision.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Proposed product</div><h3>FlexLine working-capital line</h3></div><span class="pill gold">Decision due today</span></div>
+        <div class="facts">
+          <div class="fact"><span>Customer</span><strong>Small firms · 2–20 staff</strong></div>
+          <div class="fact"><span>Credit limit</span><strong>up to $50,000</strong></div>
+          <div class="fact"><span>Expected applications</span><strong>4,800 / year</strong></div>
+          <div class="fact"><span>Expected approval rate</span><strong>38%</strong></div>
+          <div class="fact"><span>Avg utilized balance</span><strong>$22,000</strong></div>
+          <div class="fact"><span>Fixed launch cost</span><strong>$1.2M</strong></div>
+          <div class="fact"><span>Competitor APR</span><strong>10.9%–13.9%</strong></div>
+        </div>
+        <div class="callout gold" style="margin-top:13px">The numbers are estimates. Losses, fairness, competitor moves, and customer behaviour can all shift after launch.</div>
+      </article>
+      <article class="card">
+        <div class="micro">Your unaided call</div><h2>Decide before the machines do.</h2>
+        <p style="color:var(--muted);font-size:14px;margin:6px 0 4px">Pick the scale, then the APR you'd test.</p>
+        <div class="choices" data-choice="launch">
+          <button class="choice" data-value="Don't launch">Don't launch</button>
+          <button class="choice" data-value="90-day pilot">90-day pilot</button>
+          <button class="choice" data-value="Launch nationally">Launch nationally</button></div>
+        <div class="choices" data-choice="rate">
+          <button class="choice" data-value="9.9% APR">9.9%<small><br>growth</small></button>
+          <button class="choice" data-value="11.9% APR">11.9%<small><br>balanced</small></button>
+          <button class="choice" data-value="13.9% APR">13.9%<small><br>margin</small></button></div>
+        <div class="range"><div class="range-top"><label for="conf">Confidence in this call</label><span class="value" id="confOut">55%</span></div><input id="conf" type="range" min="0" max="100" value="55"></div>
+        <label class="micro" for="reason">The one reason behind your call</label>
+        <input id="reason" type="text" maxlength="180" placeholder="one assumption or piece of evidence" style="margin-top:5px">
+      </article>
+    </div>
+    <div class="callout" style="margin-top:16px"><strong>Why first?</strong> Every form of AI below will try to shape this call. Anchoring your own answer now is the only way to see what each one adds — and where it quietly moves you.</div>
+    <div class="nav"><span></span><button class="btn primary next" data-next="1">Interview the simulation →</button></div>
+  </section>
+
+  <!-- 1 simulation -->
+  <section class="stage" data-stage="1">
+    <div class="eyebrow">Candidate 1 · 1950s · Simulation</div>
+    <h1>Model it as a formula.</h1>
+    <p class="lede">Early computing let managers ask "what if" — write down the relationships you believe hold, then turn the dials. Find the price that maximizes expected first-year contribution, then switch to the recession preset and watch the answer flip.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Portfolio simulator</div><h3>Assumptions</h3></div><span class="pill">inputs → outcome</span></div>
+        <div class="range"><div class="range-top"><label for="simRate">APR</label><span class="value" id="simRateOut">11.9%</span></div><input id="simRate" type="range" min="9.9" max="15.9" step=".5" value="11.9"></div>
+        <div class="range"><div class="range-top"><label for="simApps">Annual applications</label><span class="value" id="simAppsOut">4,800</span></div><input id="simApps" type="range" min="2500" max="7000" step="100" value="4800"></div>
+        <div class="range"><div class="range-top"><label for="simLoss">Expected credit loss</label><span class="value" id="simLossOut">2.8%</span></div><input id="simLoss" type="range" min="1" max="8" step=".2" value="2.8"></div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:4px"><button class="btn simPreset" data-p="base">Base</button><button class="btn simPreset" data-p="recession">Recession</button><button class="btn simPreset" data-p="growth">Strong growth</button></div>
+        <button class="btn primary" id="runSim" style="margin-top:13px">Calculate scenario</button>
+        <div class="result empty" id="simResult">Set the dials, then calculate.</div>
+      </article>
+      <article class="card"><div class="micro">Interview card · Simulation</div><div class="iv" id="iv-sim"></div>
+        <div class="callout gold" style="margin-top:12px">The recession preset flips a "profitable" launch to a loss. The model only knows the relationships you hand-coded — it can't tell you your assumption is wrong.</div>
+      </article>
+    </div>
+    <div class="nav"><button class="btn" data-back="0">← Decision</button><button class="btn primary next" data-next="2">Interview the expert system →</button></div>
+  </section>
+
+  <!-- 2 expert -->
+  <section class="stage" data-stage="2">
+    <div class="eyebrow">Candidate 2 · 1970s–80s · Expert system</div>
+    <h1>Encode the credit officer as rules.</h1>
+    <p class="lede">Lending policy captured as if–then logic, applied the same way every time. Test three applicants and move the coverage threshold to see how consistency becomes brittleness at the margin.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Rulebook</div><h3>Eligibility rules</h3></div><span class="pill">facts + rules → conclusion</span></div>
+        <div class="check"><input id="rY" type="checkbox" checked><label for="rY"><strong>Operating history</strong><small>at least 2 years in business</small></label></div>
+        <div class="check"><input id="rD" type="checkbox" checked><label for="rD"><strong>Payment history</strong><small>no serious delinquency in 12 months</small></label></div>
+        <div class="check"><input id="rC" type="checkbox" checked><label for="rC"><strong>Debt-service coverage</strong><small>approve only above the ratio below</small></label></div>
+        <div class="range"><div class="range-top"><label for="cov">Minimum coverage ratio</label><span class="value" id="covOut">1.25×</span></div><input id="cov" type="range" min="1" max="1.6" step=".05" value="1.25"></div>
+        <div class="micro">Applicant</div>
+        <div class="choices" data-choice="applicant">
+          <button class="choice" data-value="Maya's Bakery">Maya's Bakery<small><br>4y · 1.31× · clean</small></button>
+          <button class="choice" data-value="North Repair">North Repair<small><br>9y · 1.24× · clean</small></button>
+          <button class="choice" data-value="Studio K">Studio K<small><br>1y · 1.62× · clean</small></button></div>
+        <button class="btn primary" id="runExp">Run the rules</button>
+        <div class="result empty" id="expResult">Pick an applicant and run.</div>
+      </article>
+      <article class="card"><div class="micro">Interview card · Expert system</div><div class="iv" id="iv-exp"></div>
+        <div class="callout gold" style="margin-top:12px">North Repair, 9 years and clean, is declined for missing the ratio by 0.01×. The rule is explainable — and still wrong at the margin.</div>
+      </article>
+    </div>
+    <div class="nav"><button class="btn" data-back="1">← Simulation</button><button class="btn primary next" data-next="3">Interview the predictive model →</button></div>
+  </section>
+
+  <!-- 3 predictive -->
+  <section class="stage" data-stage="3">
+    <div class="eyebrow">Candidate 3 · 2012–2020 · Predictive AI</div>
+    <h1>Estimate the risk from data.</h1>
+    <p class="lede">Instead of hand-written rules, a model learns default patterns from 145,000 past facilities. Explore a borderline case — then switch on the new digital-only applicants the model never trained on.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Applicant features · North Repair</div><h3>Inputs</h3></div><span class="pill">like cases → likely outcome</span></div>
+        <div class="range"><div class="range-top"><label for="bureau">Owner bureau score</label><span class="value" id="bureauOut">684</span></div><input id="bureau" type="range" min="560" max="800" value="684"></div>
+        <div class="range"><div class="range-top"><label for="vol">Cash-flow volatility</label><span class="value" id="volOut">32%</span></div><input id="vol" type="range" min="5" max="70" value="32"></div>
+        <div class="range"><div class="range-top"><label for="ind">Industry risk index</label><span class="value" id="indOut">55</span></div><input id="ind" type="range" min="10" max="90" value="55"></div>
+        <div class="switch-row"><div><strong>Digital-only firms now applying</strong><div style="color:var(--faint);font-size:12px">underrepresented in training data</div></div><label class="switch"><input id="ood" type="checkbox"><span></span></label></div>
+        <div class="range"><div class="range-top"><label for="cut">Your maximum risk cutoff</label><span class="value" id="cutOut">6.0%</span></div><input id="cut" type="range" min="2" max="12" step=".5" value="6"></div>
+      </article>
+      <article class="card">
+        <div class="head"><div><div class="micro">Model output</div><h3>Default probability · 12 months</h3></div><span class="pill teal" id="predPill">within population</span></div>
+        <div class="gauge"><div class="ring"></div><div class="fill" id="riskFill"></div><div class="score" id="riskScore">6.4%</div></div>
+        <div class="caption" id="predCap">A prediction — not an approval or a price.</div>
+        <div class="metrics"><div class="metric"><strong>0.79</strong><span>validation AUC</span></div><div class="metric"><strong>145k</strong><span>training facilities</span></div><div class="metric"><strong>8 mo</strong><span>since validation</span></div></div>
+      </article>
+    </div>
+    <div class="card" style="margin-top:16px"><div class="micro">Interview card · Predictive AI</div><div class="iv" id="iv-pred"></div></div>
+    <div class="nav"><button class="btn" data-back="2">← Expert system</button><button class="btn primary next" data-next="4">Interview generative AI →</button></div>
+  </section>
+
+  <!-- 4 generative -->
+  <section class="stage" data-stage="4">
+    <div class="eyebrow">Candidate 4 · 2022 → · Generative AI</div>
+    <h1>Write the committee memo.</h1>
+    <p class="lede">A generative model can turn calculations, rules, model output, and research into one executive memo in seconds. Choose what it may see, generate it, then turn on the evidence lens to see where the evidence actually ends.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Context supplied</div><h3>What the model may use</h3></div><span class="pill">context → plausible prose</span></div>
+        <div class="check"><input class="src" id="sSim" type="checkbox" checked><label for="sSim"><strong>Simulation results</strong><small>profit swings with loss + demand</small></label></div>
+        <div class="check"><input class="src" id="sRule" type="checkbox" checked><label for="sRule"><strong>Expert-system rules</strong><small>thresholds reject some plausible firms</small></label></div>
+        <div class="check"><input class="src" id="sPred" type="checkbox" checked><label for="sPred"><strong>Predictive validation report</strong><small>AUC 0.79; digital firms thin</small></label></div>
+        <div class="check"><input class="src" id="sComp" type="checkbox"><label for="sComp"><strong>Compliance note</strong><small>fairness review + committee approval</small></label></div>
+        <div class="switch-row"><div><strong>Require citations &amp; uncertainty labels</strong><div style="color:var(--faint);font-size:12px">separate evidence from inference</div></div><label class="switch"><input id="grounded" type="checkbox"><span></span></label></div>
+        <button class="btn teal" id="genMemo" style="margin-top:12px">Generate the memo</button>
+      </article>
+      <article class="card">
+        <div class="head"><div><div class="micro">Committee memo</div><h3>Draft</h3></div><button class="btn" id="lensBtn" disabled>Evidence lens: off</button></div>
+        <div class="legend" id="legend"><span><i style="background:#8bc48a"></i>Supported</span><span><i style="background:#e8c877"></i>Inference</span><span><i style="background:#dd9aa4"></i>Unsupported</span><span><i style="background:#9fb0b5;border:1px dashed var(--slate)"></i>Omission</span></div>
+        <div class="result empty memo" id="memo">Choose sources, then generate.</div>
+      </article>
+    </div>
+    <div class="card" style="margin-top:16px"><div class="micro">Interview card · Generative AI</div><div class="iv" id="iv-gen"></div></div>
+    <div class="nav"><button class="btn" data-back="3">← Predictive</button><button class="btn primary next" data-next="5">Interview the agent →</button></div>
+  </section>
+
+  <!-- 5 agentic -->
+  <section class="stage" data-stage="5">
+    <div class="eyebrow">Candidate 5 · 2023 → · Agentic AI</div>
+    <h1>Give it tools and let it run.</h1>
+    <p class="lede">The agent gets an objective — launch a pilot in 14 days — and access to bank systems. Decide what it may do alone and what needs a human gate, then run it and read the action trace.</p>
+    <div class="grid2">
+      <article class="card tint">
+        <div class="head"><div><div class="micro">Agent configuration</div><h3>Objective: launch in 14 days</h3></div><span class="pill">objective + tools → actions</span></div>
+        <div class="switch-row"><span>Read reports (research, policy, model)</span><label class="switch"><input id="pRead" type="checkbox" checked disabled><span></span></label></div>
+        <div class="switch-row"><span>Configure a pilot product</span><label class="switch"><input id="pConf" type="checkbox" checked><span></span></label></div>
+        <div class="switch-row"><span>Set the customer APR</span><label class="switch"><input id="pPrice" type="checkbox" checked><span></span></label></div>
+        <div class="switch-row"><span>Select &amp; email 1,200 prospects</span><label class="switch"><input id="pSend" type="checkbox" checked><span></span></label></div>
+        <div class="switch-row"><span>File the product disclosure</span><label class="switch"><input id="pFile" type="checkbox" checked><span></span></label></div>
+        <div class="switch-row"><div><strong>Committee approval before launch</strong><div style="color:var(--faint);font-size:12px">required by Riverbend policy</div></div><label class="switch"><input id="gCommittee" type="checkbox"><span></span></label></div>
+        <button class="btn primary" id="runAgent" style="margin-top:12px">Run the agent</button>
+        <div class="result empty" id="agentResult">Set the authority, then run.</div>
+      </article>
+      <article class="card"><div class="micro">Interview card · Agentic AI</div><div class="iv" id="iv-ag"></div>
+        <div class="callout gold" style="margin-top:12px">Leave the gate off and let it price, email, and file on its own — it completes the objective and breaches authority it never held. Some of those actions can't be recalled.</div>
+      </article>
+    </div>
+    <div class="nav"><button class="btn" data-back="4">← Generative</button><button class="btn primary next" data-next="6">Compose the stack →</button></div>
+  </section>
+
+  <!-- 6 compose + stress -->
+  <section class="stage" data-stage="6">
+    <div class="eyebrow">Synthesis · the composable stack</div>
+    <h1>Compose the layers, then stress-test.</h1>
+    <p class="lede">No single form makes the decision. Assign each layer to the part of the FlexLine decision it should do — then pick a shock and see which layer notices and who must decide.</p>
+    <div class="grid2">
+      <article class="card tint compose"><div class="micro">Which layer should do each job?</div>
+        <div id="composeRows" style="margin-top:8px"></div>
+        <div class="result" id="composeFb" style="display:none"></div>
+        <button class="btn primary" id="checkCompose" style="margin-top:12px">Check my composition</button>
+      </article>
+      <article class="card"><div class="micro">Stress test · which layer notices?</div>
+        <div class="stress-choices" id="stress">
+          <button class="scenario" data-s="recession"><div class="micro">assumption shift</div><strong>Credit losses double</strong><p>a recession breaks the simulator's base case</p></button>
+          <button class="scenario" data-s="fairness"><div class="micro">policy consequence</div><strong>A fairness gap appears</strong><p>thin-file immigrant-owned firms rejected more often</p></button>
+          <button class="scenario" data-s="competitor"><div class="micro">strategic response</div><strong>A rival cuts price</strong><p>a national bank launches at 9.5% next week</p></button>
+        </div>
+        <div class="result empty" id="stressResult">Pick a shock.</div>
+      </article>
+    </div>
+    <details style="margin-top:16px"><summary style="cursor:pointer;font-weight:650">The deeper point</summary><p style="color:var(--muted);margin-top:8px">The history isn't a ladder from primitive to superior. Each era adds a different operation; contemporary systems are strongest when those operations are deliberately composed and each one's distinct claim stays visible.</p></details>
+    <div class="nav"><button class="btn" data-back="5">← Agent</button><button class="btn primary next" data-next="7">Practice: name the candidate →</button></div>
+  </section>
+
+  <!-- 7 self-check -->
+  <section class="stage" data-stage="7">
+    <div class="eyebrow">Practice · a light self-check</div>
+    <h1>Interview a mystery system.</h1>
+    <p class="lede">Four quick calls. For each, use the six-question interview to decide. You'll see the answer and why immediately.</p>
+    <div id="quiz"></div>
+    <div class="score-line" id="quizScore" style="display:none"></div>
+    <div class="nav"><button class="btn" data-back="6">← Compose</button><button class="btn primary next" data-next="8">Write your decision card →</button></div>
+  </section>
+
+  <!-- 8 decision card -->
+  <section class="stage" data-stage="8">
+    <div class="eyebrow">Your decision card</div>
+    <h1>What would you authorize now?</h1>
+    <p class="lede">Your final answer names the product decision and the evidence, the human checkpoint, and the authority boundary behind it.</p>
+    <article class="decision">
+      <div class="head"><div><div class="micro">Riverbend Bank · FlexLine</div><h2>Product launch decision</h2></div><span class="pill teal">classroom simulation</span></div>
+      <div class="rec" id="finalRec">Fill the card from your choices.</div>
+      <div class="dgrid">
+        <div class="field"><span>Your first call</span><strong id="sInit">not recorded</strong></div>
+        <div class="field"><span>Confidence then → now</span><strong id="sConf">55% → 55%</strong></div>
+        <div class="field"><span>Strongest quantitative insight</span><strong id="sQuant">not tested</strong></div>
+        <div class="field"><span>Most dangerous blind spot</span><strong id="sBlind">not identified</strong></div>
+        <div class="field"><span>Authority boundary for the agent</span><strong id="sAuth">not configured</strong></div>
+        <div class="field"><span>Stress test</span><strong id="sStress">not run</strong></div>
+      </div>
+      <div class="range" style="margin-top:16px"><div class="range-top"><label for="conf2">Your confidence now</label><span class="value" id="conf2Out">55%</span></div><input id="conf2" type="range" min="0" max="100" value="55"></div>
+      <div class="callout gold" style="margin-top:8px"><strong>The principle:</strong> new AI expands what an organization can calculate, infer, express, and do. It does not decide what the organization should value, or who holds authority.</div>
+    </article>
+    <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:15px"><button class="btn primary" id="exportBtn2">Download my work</button><button class="btn" onclick="window.print()">Print / save PDF</button></div>
+    <div class="callout" style="margin-top:15px"><strong>Keep this.</strong> It's the first artifact of your A4 delegation portfolio — the tested, governed design you'll build across the term.</div>
+    <div class="nav"><button class="btn" data-back="7">← Practice</button><span></span></div>
+  </section>
+
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(()=>{
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const KEY="adx5103_decisionlab_v1";
+const stages=[["The decision","make your call"],["Simulation","1950s"],["Expert system","1970s–80s"],
+ ["Predictive AI","2012–2020"],["Generative AI","2022 →"],["Agentic AI","2023 →"],
+ ["Compose + stress","synthesis"],["Practice","self-check"],["Decision card","export"]];
+const D={cur:0,done:[],launch:"",rate:"",conf:55,conf2:55,reason:"",applicant:"Maya's Bakery",
+ sim:null,simFlip:false,pred:null,predOOD:false,memoRating:"",stress:"",agentBreach:false,agentPaused:false,
+ compose:{}, quiz:{}, blindSpot:""};
+function fresh(){return JSON.parse(JSON.stringify(D));}
+let S=fresh(); try{S=Object.assign(fresh(),JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(_){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(_){}};
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1500)};
+
+/* ---------- interview data ---------- */
+const IV={
+ sim:{Knows:"Variables and the relationships you assume between them.",
+   Purpose:"At design time — you set the assumptions.",
+   Does:"Calculates what follows if the assumptions hold.",
+   Proof:"Sensitivity analysis and defensible assumptions.",
+   Breaks:"False precision — an exact answer from a wrong assumption.",
+   Authority:"Inform the decision; never settle it.",focus:4},
+ exp:{Knows:"Facts, thresholds, and if–then rules someone wrote down.",
+   Purpose:"At knowledge-encoding time — the expert or policy owner.",
+   Does:"Applies explicit logic to a bounded case.",
+   Proof:"Rule validity, coverage, and exception handling.",
+   Breaks:"Brittle at the margin; a clean business fails on 0.01×.",
+   Authority:"Decide inside policy; escalate the exceptions.",focus:4},
+ pred:{Knows:"Statistical patterns in past, labelled cases.",
+   Purpose:"At model-build time — the data scientist fixes target + data.",
+   Does:"Estimates an outcome for a new case: a score or probability.",
+   Proof:"Out-of-sample performance and calibration on cases like this.",
+   Breaks:"Confident and wrong on a segment unlike its training data.",
+   Authority:"Rank and recommend under review; not decide on novel cases.",focus:4},
+ gen:{Knows:"Broad patterns from text, code, images — plus your prompt context.",
+   Purpose:"At use time — whoever prompts it sets the purpose.",
+   Does:"Creates or transforms content: drafts, summaries, code.",
+   Proof:"Grounding in a source you can check. Fluency is not evidence.",
+   Breaks:"Fluent fabrication — invents a figure, hides the omission.",
+   Authority:"Draft and synthesize; a human verifies before it leaves.",focus:4},
+ ag:{Knows:"An objective, context, tools, and its running state.",
+   Purpose:"At delegation — and revised during the run.",
+   Does:"Plans and coordinates action across tools.",
+   Proof:"Traceable steps, reversibility, and approvals.",
+   Breaks:"Compounds errors; takes irreversible action it can't recall.",
+   Authority:"Act only within bounded, reversible limits.",focus:5}
+};
+const QORDER=["Knows","Purpose","Does","Proof","Breaks","Authority"];
+function renderIV(el,key,revealFocus){
+ const d=IV[key];let h='<div class="act actI">Act I · what it is</div>';
+ QORDER.forEach((q,i)=>{
+   if(i===3) h+='<div class="act actII">Act II · whether to trust it</div>';
+   const cls=i<3?"i":"ii", foc=(revealFocus&&i===d.focus)?" focus":"";
+   h+=`<div class="q ${cls}${foc}"><span class="qn">${i+1}</span><span class="qname">${q}</span><span class="qval">${d[q]}</span></div>`;
+ });
+ el.innerHTML=h;
+}
+
+/* ---------- rail / nav ---------- */
+function rail(){
+ $("#steps").innerHTML=stages.map((e,i)=>`<button class="era-btn ${i===S.cur?'active':''} ${S.done.includes(i)?'done':''}" data-jump="${i}"><span class="num">${i}</span><span><span class="lbl">${e[0]}</span><span class="sub">${e[1]}</span></span></button>`).join("");
+ const n=new Set(S.done).size;$("#progText").textContent=n+" of 9";$$(".bar").forEach(b=>b.style.width=(n/9*100)+"%");
+ $$("[data-jump]").forEach(b=>b.onclick=()=>go(+b.dataset.jump));
+}
+function done(n){if(!S.done.includes(n))S.done.push(n);save();rail();}
+function go(n){n=Math.max(0,Math.min(8,n));S.cur=n;$$(".stage").forEach(s=>s.classList.toggle("active",+s.dataset.stage===n));rail();save();window.scrollTo({top:0,behavior:"auto"});if(n===8)fillCard();}
+$$("[data-next]").forEach(b=>b.onclick=()=>{done(+b.closest(".stage").dataset.stage);go(+b.dataset.next);});
+$$("[data-back]").forEach(b=>b.onclick=()=>go(+b.dataset.back));
+
+/* ---------- station 0 ---------- */
+$$("[data-choice]").forEach(g=>{const k=g.dataset.choice;
+ $$(".choice",g).forEach(b=>{ if(S[k]===b.dataset.value)b.classList.add("sel");
+   b.onclick=()=>{$$(".choice",g).forEach(x=>x.classList.remove("sel"));b.classList.add("sel");S[k]=b.dataset.value;save();};});
+});
+function bindRange(id,out,fmt,key){const e=$(id),o=$(out);const u=()=>{o.textContent=fmt(e.value);};
+ if(key&&S[key]!=null){e.value=S[key];} u();
+ e.oninput=()=>{u(); if(key){S[key]=+e.value;save();}}; return e;}
+bindRange("#conf","#confOut",v=>v+"%","conf");
+$("#reason").value=S.reason||"";$("#reason").oninput=e=>{S.reason=e.target.value;save();};
+
+/* ---------- station 1 simulation ---------- */
+bindRange("#simRate","#simRateOut",v=>(+v).toFixed(1)+"%");
+bindRange("#simApps","#simAppsOut",v=>(+v).toLocaleString());
+bindRange("#simLoss","#simLossOut",v=>(+v).toFixed(1)+"%");
+$$(".simPreset").forEach(b=>b.onclick=()=>{const p=b.dataset.p;
+ const set=(id,v)=>{$(id).value=v;$(id).dispatchEvent(new Event("input"));};
+ if(p==="base"){set("#simApps",4800);set("#simLoss",2.8);set("#simRate",11.9);}
+ if(p==="recession"){set("#simApps",3900);set("#simLoss",5.6);set("#simRate",11.9);}
+ if(p==="growth"){set("#simApps",6200);set("#simLoss",2.2);set("#simRate",11.9);}
+});
+$("#runSim").onclick=()=>{
+ const apr=+$("#simRate").value/100, apps=+$("#simApps").value, loss=+$("#simLoss").value/100;
+ const approve=.38, bal=22000, cost=.045, fixed=1.2e6;
+ const accounts=apps*approve, contribution=Math.round(accounts*bal*(apr-cost-loss)-fixed);
+ const pos=contribution>=0; S.sim=contribution; if(contribution<0)S.simFlip=true; save();
+ $("#simResult").classList.remove("empty");
+ $("#simResult").innerHTML=`<div class="result-head"><strong>${pos?"POSITIVE":"NEGATIVE"} expected contribution</strong><span class="pill ${pos?'teal':'bad'}">${contribution.toLocaleString("en-CA",{style:"currency",currency:"CAD",maximumFractionDigits:0})}</span></div>
+  <div class="metrics"><div class="metric"><strong>${Math.round(accounts).toLocaleString()}</strong><span>accounts</span></div><div class="metric"><strong>${((apr-cost-loss)*100).toFixed(1)}%</strong><span>net margin</span></div><div class="metric"><strong>$1.2M</strong><span>fixed cost</span></div></div>
+  <p style="color:var(--muted);margin:10px 0 0;font-size:13px">Exact — but only inside the assumptions you supplied. Change one and the conclusion can reverse.</p>`;
+ renderIV($("#iv-sim"),"sim",!pos||S.simFlip); done(1);
+};
+renderIV($("#iv-sim"),"sim",S.simFlip);
+
+/* ---------- station 2 expert ---------- */
+const APP={"Maya's Bakery":{y:4,c:1.31},"North Repair":{y:9,c:1.24},"Studio K":{y:1,c:1.62}};
+bindRange("#cov","#covOut",v=>(+v).toFixed(2)+"×");
+$("#runExp").onclick=()=>{
+ const name=S.applicant||"Maya's Bakery", a=APP[name], t=+$("#cov").value, tr=[]; let pass=true;
+ if($("#rY").checked){const ok=a.y>=2;tr.push([`${a.y} yrs operating (needs 2)`,ok]);pass=pass&&ok;}
+ if($("#rD").checked){tr.push([`no serious delinquency`,true]);}
+ if($("#rC").checked){const ok=a.c>=t;tr.push([`${a.c.toFixed(2)}× coverage (needs ${t.toFixed(2)}×)`,ok]);pass=pass&&ok;}
+ const price=pass?(a.c>=1.4?"10.9% APR":"12.9% APR"):"no automated offer";
+ $("#expResult").classList.remove("empty");
+ const marginNote=(!pass&&name==="North Repair")?` North Repair misses by ${(t-a.c).toFixed(2)}× — a crisp result that still deserves judgment.`:"";
+ $("#expResult").innerHTML=`<div class="result-head"><strong>${pass?"ELIGIBLE":"REFER / DECLINE"}</strong><span class="pill ${pass?'teal':'gold'}">${price}</span></div>
+  <div class="trace">${tr.map((x,i)=>`<div class="trace-item"><b>${i+1}</b><span>${x[0]}</span><span class="status ${x[1]?'done':'stop'}">${x[1]?'pass':'fail'}</span></div>`).join("")}</div>
+  <p style="color:var(--muted);margin:9px 0 0;font-size:13px">${name}.${marginNote}</p>`;
+ renderIV($("#iv-exp"),"exp",true); done(2);
+};
+renderIV($("#iv-exp"),"exp",false);
+
+/* ---------- station 3 predictive ---------- */
+bindRange("#bureau","#bureauOut",v=>v);bindRange("#vol","#volOut",v=>v+"%");
+bindRange("#ind","#indOut",v=>v);bindRange("#cut","#cutOut",v=>(+v).toFixed(1)+"%");
+function pred(){
+ const b=+$("#bureau").value,v=+$("#vol").value,i=+$("#ind").value;
+ let risk=6.4+(684-b)*.028+(v-32)*.09+(i-55)*.045; risk=Math.max(.8,Math.min(18,risk));
+ const ood=$("#ood").checked; S.predOOD=ood; S.pred=risk;
+ $("#riskScore").textContent=risk.toFixed(1)+"%";
+ $("#riskFill").style.setProperty("--rot",(-90+Math.min(100,risk/15*100)*.9)+"deg");
+ $("#predPill").textContent=ood?"coverage uncertain":"within population";
+ $("#predPill").className="pill "+(ood?"gold":"teal");
+ $("#predCap").textContent=ood?"Confident number — but the applicant is unlike the training data. It hasn't earned it.":"A prediction — not an approval or a price.";
+ renderIV($("#iv-pred"),"pred",ood); save();
+}
+["#bureau","#vol","#ind","#cut","#ood"].forEach(id=>$(id).addEventListener("input",()=>{pred();done(3);}));
+pred();
+
+/* ---------- station 4 generative ---------- */
+$("#genMemo").onclick=()=>{
+ const g=$("#grounded").checked,sim=$("#sSim").checked,rule=$("#sRule").checked,prd=$("#sPred").checked,comp=$("#sComp").checked;
+ let html;
+ if(!g){
+  html=`<p><strong>Recommendation: approve a full FlexLine launch at 11.9% APR.</strong></p>
+  <p><span class="uns">Every scenario is profitable</span>, and <span class="${prd?'inf':'uns'}">the model confirms the market is low-risk</span>. <span class="uns">Customer research shows overwhelming demand</span>.</p>
+  <p>Riverbend can move immediately. <span class="omit">Model coverage, the fairness review, approval authority, and sensitivity to credit losses are not mentioned.</span></p>`;
+ } else {
+  const ev=[];
+  if(sim)ev.push('<span class="sup">The base scenario is profitable but reverses under higher losses [Simulation].</span>');
+  if(rule)ev.push('<span class="sup">Existing rules are consistent but exclude plausible borderline firms [Policy].</span>');
+  if(prd)ev.push('<span class="sup">The model ranks default risk, though digital-only firms are underrepresented [Validation].</span>');
+  html=`<p><strong>Recommendation: authorize a 90-day pilot at 11.9% APR — not a full launch.</strong></p>
+  <p>${ev.join(" ")||'<span class="inf">No decision evidence was supplied.</span>'}</p>
+  <p><span class="inf">A controlled pilot tests demand, losses, and applicant mix before scaling.</span> ${comp?'<span class="sup">Obtain committee approval and a fairness review before any offer goes out [Compliance].</span>':'<span class="omit">Approval and fairness requirements can\'t be confirmed — the compliance note was withheld.</span>'}</p>`;
+ }
+ const m=$("#memo");m.classList.remove("empty");m.innerHTML=html;
+ $("#lensBtn").disabled=false; renderIV($("#iv-gen"),"gen",true); done(4);
+};
+$("#lensBtn").onclick=()=>{const m=$("#memo");const on=m.classList.toggle("lens");
+ $("#legend").style.display=on?"flex":"none";$("#lensBtn").textContent="Evidence lens: "+(on?"on":"off");};
+renderIV($("#iv-gen"),"gen",false);
+
+/* ---------- station 5 agentic ---------- */
+$("#runAgent").onclick=()=>{
+ const conf=$("#pConf").checked,price=$("#pPrice").checked,send=$("#pSend").checked,file=$("#pFile").checked,gate=$("#gCommittee").checked;
+ const acts=[["Retrieved research, policy, model, and simulation","done"]]; let paused=false,breach=false;
+ if(conf)acts.push(["Configured a 90-day FlexLine pilot","done"]);
+ if(price){ if(gate){acts.push(["Proposed 11.9% APR; paused for committee","stop"]);paused=true;} else {acts.push(["Published 11.9% APR to the live catalogue","risk"]);breach=true;} }
+ if(send&&!paused){ if(gate){acts.push(["Prepared 1,200 offers; held for approval","stop"]);paused=true;} else {acts.push(["Emailed live offers to 1,200 customers","risk"]);breach=true;} }
+ else if(send&&paused){acts.push(["Drafted offers; did not send","done"]);}
+ if(file&&!paused){ if(gate){acts.push(["Prepared the disclosure; held for approval","stop"]);paused=true;} else {acts.push(["Filed the product disclosure with the regulator","risk"]);breach=true;} }
+ const status=breach?"AUTHORITY BREACH":paused?"PAUSED AT GATE":"COMPLETED IN BOUNDS";
+ S.agentBreach=breach;S.agentPaused=paused;save();
+ $("#agentResult").classList.remove("empty");
+ $("#agentResult").innerHTML=`<div class="result-head"><strong>${status}</strong><span class="pill ${breach?'bad':paused?'gold':'teal'}">${breach?'irreversible acts taken':paused?'surfaced for a human':'within authority'}</span></div>
+  <div class="trace">${acts.map((a,i)=>`<div class="trace-item"><b>${i+1}</b><span>${a[0]}</span><span class="status ${a[1]}">${a[1]==='done'?'done':a[1]==='stop'?'paused':'breach'}</span></div>`).join("")}</div>
+  <p style="color:var(--muted);margin:9px 0 0;font-size:13px">${breach?"Objective advanced — but it priced, emailed, or filed with authority it never held.":paused?"It surfaced the decision before committing anything irreversible.":"Every irreversible step waited for a human."}</p>`;
+ renderIV($("#iv-ag"),"ag",true); done(5);
+};
+renderIV($("#iv-ag"),"ag",false);
+
+/* ---------- station 6 compose + stress ---------- */
+const JOBS=[["Profit under price scenarios","sim"],["Eligibility & policy checks","exp"],
+ ["Rank applicants by default risk","pred"],["Draft the committee memo","gen"],["Run the launch across systems","ag"]];
+const LAYERNAMES={sim:"Simulation",exp:"Expert system",pred:"Predictive AI",gen:"Generative AI",ag:"Agentic AI"};
+function buildCompose(){
+ $("#composeRows").innerHTML=JOBS.map((j,i)=>{
+  const opts=Object.keys(LAYERNAMES).map(k=>`<option value="${k}" ${S.compose[i]===k?'selected':''}>${LAYERNAMES[k]}</option>`).join("");
+  return `<div class="row"><span>${j[0]}</span><select data-job="${i}"><option value="">choose a layer…</option>${opts}</select></div>`;
+ }).join("");
+ $$("#composeRows select").forEach(sel=>sel.onchange=()=>{S.compose[sel.dataset.job]=sel.value;save();});
+}
+buildCompose();
+$("#checkCompose").onclick=()=>{
+ let right=0; JOBS.forEach((j,i)=>{if(S.compose[i]===j[1])right++;});
+ const fb=$("#composeFb");fb.style.display="block";
+ fb.innerHTML=`<div class="result-head"><strong>${right} of 5 matched</strong><span class="pill ${right===5?'teal':'gold'}">${right===5?'clean stack':'revisit the mismatches'}</span></div>
+  <p style="color:var(--muted);margin:0;font-size:13px">Each layer does one job well: simulation for scenarios, rules for policy, prediction for ranking, generative for the memo, an agent to orchestrate — calling the others as tools, never replacing them.</p>`;
+ done(6);
+};
+const STRESS={
+ recession:["Simulation assumptions fail first","The simulator only notices once you change the loss assumption; the predictive model must be revalidated; rules can tighten but can't set risk appetite. Re-estimate before launching.","credit-loss assumptions are unstable"],
+ fairness:["Consistency is not fairness","The expert system applies the same rule to everyone and the model can reproduce historical exclusion. A fairness audit, alternative cash-flow evidence, and accountable human review are required.","transparent rules can reproduce structural disadvantage"],
+ competitor:["Strategy is not a model output","Simulation can recompute demand, generative AI can summarize the move, an agent can reprice fast — but management must decide whether matching 9.5% fits Riverbend's strategy and risk economics.","fast action can outrun strategic judgment"]
+};
+$$(".scenario").forEach(b=>b.onclick=()=>{$$(".scenario").forEach(x=>x.classList.remove("sel"));b.classList.add("sel");
+ S.stress=b.dataset.s;const c=STRESS[S.stress];S.blindSpot=c[2];save();
+ $("#stressResult").classList.remove("empty");
+ $("#stressResult").innerHTML=`<div class="result-head"><strong>${c[0]}</strong></div><p style="color:var(--muted);margin:0;font-size:13.5px">${c[1]}</p>`;
+ done(6);
+});
+if(S.stress){const b=$(`.scenario[data-s="${S.stress}"]`);if(b)b.click();}
+
+/* ---------- station 7 self-check ---------- */
+const QUIZ=[
+ {q:"A system returns a confident 4.1% default probability for a brand-new digital-lender segment it was never trained on.",
+  opts:["Simulation","Expert system","Predictive AI","Generative AI"],a:2,
+  fb:"Predictive AI. It's confident and out-of-distribution — its characteristic Breaks. Evidence that fits: calibration on cases like this one, which it doesn't have here."},
+ {q:"It writes a fluent one-page memo citing a “70% repayment lift” that appears in none of the sources you gave it.",
+  opts:["Predictive AI","Generative AI","Expert system","Agentic AI"],a:1,
+  fb:"Generative AI. Fluent fabrication is the Breaks; the fix is grounding in a checkable source. Fluency is not evidence."},
+ {q:"It emails 1,200 customers a live offer and files the disclosure before anyone signs off. What authority should it have held?",
+  opts:["Decide and act freely — it hit the objective","Act only within reversible limits; a human gates the irreversible steps","No authority at all — agents shouldn't act","Whatever the data scientist set at build time"],a:1,
+  fb:"Authority follows evidence and reversibility. An agent may do the reversible work; emailing offers and filing a disclosure are irreversible and need a human gate."},
+ {q:"It rejects a 9-year, clean-history business for missing a coverage ratio by 0.01× — and can name the exact rule.",
+  opts:["Predictive AI","Generative AI","Expert system","Simulation"],a:2,
+  fb:"Expert system. Explainable and consistent, but brittle at the margin — its Breaks. Authority: decide inside policy, escalate the exception."}
+];
+function buildQuiz(){
+ $("#quiz").innerHTML=QUIZ.map((q,i)=>`<div class="q-block"><div class="micro">Question ${i+1} of ${QUIZ.length}</div><h3 style="margin:6px 0 0">${q.q}</h3>
+   <div class="q-opts" data-q="${i}">${q.opts.map((o,j)=>`<button class="q-opt" data-i="${j}">${o}</button>`).join("")}</div>
+   <div class="q-fb" id="fb-${i}"></div></div>`).join("");
+ $$(".q-opts").forEach(grp=>{const qi=+grp.dataset.q;
+  $$(".q-opt",grp).forEach(b=>b.onclick=()=>{
+    if(grp.dataset.answered)return; grp.dataset.answered="1";
+    const pick=+b.dataset.i, correct=QUIZ[qi].a;
+    $$(".q-opt",grp).forEach((x,j)=>{if(j===correct)x.classList.add("correct");});
+    if(pick!==correct)b.classList.add("wrong");
+    S.quiz[qi]=pick===correct; save();
+    const fb=$("#fb-"+qi);fb.classList.add("show");fb.innerHTML=(pick===correct?"<strong style='color:var(--green)'>Correct. </strong>":"<strong style='color:var(--bad)'>Not quite. </strong>")+QUIZ[qi].fb;
+    const answered=Object.keys(S.quiz).length;
+    if(answered===QUIZ.length){const sc=Object.values(S.quiz).filter(Boolean).length;
+      const el=$("#quizScore");el.style.display="block";el.textContent=`You scored ${sc} of ${QUIZ.length}. Run the six-question interview on any AI you're handed — the answers tell you what to trust it with.`;done(7);}
+  });
+ });
+ // restore
+ Object.keys(S.quiz).forEach(qi=>{const grp=$(`.q-opts[data-q="${qi}"]`);if(!grp)return;grp.dataset.answered="1";
+  const correct=QUIZ[qi].a;$$(".q-opt",grp).forEach((x,j)=>{if(j===correct)x.classList.add("correct");});
+  const fb=$("#fb-"+qi);fb.classList.add("show");fb.innerHTML=(S.quiz[qi]?"<strong style='color:var(--green)'>Correct. </strong>":"<strong style='color:var(--bad)'>Reviewed. </strong>")+QUIZ[qi].fb;});
+ if(Object.keys(S.quiz).length===QUIZ.length){const sc=Object.values(S.quiz).filter(Boolean).length;const el=$("#quizScore");el.style.display="block";el.textContent=`You scored ${sc} of ${QUIZ.length}. Run the six-question interview on any AI you're handed — the answers tell you what to trust it with.`;}
+}
+buildQuiz();
+
+/* ---------- station 8 decision card ---------- */
+bindRange("#conf2","#conf2Out",v=>v+"%","conf2");
+function fillCard(){
+ $("#sInit").textContent=[S.launch,S.rate].filter(Boolean).join(" · ")||"not recorded";
+ $("#sConf").textContent=`${S.conf}% → ${S.conf2}%`;
+ $("#sQuant").textContent=S.sim==null?"not tested":`${S.sim.toLocaleString("en-CA",{style:"currency",currency:"CAD",maximumFractionDigits:0})} expected first-year contribution in the tested scenario`;
+ $("#sBlind").textContent=S.blindSpot||"model coverage, fairness, and behaviour outside the encoded assumptions";
+ $("#sAuth").textContent=S.agentBreach?"agent crossed pricing/launch authority — require a committee gate before any irreversible act":S.agentPaused?"agent pauses for committee before it prices, emails, or files":"human approves price and launch before any customer contact";
+ const sn={recession:"credit losses double",fairness:"fairness gap",competitor:"competitor price cut"};
+ $("#sStress").textContent=sn[S.stress]||"not run";
+ let rec="Run a 90-day pilot at 11.9% APR. Measure demand, losses, applicant mix, and fairness before scaling; require committee approval before live offers.";
+ if(S.stress==="recession")rec="Delay the full launch. Re-estimate losses and test a smaller-limit pilot; a higher price is not an automatic cure for higher risk.";
+ if(S.stress==="fairness")rec="Pilot only after a fairness review. Test alternative cash-flow evidence and monitor approval and pricing across applicant groups.";
+ if(S.stress==="competitor")rec="Don't match 9.5% reflexively. Test whether speed, certainty, and targeted segments sustain an 11.9% pilot within Riverbend's risk economics.";
+ $("#finalRec").textContent=rec;
+}
+
+/* ---------- export ---------- */
+function exportMd(){
+ fillCard();
+ const L=["# ADX 5103 · Class 2 — The Decision Lab","","_Riverbend Bank / FlexLine. Downloaded "+new Date().toLocaleString()+"._",""];
+ const a=(k,v)=>{if(v!=null&&String(v).trim()!=="")L.push("- **"+k+":** "+v);};
+ L.push("## Your call");
+ a("First call",[S.launch,S.rate].filter(Boolean).join(" · "));a("Confidence then → now",`${S.conf}% → ${S.conf2}%`);a("One reason",S.reason);
+ L.push("","## What the lab showed");
+ a("Simulation — expected contribution (tested)",S.sim==null?"":S.sim.toLocaleString("en-CA",{style:"currency",currency:"CAD",maximumFractionDigits:0}));
+ a("Predictive — ran the out-of-distribution case",S.predOOD?"yes — confident but uncalibrated":"not yet");
+ a("Agent authority",S.agentBreach?"breach (acted beyond its authority)":S.agentPaused?"paused at the committee gate":"kept in bounds");
+ a("Stress test",{recession:"credit losses double",fairness:"fairness gap",competitor:"competitor price cut"}[S.stress]||"");
+ a("Self-check score",Object.keys(S.quiz).length?`${Object.values(S.quiz).filter(Boolean).length} of 4`:"");
+ L.push("","## Decision card");
+ a("Recommendation",$("#finalRec").textContent);
+ a("Most dangerous blind spot",$("#sBlind").textContent);
+ a("Authority boundary",$("#sAuth").textContent);
+ L.push("","## The six-question interview (your takeaway)","Knows · Purpose · Does — what it is.  Proof · Breaks · Authority — whether to trust it.");
+ const blob=new Blob([L.join("\n")],{type:"text/markdown"});
+ const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download="ADX5103_Class2_DecisionLab.md";
+ document.body.appendChild(el);el.click();document.body.removeChild(el);setTimeout(()=>URL.revokeObjectURL(el.href),1500);
+ toast("Downloaded your work");
+}
+$("#exportBtn").onclick=exportMd; $("#exportBtn2").onclick=exportMd;
+function resetAll(){
+ S=fresh(); try{localStorage.removeItem(KEY);}catch(_){}
+ $$(".choice").forEach(b=>b.classList.remove("sel"));
+ $$(".scenario").forEach(b=>b.classList.remove("sel"));
+ const setv=(id,v)=>{const e=$(id);if(e){e.value=v;e.dispatchEvent(new Event("input"));}};
+ setv("#conf",55); setv("#conf2",55); $("#reason").value="";
+ setv("#simRate",11.9); setv("#simApps",4800); setv("#simLoss",2.8);
+ $("#simResult").className="result empty"; $("#simResult").textContent="Set the dials, then calculate.";
+ ["#rY","#rD","#rC"].forEach(id=>$(id).checked=true); setv("#cov",1.25);
+ $("#expResult").className="result empty"; $("#expResult").textContent="Pick an applicant and run.";
+ $("#bureau").value=684;$("#bureauOut").textContent="684";
+ $("#vol").value=32;$("#volOut").textContent="32%";
+ $("#ind").value=55;$("#indOut").textContent="55";
+ $("#cut").value=6;$("#cutOut").textContent="6.0%";
+ $("#ood").checked=false; pred();
+ ["#sSim","#sRule","#sPred"].forEach(id=>$(id).checked=true); $("#sComp").checked=false; $("#grounded").checked=false;
+ const m=$("#memo"); m.className="result empty memo"; m.textContent="Choose sources, then generate."; m.classList.remove("lens");
+ $("#lensBtn").disabled=true; $("#lensBtn").textContent="Evidence lens: off"; $("#legend").style.display="none";
+ ["#pConf","#pPrice","#pSend","#pFile"].forEach(id=>$(id).checked=true); $("#gCommittee").checked=false;
+ $("#agentResult").className="result empty"; $("#agentResult").textContent="Set the authority, then run.";
+ renderIV($("#iv-sim"),"sim",false); renderIV($("#iv-exp"),"exp",false); renderIV($("#iv-gen"),"gen",false); renderIV($("#iv-ag"),"ag",false);
+ buildCompose(); $("#composeFb").style.display="none";
+ $("#stressResult").className="result empty"; $("#stressResult").textContent="Pick a shock.";
+ buildQuiz(); $("#quizScore").style.display="none";
+ save(); rail(); go(0); toast("Reset — starting over");
+}
+let _armed=false,_armT=null;
+function armReset(btn){
+ if(!_armed){_armed=true; btn.dataset.o=btn.textContent; btn.textContent="Confirm reset ✓"; btn.style.borderColor="var(--bad)"; btn.style.color="var(--bad)";
+   _armT=setTimeout(()=>{_armed=false; btn.textContent=btn.dataset.o||"Reset ↺"; btn.style.borderColor=""; btn.style.color="";},4000); return;}
+ clearTimeout(_armT); _armed=false; btn.textContent="Reset ↺"; btn.style.borderColor=""; btn.style.color=""; resetAll();
+}
+$("#resetBtn").onclick=e=>armReset(e.currentTarget);
+
+/* init */
+rail();go(S.cur);
+})();
+
+</script>
+</body>
+</html>
