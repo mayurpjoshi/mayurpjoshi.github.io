@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Assemblage Lab · ADX 5103 Class 4</title>
+<meta name="description" content="One employee survey, the same Claude, different assemblages: compare what each one sees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --maroon:#8F1739;--teal:#2E9C9A;--lime:#B7D43C;--gold:#D69B2D;--purple:#8A3A7A;
+  --ink:#252525;--muted:#6A6A6A;--line:#E4E2DC;--panel:#F7F6F3;--bg:#FFFFFF;
+  --pink:#F8EEF1;--tealf:#EAF6F5;--limef:#F4F8E5;--goldf:#FBF4E6;--purf:#F4EAF2;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+.stripe{height:6px;display:grid;grid-template-columns:17% 25% 25% 25% 8%}
+.stripe span:nth-child(1){background:var(--lime)}.stripe span:nth-child(2){background:var(--teal)}
+.stripe span:nth-child(3){background:var(--maroon)}.stripe span:nth-child(4){background:var(--gold)}.stripe span:nth-child(5){background:var(--purple)}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 40px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.kicker{font-size:12px;letter-spacing:.22em;font-weight:600;color:var(--muted);text-transform:uppercase}
+.brand{font-family:var(--serif);font-size:26px;font-weight:600;margin-top:2px}
+.brand b{color:var(--maroon);font-weight:700;letter-spacing:.02em}
+.brand em{font-style:normal;color:var(--maroon);font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;color:var(--muted);background:#fff}
+button{font-family:var(--sans);font-size:15px;cursor:pointer}
+.btn{border:1px solid var(--line);border-radius:10px;padding:9px 16px;background:#fff;color:var(--ink);font-weight:500}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.btn.primary:hover{background:#761230}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}
+.layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 90px)}
+nav.side{background:var(--panel);border-right:1px solid var(--line);padding:26px 18px}
+.prog-h{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;font-weight:600;color:var(--muted);text-transform:uppercase;padding:0 8px}
+.bar{height:5px;background:var(--line);border-radius:5px;margin:10px 8px 18px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--teal);transition:width .3s}
+.step{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:transparent;padding:10px 10px;border-radius:10px;margin-bottom:4px;color:var(--ink)}
+.step .n{flex:0 0 28px;height:28px;border-radius:8px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;font-size:13px;font-weight:600}
+.step .t{font-weight:600;font-size:15px}.step .t small{font-weight:400;color:var(--muted);margin-left:6px;font-size:12.5px}
+.step.active{background:var(--maroon);color:#fff}.step.active .n{background:#fff;color:var(--maroon);border-color:#fff}.step.active small{color:#f3d8df}
+.step.done .n{background:var(--teal);color:#fff;border-color:var(--teal)}
+main{padding:34px 56px 80px;max-width:1180px}
+section.pane{display:none}section.pane.on{display:block}
+.eyebrow{color:var(--teal);font-weight:700;letter-spacing:.18em;font-size:13px;text-transform:uppercase}
+h1{font-family:var(--serif);color:var(--maroon);font-size:clamp(30px,4vw,46px);line-height:1.1;margin:.25em 0 .35em}
+h2{font-family:var(--serif);color:var(--maroon);font-size:26px;margin:0 0 .3em;line-height:1.2}
+h3{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:700}
+p.lede{font-size:18.5px;color:#444;max-width:62em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:#fff}
+.card.soft{background:var(--panel)}
+.card.pink{background:var(--pink);border-color:#E7C9D2}.card.tealc{background:var(--tealf);border-color:#BFE1DF}
+.card.goldc{background:var(--goldf);border-color:#EED9AE}.card.purc{background:var(--purf);border-color:#E0C6DA}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.row:last-child{border-bottom:0}.row b{text-align:right}
+.tag{display:inline-block;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;background:var(--goldf);color:#8a5d10;border:1px solid #EED9AE}
+.opts{display:grid;gap:10px;margin:10px 0}
+.opts.cols3{grid-template-columns:repeat(3,1fr)}.opts.cols2{grid-template-columns:repeat(2,1fr)}.opts.cols4{grid-template-columns:repeat(4,1fr)}
+.opt{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;text-align:left;font-weight:500;color:var(--ink);line-height:1.35}
+.opt small{display:block;font-weight:400;color:var(--muted);margin-top:3px;font-size:13px}
+.opt:hover{border-color:var(--muted)}
+.opt.sel{border-color:var(--maroon);box-shadow:0 0 0 2px var(--maroon) inset;background:var(--pink)}
+.opt.right{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal) inset;background:var(--tealf)}
+.opt.wrong{border-color:#bbb;opacity:.65}
+label.fld{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:var(--sans);font-size:15px;resize:vertical;background:#fff;color:var(--ink)}
+textarea:focus,input:focus{outline:2px solid var(--teal);outline-offset:1px}
+input[type=range]{width:100%;accent-color:var(--maroon)}
+.why{border-left:0;background:var(--panel);border-radius:12px;padding:14px 18px;font-size:15px;color:#444;margin-top:16px}
+.interview{background:var(--tealf);border:1px solid #BFE1DF;border-radius:14px;padding:16px 20px;margin-top:20px}
+.interview h3{color:var(--teal)}
+.reveal{display:none}.reveal.on{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.nav{display:flex;justify-content:space-between;margin-top:34px;gap:10px;flex-wrap:wrap}
+.meter{height:16px;background:var(--line);border-radius:10px;overflow:hidden;margin:8px 0}
+.meter i{display:block;height:100%;background:var(--teal);transition:width .4s,background .4s}
+.big{font-family:var(--serif);font-size:44px;font-weight:700;line-height:1}
+.pred{display:grid;grid-template-columns:190px 1fr 70px;gap:12px;align-items:center;margin:10px 0;font-size:15px}
+.pbar{height:14px;background:var(--line);border-radius:8px;overflow:hidden}.pbar i{display:block;height:100%;transition:width .4s}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:#fff;padding:9px 16px;font-weight:500;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}.seg button.on{background:var(--maroon);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.ch{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500}
+.ch.picked{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ch.ok{border-color:var(--teal);background:var(--tealf)}.ch.no{border-color:var(--maroon);background:var(--pink)}
+.bins{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bin{border:1.5px dashed #cfcac0;border-radius:14px;padding:12px;min-height:170px;background:#fff;cursor:pointer}
+.bin:hover{border-color:var(--ink)}
+.bin h4{margin:0 0 8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.bin .ch{display:block;margin:6px 0;text-align:left;width:100%;border-radius:10px}
+.face{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.face.org{color:var(--teal)}.face.comp{color:var(--maroon)}
+.toggle{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.toggle:last-child{border-bottom:0}
+.sw{position:relative;flex:0 0 46px;height:26px;border-radius:26px;background:#cfcac0;border:0;transition:background .2s;margin-top:2px}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--teal)}.sw.on::after{left:23px}
+.sw.bad.on{background:var(--maroon)}
+.toggle b{display:block}.toggle small{color:var(--muted);font-size:13.5px}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:2px 8px;margin-right:6px}
+.p-conn{background:var(--pink);color:var(--maroon)}.p-code{background:var(--tealf);color:var(--teal)}.p-emer{background:var(--goldf);color:#8a5d10}.p-un{background:var(--purf);color:var(--purple)}
+table.t{width:100%;border-collapse:collapse;font-size:14.5px}
+table.t th{text-align:left;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.canvas{display:grid;grid-template-columns:110px repeat(3,1fr);gap:8px;align-items:stretch}
+.canvas .h{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);padding:4px}
+.canvas .rl{display:flex;align-items:center;justify-content:center;border-radius:10px;color:#fff;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:6px}
+.canvas textarea{min-height:88px;font-size:14px}
+.trace{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;background:#1f1f1f;color:#eaeaea;border-radius:12px;padding:14px 16px;white-space:pre-wrap;line-height:1.5}
+.verdict{border-radius:12px;padding:12px 16px;margin-top:10px;font-size:15px}
+.verdict.good{background:var(--tealf);border:1px solid #BFE1DF}
+.verdict.mixed{background:var(--goldf);border:1px solid #EED9AE}
+.verdict.bad{background:var(--pink);border:1px solid #E7C9D2}
+.src{font-size:12.5px;color:var(--muted);margin-top:14px}
+.principle{font-family:var(--serif);font-size:21px;color:var(--maroon);text-align:center;margin:26px auto 0;max-width:40em;line-height:1.35}
+.final .row{font-size:15px}
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr}
+  nav.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);display:flex;overflow-x:auto;gap:6px;padding:12px 16px}
+  nav.side .prog-h,nav.side .bar{display:none}
+  .step{flex:0 0 auto;width:auto;margin:0}.step .t small{display:none}
+  main{padding:24px 16px 60px}
+  header.top{padding:14px 16px}
+  .grid2,.grid3,.bins{grid-template-columns:1fr}
+  .opts.cols3,.opts.cols4{grid-template-columns:1fr 1fr}
+  .canvas{grid-template-columns:1fr}.canvas .h.blank{display:none}
+  .pred{grid-template-columns:120px 1fr 54px}
+}
+@media print{
+  header.top .actions,nav.side,.nav,.noprint{display:none!important}
+  .layout{display:block}main{padding:0}
+  section.pane{display:none!important}section#pcmp{display:block!important}
+}
+
+.prompt{position:relative;background:#1f1f1f;color:#f1f1f1;border-radius:12px;padding:46px 18px 16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap;margin:10px 0;max-height:340px;overflow:auto}
+.prompt .copy{position:absolute;top:10px;right:10px;background:#fff;color:var(--ink);border:0;border-radius:8px;padding:5px 12px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer}
+.prompt .copy.ok{background:var(--teal);color:#fff}
+.badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;padding:3px 9px;margin-right:6px}
+.b-pre{background:var(--maroon);color:#fff}.b-built{background:var(--tealf);color:var(--teal);border:1px solid #BFE1DF}
+.b-lever{background:var(--goldf);color:#8a5d10;border:1px solid #EED9AE}
+.chatbar{border-radius:10px;padding:11px 16px;font-size:15px;margin:6px 0 14px}
+.chatbar.new{background:var(--maroon);color:#fff}.chatbar.same{background:var(--tealf);color:#16615f;border:1px solid #BFE1DF}
+.stepl{margin:14px 0 0;color:#444}
+.btn.sm{padding:4px 12px;font-size:13px}
+hr.sep{border:0;border-top:1px solid var(--line);margin:30px 0 26px}
+.steps li{margin:6px 0}
+textarea.paste{min-height:150px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}
+.status{margin-top:10px;border-radius:10px;padding:10px 14px;font-size:14.5px}
+.status.ok{background:var(--tealf);border:1px solid #BFE1DF}.status.no{background:var(--goldf);border:1px solid #EED9AE}
+.lb{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;color:#fff;white-space:nowrap;max-width:230px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.own{display:block;font-size:11.5px;color:#777;margin-top:2px;line-height:1.25}
+table.grid{width:100%;border-collapse:collapse;font-size:13px}
+table.grid th{background:var(--panel);text-align:left;padding:7px;border-bottom:1px solid var(--line);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+table.grid td{padding:6px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.grid td.num{text-align:center;font-weight:600}
+table.chats td{font-size:14px}
+table.xw select{font:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;max-width:260px}
+table.xw tr.runhead td{background:var(--panel);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+table.xw tr.edited td{background:#FFF8E6}
+.wl{display:grid;grid-template-columns:70px 1fr;gap:8px 14px;font-size:14.5px}.wl b{color:var(--maroon)}
+.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:14px 8px 8px}
+.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.modal{position:fixed;inset:0;background:rgba(20,20,20,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal.on{display:flex}
+.modal .box{background:#fff;border-radius:16px;max-width:460px;width:100%;padding:26px 26px 22px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal h2{font-family:var(--serif);color:var(--maroon);margin:0 0 8px;font-size:26px}
+.modal .row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.addrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.addrow input{flex:1;min-width:200px}
+main{min-width:0}
+#watchGrid td:first-child{min-width:170px;max-width:210px;white-space:normal}
+@media (max-width:980px){.divider{display:none}}
+@media print{.modal{display:none!important}}
+</style>
+</head>
+<body>
+<div class="stripe"><span></span><span></span><span></span><span></span><span></span></div>
+<header class="top">
+  <div>
+    <div class="kicker">ADX 5103 · AI for Executives · Class 4</div>
+    <div class="brand"><b>TELFER</b> Executive MBA <em>— The Assemblage Lab</em></div>
+  </div>
+  <div class="actions">
+    <span class="chip">Same Claude · different assemblages</span>
+    <button class="btn" onclick="makePDF()">Save PDF</button>
+    <button class="btn" onclick="startOver()">Start over ↺</button>
+  </div>
+</header>
+<div class="layout">
+<nav class="side" id="side">
+  <div class="prog-h"><span>Your runs</span><span id="progTxt">0 of 8</span></div>
+  <div class="bar"><i id="progBar"></i></div>
+</nav>
+<main>
+
+
+<section class="pane" id="p0"><div id="run_r0">
+  
+  <div class="eyebrow">The Assemblage Lab · before you start</div>
+  <h1 style="margin-bottom:8px">Same 400 comments. How many answers?</h1>
+  <p class="lede"><b>Rideau Valley Services</b> (fictional) rolled out an AI assistant called <b>Compass</b> six months ago. The Chief Human Resources Officer asked every employee one open question: <i>“What is your experience with Compass and AI at RVS so far, and what should leadership know?”</i> 400 replied. She wants the top issues before next week's leadership retreat.</p>
+  <p class="lede" style="margin-top:10px">You will produce her answer several ways with the same Claude. In <b>Run 0</b> you ask a plain question and Claude's defaults decide everything: the assemblage comes <b>pre-assembled</b>. From <b>Run 1</b> on, you <b>build the assemblage yourself</b>, one lever at a time: the algorithm, its settings, the data preparation, the categories, the training data. Then you line the answers up and compare what each assemblage saw. Go as far as time allows; you can align and compare after any run.</p>
+  <div class="grid2" style="margin-top:18px">
+    <div class="card">
+      <h3>1 · Get the data</h3>
+      <p style="margin:0 0 10px;font-size:15px">400 comments with department and tenure. All synthetic.</p>
+      <button class="btn primary" onclick="dlCSV()">Download rvs_ai_survey.csv</button>
+      <h3 style="margin-top:20px">2 · Set up Claude (30 seconds)</h3>
+      <ul class="steps" style="padding-left:18px;margin:0;font-size:15px">
+        <li>In Claude, open <b>Settings → Capabilities</b> and make sure <b>code execution and file creation</b> is on.</li>
+        <li>Open <b>Settings → Memory</b>. Turn off <b>Search and reference chats</b> and pause <b>memory</b>, so earlier runs cannot leak into later ones. Turn them back on when you finish the lab.</li>
+        <li>Use ordinary chats, not a Claude Project, and the same Claude model throughout.</li>
+      </ul>
+    </div>
+    <div class="card soft">
+      <h3>3 · Four chats, in this order</h3>
+      <table class="grid chats"><tr><td><b>Chat A</b></td><td>Run 0</td><td>new chat · attach the survey</td></tr>
+      <tr><td><b>Chat B</b></td><td>Runs 1–5</td><td>new chat · attach the survey, then stay in it</td></tr>
+      <tr><td><b>Chat C</b></td><td>Runs 6–7</td><td>new chat · attach the survey; HR's labels come later</td></tr>
+      <tr><td><b>Chat D</b></td><td>Align, Compare</td><td>new chat · no file</td></tr></table>
+      <p style="margin:12px 0 0;font-size:14.5px">Each run page says which chat to use. After each run, paste Claude's reply into the box. The lab reads the <b>LAB DATA</b> block at the end and builds your comparison.</p>
+      <h3 style="margin-top:20px">4 · One gut check</h3>
+      <label class="fld" style="margin-top:0">If you asked this question eight different ways, how much would the top three issues change?</label>
+      <div class="opts cols3" id="gut"><button class="opt" data-v="Barely">Barely</button><button class="opt" data-v="Somewhat">Somewhat</button><button class="opt" data-v="Completely">Completely</button></div>
+    </div>
+  </div>
+  <hr class="sep">
+  <div class="eyebrow">Run 0</div>
+  <h1>Ask the way a busy executive would. The assemblage comes pre-assembled.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-pre">Pre-assembled</span></div>
+  <div class="chatbar new"><b>Chat A</b> · Start a <b>new chat</b> and attach <b>rvs_ai_survey.csv</b>.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">I have attached rvs_ai_survey.csv: 400 open-ended comments from an employee survey at Rideau Valley Services, a fictional public-service organization, about its AI assistant, Compass. The question was: &quot;What is your experience with Compass and AI at RVS so far, and what should leadership know?&quot; Use only the files I share in this chat; do not draw on my other chats or on memory.
+
+What are employees telling us, and what should leadership know?</div>
+  <p class="stepl">2 · When Claude has answered, send this in the same chat so it records what it did:</p><div class="prompt">Thanks. Please add an appendix to that analysis, as an analyst would for a leadership report:
+1. METHOD NOTE: a numbered list documenting the analysis: which comments were included or set aside, how repeated comments and French comments were treated, whether theme sizes were counted, estimated, or computed with code, how themes were defined and named, and the criterion used to rank what leadership should hear first.
+2. The share of comments (%) for each theme in the analysis, marked as counted or estimated.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 0
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;   (the three leadership most needs to hear about, in your order)
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  <div class="card" style="margin-top:16px">
+    <h3>3 · Paste Claude's entire second reply here</h3>
+    <textarea class="paste" id="pa_r0" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r0"></div>
+    <label class="fld">4 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r0">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>Read the METHOD NOTE. Every item is a choice about data, method, or model that nobody asked you to approve. Did Claude notice the French comments? The 39 copies of the same campaign text? The handful of comments about client data leaving the organization? Did it rank by how often something came up, or by how serious it is? Did it count, or estimate? Each of these is a lever that was pulled for you. Next time you ask a question like this, you can pull them yourself: the Compare step ends with the list.</div></div>
+</div></section>
+
+<section class="pane" id="p1"><div id="run_r1">
+  
+  <div class="eyebrow">Run 1</div>
+  <h1>Start building the assemblage yourself: a named algorithm with explicit settings.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span></div>
+  <div class="chatbar new"><b>Chat B</b> · Start a <b>new chat</b> and attach <b>rvs_ai_survey.csv</b>.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">I have attached rvs_ai_survey.csv: 400 open-ended comments from an employee survey at Rideau Valley Services, a fictional public-service organization, about its AI assistant, Compass. The question was: &quot;What is your experience with Compass and AI at RVS so far, and what should leadership know?&quot; The comments are in the column &quot;comment&quot;. Use only the files I share in this chat; do not draw on my other chats or on memory.
+
+Use Python. Vectorize the &quot;comment&quot; column with CountVectorizer (stop words: scikit-learn&#x27;s built-in English stop-word list plus these extra stop words: compass ai assistant tool tools use using used just like don ve doesn didn people really make makes thing things want know got get; min_df=2). Fit LatentDirichletAllocation with n_components=5 and random_state=1. Assign each comment to its highest-probability topic. Put comments with no words left after stop-word removal into a theme called &quot;No words left&quot; and tell me how many there were.
+
+Name every topic yourself with a short label of 2 to 5 words. Start from its 10 highest-weight words. If the words are ambiguous, also read the 3 comments with the highest weight for that topic, and only those. Then: if the topic is about one clear issue, give it a plain name; if it mixes two or more issues, name it &quot;Mixed: &lt;main issue&gt;&quot;; only if the words and those 3 comments share no issue at all, name it &quot;Unclear: &lt;its top three words&gt;&quot;. Give each topic a different name, and in the TOPICS table add a column saying whether you named it from the words alone or also read the 3 comments.
+
+Report:
+1. TOPICS: a table with #, your name for the topic, share of comments (%), its top 8 words, and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was prepared, the method and parameters, and how topics were named.
+3. In the LAB DATA block, TOP3 = the three largest themes, not counting &quot;Unclear&quot; themes or &quot;No words left&quot; (&quot;Mixed&quot; themes count); WATCH = the theme each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 1
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r1" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r1"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r1">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>Compare with Run 0. Which themes survived? Which topics are really about the words people happened to use rather than an issue? Is one topic mostly a single repeated message?</div></div>
+</div></section>
+
+<section class="pane" id="p2"><div id="run_r2">
+  
+  <div class="eyebrow">Run 2</div>
+  <h1>Change one parameter: how many topics the model may find.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Model parameter: number of topics</span></div>
+  <div class="chatbar same"><b>Chat B</b> · Continue in the <b>same chat</b> as Run 1. No new upload.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">Keep everything exactly the same as the previous run (same data, stop words, and naming rule), but change n_components to 12. Name the topics afresh from their words; reuse an earlier name only if the words justify it.
+
+Report:
+1. TOPICS: a table with #, your name for the topic, share of comments (%), its top 8 words, and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was prepared, the method and parameters, and how topics were named.
+3. In the LAB DATA block, TOP3 = the three largest themes, not counting &quot;Unclear&quot; themes or &quot;No words left&quot; (&quot;Mixed&quot; themes count); WATCH = the theme each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 2
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r2" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r2"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r2">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>Which themes appeared, split, or vanished? How many topics are &quot;Mixed&quot; or &quot;Unclear&quot;? Open their words. Is one of them simply the French comments?</div></div>
+</div></section>
+
+<section class="pane" id="p3"><div id="run_r3">
+  
+  <div class="eyebrow">Run 3</div>
+  <h1>Change nothing that should matter: only the random starting point.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Model parameter: random seed</span></div>
+  <div class="chatbar same"><b>Chat B</b> · Continue in the <b>same chat</b> as Run 1. No new upload.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">Keep everything exactly the same as the previous run (LDA, 12 topics, same naming rule), but change only random_state from 1 to 2. Name the topics afresh from their words; reuse an earlier name only if the words justify it. Also tell me how many of the 12 topics look essentially the same as in the previous run.
+
+Report:
+1. TOPICS: a table with #, your name for the topic, share of comments (%), its top 8 words, and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was prepared, the method and parameters, and how topics were named.
+3. In the LAB DATA block, TOP3 = the three largest themes, not counting &quot;Unclear&quot; themes or &quot;No words left&quot; (&quot;Mixed&quot; themes count); WATCH = the theme each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 3
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r3" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r3"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r3">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>If the themes shifted a lot, a single run was one draw, not the answer. Which themes held across both seeds? Those deserve more trust.</div></div>
+</div></section>
+
+<section class="pane" id="p4"><div id="run_r4">
+  
+  <div class="eyebrow">Run 4</div>
+  <h1>Same data, same number of topics, different algorithm.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Algorithm</span></div>
+  <div class="chatbar same"><b>Chat B</b> · Continue in the <b>same chat</b> as Run 1. No new upload.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">Now switch the algorithm. Use TfidfVectorizer (stop words: scikit-learn&#x27;s built-in English stop-word list plus these extra stop words: compass ai assistant tool tools use using used just like don ve doesn didn people really make makes thing things want know got get; min_df=2) and NMF with n_components=12, random_state=1, init=&quot;nndsvda&quot;, max_iter=500. Assign each comment to its highest-weight topic. Put comments with no words left after stop-word removal into a theme called &quot;No words left&quot; and tell me how many there were. Use the same naming rule. Name the topics afresh from their words; reuse an earlier name only if the words justify it.
+
+Report:
+1. TOPICS: a table with #, your name for the topic, share of comments (%), its top 8 words, and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was prepared, the method and parameters, and how topics were named.
+3. In the LAB DATA block, TOP3 = the three largest themes, not counting &quot;Unclear&quot; themes or &quot;No words left&quot; (&quot;Mixed&quot; themes count); WATCH = the theme each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 4
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r4" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r4"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r4">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>Did the algorithm change what the organization would see, or mostly how cleanly it is grouped? Where did C014 and C356, the two comments about client data, land?</div></div>
+</div></section>
+
+<section class="pane" id="p5"><div id="run_r5">
+  
+  <div class="eyebrow">Run 5</div>
+  <h1>Back to the Run 2 setup, but change how the data is prepared.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Data</span></div>
+  <div class="chatbar same"><b>Chat B</b> · Continue in the <b>same chat</b> as Run 1. No new upload.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">Go back to the Run 2 setup (CountVectorizer, same stop words, min_df=2, LDA, n_components=12, random_state=1, same naming rule), but change the data preparation: (a) before fitting, remove duplicate and near-duplicate comments, ignoring case, punctuation, and hashtags, and tell me how many you removed (for any watch-list comment removed, use the theme name &quot;Removed&quot;); (b) add French stop words (for example: le, la, les, des, est, pour, en, pas, sur, du, de, et, un, une, que, qui, dans, nous, je, il, à, au, aux, ce, ces, se, sont, ne, plus, par, avec, on, été, être, aucune, tous, l, d, j, n, qu, c, s, y, a, ça). Report percentages of the comments that remain. Name the topics afresh from their words; reuse an earlier name only if the words justify it.
+
+Report:
+1. TOPICS: a table with #, your name for the topic, share of comments (%), its top 8 words, and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was prepared, the method and parameters, and how topics were named.
+3. In the LAB DATA block, TOP3 = the three largest themes, not counting &quot;Unclear&quot; themes or &quot;No words left&quot; (&quot;Mixed&quot; themes count); WATCH = the theme each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 5
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r5" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r5"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r5">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>What happened to the consultation theme once the campaign copies were gone? Did the genuine union concern (C270) survive? Did the French comments join the issue topics instead of forming their own?</div></div>
+</div></section>
+
+<section class="pane" id="p6"><div id="run_r6">
+  
+  <div class="eyebrow">Run 6</div>
+  <h1>Instead of letting themes emerge, use the categories the organization already has.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Model: the organization&#x27;s categories</span></div>
+  <div class="chatbar new"><b>Chat C</b> · Start a <b>new chat</b> and attach <b>rvs_ai_survey.csv</b>.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">I have attached rvs_ai_survey.csv: 400 open-ended comments from an employee survey at Rideau Valley Services, a fictional public-service organization, about its AI assistant, Compass. The question was: &quot;What is your experience with Compass and AI at RVS so far, and what should leadership know?&quot; The comments are in the column &quot;comment&quot;. Use only the files I share in this chat; do not draw on my other chats or on memory.
+
+Our HR analysts code survey comments into six categories: Training &amp; Support; Tools &amp; Access; Workload &amp; Productivity; Jobs &amp; Careers; Leadership &amp; Communication; Other. Read the comments yourself and assign each to exactly one category. Decide every label by reading, not with a keyword rule or a model; you may use code only to write down the labels you decided and to count them. Save your labels to a file. Do not list all 400 labels. For now, reply only with the number of comments in each category and the word READY. I will then send HR&#x27;s own labels.</div>
+  <p class="stepl">2 · When Claude says READY, download <b>rvs_hr_labels.csv</b> <button class="btn sm" onclick="dlLabels()">Download</button>, attach it in the same chat, and send this:</p><div class="prompt">Here is rvs_hr_labels.csv: HR&#x27;s category for 290 comments (columns id, hr_category, split). Do not change any of your labels. Compare your labels with hr_category for the 40 rows where split = &quot;test&quot;: report your accuracy, the accuracy of always guessing the most common test category, and list the comments where you and HR disagree.
+
+Report:
+1. CATEGORIES: a table with each category, its share of comments (%), and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was handled, and how categories were assigned.
+3. In the LAB DATA block, THEMES = the six categories with their shares; TOP3 = the three largest categories, not counting Other; WATCH = the category each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 6
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+ACCURACY: &lt;your accuracy on the 40 test rows&gt;; baseline &lt;most-common-category accuracy&gt;
+=== END ===</div>
+  <div class="card" style="margin-top:16px">
+    <h3>3 · Paste Claude's entire second reply here</h3>
+    <textarea class="paste" id="pa_r6" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r6"></div>
+    <label class="fld">4 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r6">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>What went into Other? Where did the comments about client data and about consultation end up? Read the disagreement list: is HR wrong, is Claude wrong, or do the six categories simply have no good place for comments about accuracy, trust, or monitoring? HR&#x27;s ‘correct’ labels are themselves a model. And if the accuracy came out at 100%, ask whether Claude could see the answers before it labelled: that is the most common evaluation mistake in practice.</div></div>
+</div></section>
+
+<section class="pane" id="p7"><div id="run_r7">
+  
+  <div class="eyebrow">Run 7</div>
+  <h1>Train a model on HR&#x27;s labelled examples and compare it with Claude&#x27;s reading.</h1>
+  <div style="margin:4px 0 12px"><span class="badge b-built">Assembled by you</span><span class="badge b-lever">Lever: Data: training examples</span></div>
+  <div class="chatbar same"><b>Chat C</b> · Continue in the <b>same chat</b> as Run 6. No new upload.</div>
+  <p class="stepl">1 · Copy this prompt into Claude.</p>
+  <div class="prompt">Now build a supervised model instead. In Python: train a classifier on the first 50 rows of rvs_hr_labels.csv where split = &quot;train&quot; (TfidfVectorizer with English stop words, then LogisticRegression with max_iter=2000) and report accuracy on the 40 rows where split = &quot;test&quot;. Then retrain on all 250 training rows and report accuracy again. Also report the most-common-category baseline on the test rows. Finally, use the 250-row model to predict all 400 comments and use those predictions for the report. Note that the 250 training comments are predicted by a model that has already seen their labels.
+
+Report:
+1. CATEGORIES: a table with each category, its share of comments (%), and two example comment IDs.
+2. METHOD NOTE: a numbered list of the analysis settings, as an analyst would document them in a report appendix: which comments were used, how the text was handled, and how categories were assigned.
+3. In the LAB DATA block, THEMES = the six categories with their shares; TOP3 = the three largest categories, not counting Other; WATCH = the category each of those comments was assigned to.
+
+End your reply with this block, exactly in this format. Use exactly the same theme names in THEMES, TOP3 and WATCH.
+=== LAB DATA ===
+RUN: 7
+THEMES: &lt;theme&gt;=&lt;% of comments&gt;; &lt;theme&gt;=&lt;% of comments&gt;; ...
+TOP3: &lt;theme&gt; | &lt;theme&gt; | &lt;theme&gt;
+WATCH: C014=&lt;theme&gt;; C057=&lt;theme&gt;; C088=&lt;theme&gt;; C121=&lt;theme&gt;; C163=&lt;theme&gt;; C199=&lt;theme&gt;; C232=&lt;theme&gt;; C270=&lt;theme&gt;; C311=&lt;theme&gt;; C356=&lt;theme&gt;
+ACCURACY: reading &lt;Run 6 %&gt;; baseline &lt;%&gt;; 50 examples &lt;%&gt;; 250 examples &lt;%&gt;
+=== END ===</div>
+  
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="pa_r7" placeholder="Paste everything Claude wrote, including the LAB DATA block at the end."></textarea>
+    <div id="pv_r7"></div>
+    <label class="fld">3 · One thing that surprised you (optional)</label>
+    <input type="text" id="nt_r7">
+  </div>
+  <button class="btn lookbtn" style="margin-top:14px">What to look for</button>
+  <div class="reveal"><div class="interview"><h3>What to look for</h3>Start with the baseline: always guessing the most common category already scores about a third. How far above it did 50 and 250 examples get? How does the classifier compare with Claude simply reading? The classifier learns only from your 250 labels; Claude brings a model pre-trained on vastly more text, which every competitor can rent too.</div></div>
+</div></section>
+
+<section class="pane" id="palign">
+  <div class="eyebrow">Align · the human element</div>
+  <h1>Which themes are the same issue?</h1>
+  <p class="lede">Each run named its own themes. Before you can compare runs, someone has to decide that “verification burden” in one run and “trust in outputs” in another are, or are not, the same issue. Claude will propose a crosswalk. You review it and change anything you disagree with.</p>
+  <div class="chatbar new" style="margin-top:16px"><b>Chat D</b> · Start a <b>new chat</b>. No file needed.</div>
+  <div id="alignMissing"></div>
+  <p class="stepl">1 · Copy this prompt into Claude. The lab built it from the runs you recorded.</p>
+  <div class="prompt" id="xwPrompt"></div>
+  <div class="card" style="margin-top:16px">
+    <h3>2 · Paste Claude's entire reply here</h3>
+    <textarea class="paste" id="xwPaste" placeholder="Paste everything Claude wrote, including the CROSSWALK block at the end."></textarea>
+    <div id="xwStatus"></div>
+  </div>
+  <div class="card" style="margin-top:16px;overflow-x:auto" id="xwReview">
+    <h3>3 · Review the crosswalk</h3>
+    <p style="margin:0 0 10px;font-size:14.5px;color:#444">Every theme from every run, and the common theme Claude put it in. Change any assignment you disagree with. Your changes are highlighted and used in the comparison.</p>
+    <table class="grid xw" id="xwTable"></table>
+    <div class="addrow"><input type="text" id="newTheme" placeholder="Add a common theme Claude did not create"><button class="btn" onclick="addTheme()">Add</button></div>
+  </div>
+</section>
+
+<section class="pane" id="pcmp">
+  <div class="eyebrow">Compare</div>
+  <h1>What did each analysis see?</h1>
+  <p class="lede">Built from your LAB DATA blocks and your reviewed crosswalk. Each column is a run; each row is a common theme.</p>
+  <label style="display:inline-flex;gap:8px;align-items:center;font-size:14.5px;margin:4px 0 14px;cursor:pointer"><input type="checkbox" id="showOwn" style="width:auto"> Show each run's own theme names in the table</label>
+  <div id="gutBack"></div>
+  <div id="cmpMissing"></div>
+  <div class="card" style="overflow-x:auto"><h3>Share of comments by common theme (%)</h3><table class="grid" id="covGrid"></table></div>
+  <div class="card" style="overflow-x:auto;margin-top:16px"><h3>Where each watch-list comment landed</h3><table class="grid" id="watchGrid"></table></div>
+  <div class="card" style="overflow-x:auto;margin-top:16px"><h3>Top three reported by each run</h3><p style="margin:0 0 8px;font-size:13.5px;color:#666">Run 0: Claude's judgement of what leadership most needs to hear. Other runs: the largest themes.</p><table class="grid" id="topGrid"></table></div>
+  <div class="chatbar same" style="margin-top:20px"><b>Chat D</b> · Continue in the <b>same chat</b> as Align.</div>
+  <p class="stepl">Paste this into Claude, then decide whether its comparison is right:</p>
+  <div class="prompt" id="cmpPrompt"></div>
+  <div class="grid2" style="margin-top:18px">
+    <div class="card">
+      <h3>Reflect</h3>
+      <label class="fld">Which single choice changed the picture of what employees are saying the most?</label>
+      <textarea id="ref1" rows="2"></textarea>
+      <label class="fld">Where did the capability to find the real issues reside: the model, the data preparation, the naming, the crosswalk, the categories, or you?</label>
+      <textarea id="ref2" rows="2"></textarea>
+      <label class="fld">What would you tell the CHRO before she presents any single run to the leadership team?</label>
+      <textarea id="ref3" rows="2"></textarea>
+    </div>
+    <div class="card soft">
+      <h3>What we planted</h3>
+      <p style="margin:0 0 12px;color:#444">Open only after you have recorded your runs.</p>
+      <button class="btn" onclick="S.keyOn=true;save();document.getElementById('key').classList.add('on')">Reveal the answer key</button>
+      <div class="reveal" id="key"><ul style="padding-left:18px;font-size:14.5px;margin:12px 0 0"><li><b>A serious privacy risk:</b> 8 of 400 comments (2%) describe staff pasting client data, including social insurance numbers and health information, into unapproved AI tools (C014 and C356 on the watch list). Topic models scatter these comments across unrelated topics at every setting. HR&#x27;s categories file them under Other. A careful reader, human or Claude, catches them, and Claude&#x27;s default reading (Run 0) often ranks them among the top issues by seriousness even though they are only 2% of comments.</li><li><b>A coordinated campaign:</b> 39 near-identical comments demand consultation (C163 is one). They give consultation a large theme in every topic-model run. Genuine, independent consultation concerns are only about 2.5% of comments. Remove duplicates (Run 5) and the theme shrinks, and a genuine union concern such as C270 can end up anywhere.</li><li><b>French comments (12%):</b> With English-only stop words, the 12-topic models build a topic out of words like les, pour, des, est. It gets named Unclear or French comments: the language became a theme. C121 and C356 raise real issues in French.</li><li><b>The random seed:</b> Same data, same algorithm, same 12 topics. Changing only the random starting point reshuffles topics and moved the largest theme from about a third of comments to about a fifth in our tests. One run is one draw.</li><li><b>Naming is interpretation:</b> A topic model outputs word lists, not themes. Count the Mixed and Unclear topics in each run: that is how muddy the model was. Every theme name you compared was Claude&#x27;s reading of a word list, and a tidy name can hide a muddy topic.</li><li><b>The crosswalk is a model too:</b> Deciding that two differently named themes are the same issue is a judgement. Look at how many common themes Claude created, what it merged, and what it kept apart. Your edits to it are part of the analysis.</li><li><b>HR&#x27;s categories are a model too:</b> Expect Claude&#x27;s reading to agree with HR well short of 100% on the 40 test comments. Disagreements cluster on accuracy, trust, monitoring, and consultation, which HR&#x27;s six categories have no good place for. A 100% score almost always means the answers leaked into the chat.</li><li><b>Training data:</b> Always guessing the most common category scores about 33%. The supervised classifier scores about 48% with 50 labelled examples and about 55% with 250. On short, varied text, the capability sits mostly in the pre-trained model, which every competitor can rent too.</li><li><b>Sarcasm and accessibility:</b> C088 is sarcasm; word counts read it as praise for time savings. The 5 accessibility comments (1%, C057 among them) almost always disappear.</li><li><b>The runs are not clean experiments:</b> Several runs changed more than one thing, Run 5 changes the denominator, and HR&#x27;s six categories cannot express many of the emergent themes. That is normal in practice. The question is whether anyone writes the choices down.</li></ul></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Next time AI arrives pre-assembled: pull the levers</h3>
+    <p style="margin:0 0 10px;font-size:14.5px;color:#444">A chat window, a copilot, a vendor dashboard: each has an assemblage behind it. Run 0 showed you the defaults. These are the levers you can pull yourself, each one a run you did.</p>
+    <table class="grid levers" id="leverTable"></table>
+    <p class="stepl" style="margin-top:16px"><b>The CHRO's question, asked by someone who knows the levers.</b> Copy it and adapt it to your next analysis.</p>
+    <div class="prompt" id="awarePrompt"></div>
+  </div>
+  <p class="principle">The foundation model was the same in every run. The findings were not. Pre-assembled or built by you, it is the assemblage that produces the answer: the data, the algorithm, the parameters, the naming, the crosswalk, the categories, and the people who check them.</p>
+  <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap" class="noprint">
+    <button class="btn primary" onclick="makePDF()">Save a PDF to keep</button>
+    <button class="btn" onclick="download()">Download as text</button>
+  </div>
+</section>
+
+<div class="nav noprint"><button class="btn" id="prev">←</button><span style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end"><button class="btn" id="skip">Skip the remaining runs: Align &amp; compare →</button><button class="btn primary" id="next">→</button></span></div>
+</main>
+</div>
+
+<div class="modal" id="resume"><div class="box">
+  <h2>Welcome back</h2>
+  <p style="margin:0;font-size:15.5px" id="resumeTxt"></p>
+  <div class="row"><button class="btn primary" onclick="resume(true)">Resume where I left off</button><button class="btn" onclick="resume(false)">Start fresh</button></div>
+  <p style="margin:14px 0 0;font-size:13px;color:#777">Start fresh permanently clears the saved work on this device.</p>
+</div></div>
+
+<script>
+const CSV_DATA = "id,department,tenure,comment\nC001,Finance,10+ yrs,Half the features are greyed out for us and nobody knows why.\nC002,IT,6-10 yrs,Shadow AI is everywhere. People use unapproved websites for translation and summaries of confidential client data.\nC003,Finance,6-10 yrs,Trust has to be earned and it hasn't been yet.\nC004,IT,2-5 yrs,We keep getting error messages when documents have tables.\nC005,IT,6-10 yrs,L'outil m'aide à simplifier le langage des règlements pour les clients.\nC006,IT,2-5 yrs,\"If the plan is to shrink the workforce through attrition, say so.\"\nC007,Regional Offices,2-5 yrs,\"I support using AI, but the consultation process with staff representatives was skipped.\"\nC008,HR,6-10 yrs,Verification is now a hidden part of everyone's workload and nobody is counting it.\nC009,Regional Offices,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC010,Policy,10+ yrs,Checking its work is now a skill we all need and nobody trained us for.\nC011,Communications,<2 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC012,Regional Offices,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC013,Regional Offices,10+ yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC014,Regional Offices,10+ yrs,Colleagues are pasting client files with SIN numbers into the free public chatbot because the approved tool is too slow. This is a serious privacy breach waiting to happen.\nC015,Finance,2-5 yrs,Half my team still doesn't have a licence. How are we supposed to adopt it?\nC016,Client Services,2-5 yrs,\"Leadership should publish what the pilot actually found, good and bad.\"\nC017,Finance,2-5 yrs,\"I like it. I use it for drafting, rephrasing, and checking my tone before I hit send.\"\nC018,Client Services,<2 yrs,Compass ne se connecte pas à notre système de gestion des dossiers.\nC019,Finance,<2 yrs,I feel like I'm falling behind colleagues who figured it out on their own.\nC020,Communications,2-5 yrs,It feels like a solution looking for a problem.\nC021,HR,10+ yrs,Please publish a rollout timeline so we know when our unit gets access.\nC022,IT,2-5 yrs,\"If you want people to experiment, don't track their experiments.\"\nC023,Operations,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC024,Operations,10+ yrs,For legislation and dates it's unreliable. For tone and structure it's fine.\nC025,Regional Offices,<2 yrs,\"We need practical training by role, with examples from our own files.\"\nC026,IT,6-10 yrs,\"Because Compass can't open attachments, people forward client documents to personal email and use outside AI tools at home. Nobody is stopping it.\"\nC027,Finance,10+ yrs,I'd attend a lunch-and-learn if one existed.\nC028,Policy,<2 yrs,It told a colleague a service standard that is two years out of date.\nC029,Finance,2-5 yrs,The accuracy problems are worst for French output.\nC030,HR,2-5 yrs,Share the roadmap and the results so far. We're adults.\nC031,HR,2-5 yrs,Some of my older colleagues feel lost and embarrassed to ask.\nC032,Policy,2-5 yrs,Un réseau de champions dans chaque unité serait très utile.\nC033,Communications,<2 yrs,It's become my default starting point for any written task.\nC034,Policy,6-10 yrs,\"Il a changé une date limite dans une lettre. Heureusement, je l'ai vu à temps.\"\nC035,HR,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC036,Policy,6-10 yrs,\"The biggest barrier is skills, not the tool.\"\nC037,Client Services,<2 yrs,I've started using it to compare versions of documents. It spots changes I'd miss.\nC038,IT,6-10 yrs,Leadership keeps saying 'adopt AI' but won't say who's accountable when it gets something wrong.\nC039,IT,10+ yrs,The business case talks about efficiency gains. Efficiency usually means fewer people.\nC040,IT,2-5 yrs,\"I get through my backlog faster, which means clients wait less. That matters.\"\nC041,HR,10+ yrs,I'm fine with AI. I'm not fine with not knowing where my job is going.\nC042,Operations,2-5 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC043,HR,6-10 yrs,The file size limit is too small for our reports.\nC044,Regional Offices,6-10 yrs,\"There's a lot of fear. Some of it is exaggerated, but nobody is addressing it.\"\nC045,Regional Offices,10+ yrs,\"We need clear policies, not slogans.\"\nC046,Regional Offices,<2 yrs,Some managers already compare usage by team. That feels like surveillance.\nC047,Communications,<2 yrs,Nobody showed us how to write a good prompt. We're all guessing.\nC048,Operations,6-10 yrs,\"I was a skeptic. Six months in, I'd be annoyed if they took it away.\"\nC049,HR,2-5 yrs,Nobody tested the tool with assistive technology before launch. That should be basic.\nC050,IT,10+ yrs,\"It doesn't connect to our case management system, so I copy and paste all day.\"\nC051,HR,<2 yrs,I'd feel better about AI if there were a clear no-layoffs commitment.\nC052,Finance,6-10 yrs,It's hard to adopt a tool you can only use half the time.\nC053,HR,2-5 yrs,The tool works in English only in some screens. The French interface is incomplete.\nC054,Finance,2-5 yrs,Access requests go to a generic mailbox and disappear.\nC055,Finance,<2 yrs,\"It's useful. Not magic, but useful.\"\nC056,Operations,6-10 yrs,\"Je dois tout vérifier, ce qui annule le temps gagné.\"\nC057,Communications,<2 yrs,As a screen reader user I cannot use the Compass side panel at all. The rollout forgot about accessibility.\nC058,IT,<2 yrs,\"Accuracy is my main concern. We're a public service, a wrong answer to a client has consequences.\"\nC059,IT,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC060,HR,10+ yrs,\"Honestly, I'd just like to know who's in charge of this.\"\nC061,Operations,<2 yrs,What happens to the people whose tasks are automated? Nobody has an answer.\nC062,Communications,10+ yrs,\"Give us real examples from our own work, not made-up marketing scenarios.\"\nC063,Policy,10+ yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC064,HR,10+ yrs,I still don't really know how to use it properly. I use it like a search box.\nC065,HR,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC066,Client Services,<2 yrs,People fear usage numbers will show up in performance reviews.\nC067,HR,<2 yrs,Please schedule follow-up sessions. One session is not enough to change how we work.\nC068,Operations,10+ yrs,The privacy notice about employee usage data is vague.\nC069,Finance,10+ yrs,People only use it for trivial tasks because they think they're being watched.\nC070,Policy,<2 yrs,La stratégie en matière d'IA n'est pas claire.\nC071,IT,6-10 yrs,It lets me spend more time on the phone with clients instead of typing.\nC072,Operations,2-5 yrs,\"Workload expectations are going up because of the assistant, with no discussion with employee representatives.\"\nC073,IT,6-10 yrs,La moitié de mon équipe n'a toujours pas de licence.\nC074,Communications,6-10 yrs,Very helpful for building training materials from our old procedure manuals.\nC075,IT,2-5 yrs,It's made our small team feel less underwater. We're three people doing the work of five.\nC076,Client Services,10+ yrs,There's a disconnect between the town hall enthusiasm and our daily reality.\nC077,IT,<2 yrs,The help desk told me to 'wait for phase two.' Nobody knows when that is.\nC078,Operations,10+ yrs,Can we talk about career development in an AI workplace? Nobody has.\nC079,Communications,2-5 yrs,IT blocks most of the features we were promised.\nC080,Operations,<2 yrs,Très utile pour résumer les longs échanges de courriels.\nC081,Communications,10+ yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC082,Policy,2-5 yrs,\"Wonderful. The summary was perfect, except it was about a different file.\"\nC083,Communications,10+ yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC084,Communications,10+ yrs,I spend as long checking its output as I would have spent doing the work myself.\nC085,Client Services,<2 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC086,Operations,2-5 yrs,\"I only use it for low-stakes drafts now. Anything client-facing, I write from scratch.\"\nC087,Policy,10+ yrs,I don't trust it for anything with a legal consequence.\nC088,Client Services,10+ yrs,\"Great, another tool that saves me ten minutes and costs me an hour of checking.\"\nC089,Finance,6-10 yrs,Meaningful consultation would reduce a lot of the anxiety about Compass.\nC090,Regional Offices,10+ yrs,The time savings everyone talks about ignore the time spent fact-checking.\nC091,Finance,2-5 yrs,Positive overall. It handles the grunt work well.\nC092,IT,<2 yrs,\"Nobody has explained how success will be measured, or what happens if it fails.\"\nC093,Finance,2-5 yrs,\"We need a proper labour-management conversation about AI, not a slide deck.\"\nC094,Communications,10+ yrs,People who took early retirement weren't replaced. Coincidence?\nC095,Client Services,10+ yrs,I'm worried the next budget will count 'AI savings' as positions.\nC096,HR,2-5 yrs,J'utilise l'assistant tous les jours pour préparer les lettres aux clients. Vrai gain de temps.\nC097,Operations,<2 yrs,Ça me libère du temps pour parler avec les clients.\nC098,Regional Offices,2-5 yrs,Our team never got the hands-on session other branches received.\nC099,Finance,10+ yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC100,Communications,2-5 yrs,I'd use it more if it could show exactly where each claim came from.\nC101,Client Services,<2 yrs,Compass has saved me real time. Meeting minutes that took an hour now take fifteen minutes.\nC102,Communications,6-10 yrs,Other departments have clear guidance. We don't.\nC103,Operations,<2 yrs,\"Il faudrait des séances pratiques par rôle, et en français.\"\nC104,IT,<2 yrs,I don't want to train the tool that replaces me.\nC105,Regional Offices,2-5 yrs,Our director has never used the tool herself. It shows.\nC106,IT,10+ yrs,Fix access before you measure adoption. The pilot numbers are meaningless otherwise.\nC107,Policy,<2 yrs,I want to use it well. Show me how.\nC108,Operations,2-5 yrs,I've cut my time on status updates in half. My manager noticed before I told her.\nC109,IT,<2 yrs,Great tool for summarizing call transcripts into case notes.\nC110,Policy,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC111,Client Services,10+ yrs,I use dictation software because of a disability and Compass breaks every time I try voice input.\nC112,Policy,6-10 yrs,Productivity gains are real for admin-heavy roles like mine. I'd guess 10 to 15 percent of my week.\nC113,Regional Offices,10+ yrs,Give everyone the same tools and then evaluate.\nC114,Finance,10+ yrs,Big help for someone like me who writes in my second language. It fixes my grammar without changing my meaning.\nC115,Regional Offices,2-5 yrs,We were told it would read our shared drives. It can't.\nC116,Regional Offices,6-10 yrs,It helps me get unstuck when I'm staring at a difficult email to a stakeholder.\nC117,Policy,10+ yrs,Compass is surprisingly good at restructuring messy notes into something readable.\nC118,Communications,10+ yrs,A sandbox with practice exercises would help people build confidence.\nC119,Operations,<2 yrs,\"Honestly, access is the number one barrier. Not attitude.\"\nC120,IT,10+ yrs,It turns my scribbled case notes into a clean letter template in seconds. That's time I give back to clients.\nC121,HR,10+ yrs,\"Aucune formation en français n'a été offerte sur Compass. On nous a envoyé un lien vers une vidéo en anglais, point.\"\nC122,IT,<2 yrs,My concern is quality control. Who reviews the reviewers when everyone is rushing?\nC123,IT,10+ yrs,\"We need a commitment on how time savings will be used: service improvements, not cuts.\"\nC124,Communications,2-5 yrs,Integration with SharePoint would make a massive difference.\nC125,Communications,2-5 yrs,Nothing says productivity like fact-checking a chatbot all afternoon.\nC126,Communications,2-5 yrs,The strategy seems to be 'buy the tool and hope.'\nC127,Communications,10+ yrs,\"We can't upload documents into Compass, which defeats the purpose.\"\nC128,Client Services,2-5 yrs,\"If Compass does the drafting, what happens to clerical roles?\"\nC129,Operations,<2 yrs,The AI strategy at RVS is unclear. Is there one?\nC130,IT,2-5 yrs,A community of practice or a champions network would help a lot.\nC131,Regional Offices,<2 yrs,Our local asked for a joint committee on technological change. Management hasn't responded.\nC132,Operations,10+ yrs,La direction n'a pas expliqué pourquoi nous adoptons Compass.\nC133,Client Services,2-5 yrs,\"L'interface n'est disponible qu'en anglais, ce qui pose problème pour une organisation bilingue.\"\nC134,Operations,2-5 yrs,\"Access is the real problem. And when it does work, the French interface is half-translated.\"\nC135,Policy,2-5 yrs,\"It saves me time on drafts, but half my unit still can't get a licence, so the gains are uneven.\"\nC136,Finance,<2 yrs,\"Please clarify what is monitored, by whom, and why.\"\nC137,HR,2-5 yrs,Brilliant idea to roll out an assistant that's wrong with total confidence.\nC138,HR,10+ yrs,A colleague was asked why her usage was low. That spread fast.\nC139,Communications,2-5 yrs,Our regional office was left out of the in-person training.\nC140,Communications,2-5 yrs,\"It rounded a benefit amount incorrectly in a draft to a client. Caught it, but barely.\"\nC141,Finance,6-10 yrs,Il faut un engagement clair sur la requalification du personnel.\nC142,Regional Offices,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC143,Finance,10+ yrs,The training assumed we already knew what an AI model is. Many of us don't.\nC144,Policy,10+ yrs,The training was one hour and it was mostly a sales pitch.\nC145,Regional Offices,2-5 yrs,It got a deadline wrong in a letter I nearly sent. After that I check every date.\nC146,Client Services,2-5 yrs,\"Licences were given out based on who asked first, not who needed it most.\"\nC147,Communications,6-10 yrs,\"Il faut des consignes claires sur ce qui doit être vérifié, et par qui.\"\nC148,Finance,2-5 yrs,Les gestionnaires ont été encore moins formés que nous.\nC149,Finance,<2 yrs,It invents names of forms that don't exist. Clients then call asking for them.\nC150,Client Services,6-10 yrs,\"Our shift workers don't have computers, so they're excluded entirely.\"\nC151,Policy,6-10 yrs,Leadership talks about innovation but won't answer basic questions.\nC152,Operations,6-10 yrs,There was a training video but it's 45 minutes long and out of date already.\nC153,HR,2-5 yrs,Drafting job postings and interview questions is much faster now.\nC154,Communications,<2 yrs,\"The tool is only available in the browser, and our browser version isn't supported.\"\nC155,Client Services,2-5 yrs,Compass me fait gagner beaucoup de temps pour rédiger les notes de breffage.\nC156,Policy,10+ yrs,\"Workload hasn't gone down, but expectations have gone up. That's not a good sign.\"\nC157,Communications,10+ yrs,I use it every morning to triage my inbox. Probably saves me 3 hours a week.\nC158,Communications,6-10 yrs,\"The quick-start guide is fine, but we need deeper guidance for complex tasks.\"\nC159,Operations,<2 yrs,The errors are subtle. That's worse than obvious errors.\nC160,Operations,10+ yrs,The lack of clear direction is making people cynical.\nC161,IT,10+ yrs,On ne peut pas se fier aux chiffres fournis par l'outil.\nC162,Finance,<2 yrs,Changes to how work is assigned because of AI should be discussed with the bargaining agent first.\nC163,Finance,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC164,IT,10+ yrs,\"The assistant doesn't work with JAWS or NVDA, so blind and low-vision colleagues are excluded from the pilot.\"\nC165,Finance,6-10 yrs,I want a formal agreement on how AI will and won't be used in evaluating employees.\nC166,Client Services,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC167,HR,2-5 yrs,There's a rumour managers can see everything we type into Compass.\nC168,Operations,10+ yrs,It's hard to support an initiative when you don't know its goals.\nC169,Client Services,10+ yrs,It helped me prepare for a difficult presentation by generating likely questions. Very useful.\nC170,Policy,10+ yrs,\"Nobody knows what's allowed and what isn't, so every team makes up its own rules.\"\nC171,Policy,2-5 yrs,I prepare a lot of templates for client replies and it's cut that work dramatically.\nC172,Policy,6-10 yrs,Tell us what problem we're trying to solve.\nC173,Communications,<2 yrs,Nobody explained the difference between the approved tool and the free public ones.\nC174,Policy,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC175,Communications,2-5 yrs,Compass is disabled on our regional laptops. We found out by accident.\nC176,Regional Offices,10+ yrs,I'd like to see leadership admit what isn't working.\nC177,Regional Offices,10+ yrs,\"More training on prompts, please, and on when not to use it.\"\nC178,Communications,2-5 yrs,Please don't report time saved without subtracting time spent checking.\nC179,HR,6-10 yrs,We got a PDF. That was the training.\nC180,Client Services,6-10 yrs,Our network blocks it whenever we're on the VPN from home.\nC181,Operations,10+ yrs,\"We need the full version in regions, where the workload is highest.\"\nC182,Policy,6-10 yrs,\"When it works, it's a genuine time saver for our front-line staff.\"\nC183,Finance,<2 yrs,\"Training should have come before rollout, not three months after.\"\nC184,IT,2-5 yrs,So helpful. It rewrote my letter beautifully and moved the deadline to a date that doesn't exist.\nC185,Regional Offices,2-5 yrs,Our monthly performance report used to eat a whole afternoon. Now it's about an hour including review.\nC186,IT,2-5 yrs,My job is changing faster than my job description.\nC187,HR,6-10 yrs,There's no clear process to request access. I've been waiting six weeks.\nC188,Operations,6-10 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC189,Policy,10+ yrs,Les réponses de Compass en français sont souvent incorrectes ou mal traduites.\nC190,Operations,10+ yrs,Honestly it's been great for summarizing those endless reply-all email chains.\nC191,Client Services,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC192,HR,2-5 yrs,Job security is the elephant in the room at every team meeting.\nC193,HR,<2 yrs,Les exemples de la formation venaient tous d'autres directions.\nC194,Finance,10+ yrs,It summarized a file and left out the one detail that mattered most.\nC195,Regional Offices,<2 yrs,I use it for spreadsheet clean-up and data formatting. Saves me a couple of hours every reporting cycle.\nC196,Operations,6-10 yrs,The rollout has been confusing. Nobody knows who has what.\nC197,Policy,2-5 yrs,Our unit clears its correspondence queue a day earlier than before Compass.\nC198,Finance,10+ yrs,\"Once I figured out how to ask properly, it became part of my daily routine.\"\nC199,Regional Offices,6-10 yrs,\"I stopped using Compass the week I heard managers can pull usage reports by team. Nobody wants to be the person with the lowest numbers, or the highest.\"\nC200,Communications,6-10 yrs,Compass writes the boring bits so I can spend time on the parts of the file that need judgment.\nC201,Regional Offices,2-5 yrs,We need a sign-off step for anything Compass touches that goes outside the organization.\nC202,HR,6-10 yrs,\"People are quietly anxious about cuts, and leadership avoids the question.\"\nC203,Regional Offices,6-10 yrs,I would not go back. That's the simplest way to say it.\nC204,Client Services,10+ yrs,Nobody will say whether positions will be reduced. The silence makes it worse.\nC205,Finance,2-5 yrs,Office hours with someone who actually uses it well would be great.\nC206,Policy,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC207,Operations,6-10 yrs,\"It saves time on repetitive tasks. Keep investing in it, please.\"\nC208,HR,6-10 yrs,Staff representatives should have a seat at the table on AI decisions.\nC209,Communications,2-5 yrs,I estimate it saves me about half a day per week. Not trivial.\nC210,Communications,6-10 yrs,\"Retraining should come with real career options, not just a course.\"\nC211,Operations,2-5 yrs,\"Translation drafts between English and French are faster, though a human still has to check them.\"\nC212,Regional Offices,2-5 yrs,It's fine as a drafting tool but people are treating it like a source of truth.\nC213,Policy,10+ yrs,\"We can't use it with our case files because of system restrictions, so it's not much use.\"\nC214,HR,10+ yrs,Pratique pour les tâches répétitives. Je ne voudrais pas revenir en arrière.\nC215,Operations,2-5 yrs,Be honest with us about the plan. Rumours are filling the vacuum.\nC216,Policy,<2 yrs,\"Junior staff don't always catch the errors, and they're the ones using it most.\"\nC217,HR,6-10 yrs,\"If our work becomes reviewing AI output, will our classifications change?\"\nC218,IT,10+ yrs,We need clear rules on what has to be verified and by whom.\nC219,Regional Offices,<2 yrs,The anxiety is affecting morale more than leadership realizes.\nC220,Policy,10+ yrs,The pilot excluded our unit and now we're expected to catch up.\nC221,HR,10+ yrs,Training feels like an afterthought.\nC222,Regional Offices,10+ yrs,It changes small facts when it rewrites things. You have to compare line by line.\nC223,Policy,6-10 yrs,The biggest win for me is pulling key points out of 60-page reports before briefings.\nC224,Finance,10+ yrs,On ne peut pas téléverser de documents PDF. C'est pourtant l'essentiel de notre travail.\nC225,Communications,10+ yrs,My manager thinks it saves me time. It mostly moves my time from writing to proofreading.\nC226,Client Services,2-5 yrs,Communication has been top-down and vague.\nC227,IT,6-10 yrs,It's too slow at peak times to be useful for front-line work.\nC228,Client Services,6-10 yrs,I'm worried our prompts are being logged and reviewed.\nC229,Communications,<2 yrs,IT security reviews have frozen the features for months.\nC230,IT,2-5 yrs,Comment les nouveaux employés vont-ils apprendre le métier si l'IA fait tout?\nC231,Policy,10+ yrs,It doesn't know our policies well. It fills gaps with generic answers from who knows where.\nC232,HR,10+ yrs,Compass cut my first-draft time for briefing notes roughly in half. Our unit now gets the monthly report out two days earlier.\nC233,HR,<2 yrs,The French summaries are the worst. It mistranslated a benefit condition and I only caught it because I'm bilingual.\nC234,HR,6-10 yrs,We need a named person accountable for how AI is used here.\nC235,Regional Offices,6-10 yrs,We keep hearing about AI in town halls but see no actual plan.\nC236,Client Services,<2 yrs,Frees up time. Whether the organization uses that time well is a different question.\nC237,Policy,10+ yrs,Usage should never be a performance metric.\nC238,IT,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC239,Client Services,<2 yrs,\"We need training on how to check the output, not just how to generate it.\"\nC240,HR,6-10 yrs,I've stopped using it for research questions after it gave me three different answers.\nC241,Client Services,6-10 yrs,For routine correspondence it's a huge help. For anything sensitive I write it myself.\nC242,Policy,<2 yrs,I'd use it more if someone showed me how. Right now I'm scared to trust it and nobody trained us to check it.\nC243,Regional Offices,<2 yrs,\"Same job, different access depending on your manager. Not fair.\"\nC244,Communications,10+ yrs,Staff input wasn't asked for until this survey.\nC245,Regional Offices,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC246,Operations,6-10 yrs,Je m'inquiète pour mon emploi avec l'arrivée de l'IA.\nC247,Operations,10+ yrs,\"It is a good assistant for writing. Less good for anything with numbers, but I knew that.\"\nC248,Finance,10+ yrs,\"If leadership wants trust, they need to show their reasoning.\"\nC249,Client Services,<2 yrs,I've seen it mix up two clients' situations in one summary. That shook my confidence.\nC250,IT,<2 yrs,Les communications sur l'assistant sont rares et contradictoires.\nC251,Regional Offices,<2 yrs,\"La formation devrait venir avant le déploiement, pas après.\"\nC252,HR,6-10 yrs,Managers say it's only about augmentation. We've heard that before.\nC253,IT,10+ yrs,Leadership hasn't explained why we're doing this.\nC254,Finance,2-5 yrs,Solid productivity gains on documentation. Please expand it to more teams.\nC255,Regional Offices,2-5 yrs,I learned more from a YouTube video than from our official training.\nC256,Finance,10+ yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC257,Finance,10+ yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC258,HR,2-5 yrs,My licence expired and it took three weeks to renew.\nC259,HR,10+ yrs,A few power users carry everyone else. That's not a strategy.\nC260,Finance,10+ yrs,Questions sent to the AI mailbox go unanswered.\nC261,Client Services,2-5 yrs,Someone in my unit put a spreadsheet of client names and addresses into an online AI tool to clean it up. I reported it and nothing happened.\nC262,HR,10+ yrs,Administrative staff are the most exposed and the least consulted.\nC263,Communications,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC264,Regional Offices,2-5 yrs,Our unit's vacancies aren't being filled. People suspect Compass is the reason.\nC265,Regional Offices,2-5 yrs,\"J'ai appris seule, par essais et erreurs. Ce n'est pas normal.\"\nC266,Finance,6-10 yrs,I'm self-taught on Compass. That shouldn't be the norm.\nC267,Communications,10+ yrs,Peer learning has been more useful than anything official.\nC268,Client Services,2-5 yrs,\"Bon outil pour les premières ébauches, même s'il faut toujours relire.\"\nC269,HR,10+ yrs,\"I've seen staff upload full case files, including health information, into personal ChatGPT accounts to get summaries faster.\"\nC270,Client Services,2-5 yrs,\"The union was not consulted before Compass was introduced, and that matters under our collective agreement.\"\nC271,IT,6-10 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC272,Policy,10+ yrs,It confidently cited a tribunal decision that I cannot find anywhere.\nC273,Communications,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC274,IT,2-5 yrs,There's no clear owner for AI decisions. Who do we even ask?\nC275,Operations,2-5 yrs,The online module had nothing to do with what my team actually does.\nC276,Policy,6-10 yrs,\"Good writer, bad fact-checker.\"\nC277,HR,<2 yrs,\"Managers were trained even less than staff, so they can't help us.\"\nC278,HR,10+ yrs,Younger staff are excited. Older staff are scared. Both deserve a conversation.\nC279,HR,2-5 yrs,\"Fantastic, now I get to proofread a robot as well as my own work.\"\nC280,Client Services,10+ yrs,No keyboard navigation in the chat window. For staff with mobility impairments it's unusable.\nC281,Finance,10+ yrs,Senior management seems more excited than informed.\nC282,Regional Offices,6-10 yrs,\"Pour les procès-verbaux de réunion, c'est excellent.\"\nC283,HR,2-5 yrs,La direction évite la question des suppressions de postes.\nC284,Policy,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC285,Finance,6-10 yrs,Our onboarding checklist got rewritten in an afternoon instead of a week.\nC286,Client Services,<2 yrs,\"I double-check everything, which defeats a lot of the purpose.\"\nC287,Client Services,2-5 yrs,Handy for turning bullet points into a proper memo.\nC288,IT,2-5 yrs,\"The quality varies a lot from day to day. Same question, different answer.\"\nC289,Client Services,2-5 yrs,\"Someone is eventually going to send a wrong answer to a client, and it will be in the news.\"\nC290,Communications,6-10 yrs,We were handed the tool with basically no training.\nC291,Communications,6-10 yrs,I think it's good. I don't have strong complaints.\nC292,Regional Offices,6-10 yrs,L'outil invente des références à des politiques qui n'existent pas.\nC293,Communications,6-10 yrs,Training was offered during our busiest week. Almost nobody could attend.\nC294,Policy,10+ yrs,\"Short, frequent, role-specific sessions would beat one big launch event.\"\nC295,IT,<2 yrs,The login fails every few days and the help desk has no answer.\nC296,Regional Offices,<2 yrs,Excel formulas! I finally stopped begging the one person on our team who knows VLOOKUP.\nC297,Finance,<2 yrs,\"Please communicate more often, and more honestly.\"\nC298,HR,2-5 yrs,There are no success measures that staff can see.\nC299,HR,10+ yrs,L'outil est désactivé sur les ordinateurs des bureaux régionaux.\nC300,Finance,2-5 yrs,It invented a policy reference last week. The section number didn't exist.\nC301,Policy,10+ yrs,\"We need it connected to our actual systems, not as a separate window.\"\nC302,HR,6-10 yrs,The citations are the problem. Half the time they're made up or point to the wrong document.\nC303,Finance,2-5 yrs,I'm less worried about my job than about the careers of people just starting out.\nC304,HR,6-10 yrs,People are frustrated. They were promised a tool and got a waiting list.\nC305,Finance,2-5 yrs,we demand meaningful consultation with employees and our union before any further AI rollout. no AI without consultation\nC306,Operations,10+ yrs,The webinar examples were all from HR. I work in finance. Not helpful.\nC307,IT,6-10 yrs,It's good at sounding authoritative. That's exactly why it worries me.\nC308,HR,10+ yrs,La formation était beaucoup trop courte et entièrement en anglais.\nC309,Regional Offices,2-5 yrs,Nobody has explained what data Compass keeps about us.\nC310,Operations,6-10 yrs,Faster turnaround on ministerial correspondence drafts. The first draft is usually 70 percent there.\nC311,Operations,<2 yrs,\"If Compass writes the first drafts, how do juniors learn? I learned this job by drafting hundreds of letters that got marked up. I worry entry-level roles quietly disappear.\"\nC312,Finance,10+ yrs,\"If we can't rely on it for facts, we should say so clearly in the guidance.\"\nC313,Finance,2-5 yrs,\"We use it to prepare agendas and action items after each project meeting. Small thing, big difference.\"\nC314,Policy,6-10 yrs,J'attends mon accès depuis deux mois.\nC315,IT,6-10 yrs,\"When I asked it to summarize a policy, it added a condition that isn't in the policy.\"\nC316,Operations,<2 yrs,I'm concerned that clients' personal information is leaving our systems through unapproved AI tools.\nC317,Finance,6-10 yrs,Trust will drop quickly if this isn't addressed.\nC318,Policy,10+ yrs,Nobody has told us who is accountable when Compass gets something wrong and it goes out the door.\nC319,Communications,10+ yrs,The version on our phones doesn't work at all.\nC320,Regional Offices,2-5 yrs,\"Please invest in reskilling, not just in tools.\"\nC321,Client Services,<2 yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC322,Policy,10+ yrs,The tool is fine. What worries me is that nobody will say what happens to our positions once it's everywhere.\nC323,Communications,<2 yrs,Personne ne nous a montré comment bien formuler les requêtes.\nC324,HR,<2 yrs,We demand meaningful consultation with employees and our union before any further AI roll-out. No AI without consultation.\nC325,IT,6-10 yrs,It never says 'I'm not sure.' It just makes something up that sounds right.\nC326,Operations,<2 yrs,People are reluctant to use it openly because they don't want to prove their job is automatable.\nC327,Finance,2-5 yrs,The plan changed three times and nobody said why.\nC328,Policy,2-5 yrs,\"Good for first drafts of briefing notes. I still rewrite, but starting from something beats a blank page.\"\nC329,HR,10+ yrs,Governance seems to be an afterthought.\nC330,Policy,<2 yrs,La qualité du français produit par l'assistant est faible.\nC331,Communications,6-10 yrs,\"Reliability is the issue, not speed.\"\nC332,IT,<2 yrs,We need someone in each unit who can coach others.\nC333,Client Services,6-10 yrs,\"I share a licence with a colleague. Technically not allowed, practically necessary.\"\nC334,Regional Offices,<2 yrs,Les employés ont peur que les postes de soutien administratif disparaissent.\nC335,HR,<2 yrs,I'd love a short library of good prompts for our common tasks.\nC336,Communications,2-5 yrs,Please explain how this fits with our service priorities.\nC337,HR,2-5 yrs,L'accès est inégal entre les unités et personne ne sait pourquoi.\nC338,IT,10+ yrs,\"I don't know what I'm allowed to put into it, and training didn't say.\"\nC339,Finance,6-10 yrs,There's nobody to ask when you get stuck. The help desk doesn't know either.\nC340,Operations,<2 yrs,The technological change clause in our agreement exists for exactly this situation.\nC341,Regional Offices,6-10 yrs,Je termine mon rapport mensuel beaucoup plus vite.\nC342,Client Services,6-10 yrs,\"Staff morale is low because of uncertainty, not because of the tool itself.\"\nC343,HR,6-10 yrs,Love how Compass confidently cites policies that don't exist. Very efficient.\nC344,Client Services,6-10 yrs,\"The summarize feature on long policy documents is excellent. I read the summary, then only the sections I need.\"\nC345,Regional Offices,10+ yrs,The plain-language rewrites of regulations are the best part. Clients actually understand our letters now.\nC346,Operations,6-10 yrs,\"I would use it more if I weren't afraid of what the usage data will be used for, and what it means for headcount.\"\nC347,Communications,2-5 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC348,Policy,10+ yrs,\"On entend parler d'IA aux assemblées générales, mais on ne voit aucun plan.\"\nC349,Policy,6-10 yrs,Is my manager getting a dashboard of what I ask Compass? I'd like a straight answer.\nC350,Regional Offices,10+ yrs,Useful for brainstorming options before a team discussion.\nC351,Policy,2-5 yrs,\"Contractors on our team can't use it at all, even though they do the same work.\"\nC352,Client Services,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC353,Finance,10+ yrs,Career paths need to be rethought if entry-level tasks disappear.\nC354,IT,6-10 yrs,I avoid asking it anything personal or even slightly embarrassing in case someone reads it.\nC355,Regional Offices,<2 yrs,Everyone uses it differently because nobody taught us a common approach.\nC356,Client Services,10+ yrs,Des collègues copient des dossiers de clients avec des renseignements personnels dans des outils d'IA gratuits en ligne. C'est un risque grave pour la vie privée.\nC357,Regional Offices,6-10 yrs,Term employees feel especially exposed. Our contracts are up for renewal.\nC358,Communications,10+ yrs,\"If you want adoption, invest in people, not just licences.\"\nC359,Regional Offices,10+ yrs,New hires get no training on Compass at all. They just figure it out.\nC360,Client Services,2-5 yrs,We need to know what skills will matter in five years.\nC361,Policy,6-10 yrs,The approved assistant is so restricted that people photograph client documents and use free apps on their phones.\nC362,Finance,10+ yrs,Please be transparent about the workforce plan.\nC363,Regional Offices,6-10 yrs,Every branch is doing something different. No coordination.\nC364,HR,6-10 yrs,Nous avons besoin de suivi et de personnes-ressources pour poser nos questions.\nC365,Operations,2-5 yrs,You cannot trust any numbers it gives you. I've caught it adding things up wrong more than once.\nC366,Finance,<2 yrs,Training was generic. It didn't cover our workflows or our systems.\nC367,Policy,10+ yrs,\"Mixed messages: 'use it for everything' from one director, 'be careful' from another.\"\nC368,Operations,10+ yrs,\"The training told us what the tool can do, not how to use it safely.\"\nC369,Client Services,6-10 yrs,The executive team should use it themselves before mandating it.\nC370,HR,2-5 yrs,The rollout feels rushed to meet someone's deadline.\nC371,Finance,6-10 yrs,Les employés temporaires se sentent particulièrement vulnérables.\nC372,Policy,6-10 yrs,It's hard to embrace something that might make you redundant.\nC373,HR,6-10 yrs,My role is mostly the kind of work Compass does. I'm updating my resume.\nC374,Communications,<2 yrs,It sounds confident even when it's completely wrong. That's the dangerous part.\nC375,HR,<2 yrs,Great for the first 80 percent of routine letters. The last 20 percent is still me.\nC376,Operations,6-10 yrs,The approved tool is slow and times out constantly.\nC377,Regional Offices,10+ yrs,Who decided which tasks it should be used for? Nobody told us.\nC378,IT,2-5 yrs,Head office has the full version. Regional offices got the stripped-down one.\nC379,Regional Offices,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC380,HR,6-10 yrs,Le module en ligne ne correspond pas à notre travail réel.\nC381,Regional Offices,6-10 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation. #NoAIWithoutConsultation\nC382,Communications,10+ yrs,Staff who learn best hands-on were not served by a slide deck.\nC383,HR,<2 yrs,I don't understand how decisions about Compass get made.\nC384,Regional Offices,10+ yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation.\nC385,Finance,2-5 yrs,Summaries of legislative changes are a real time saver for the policy team.\nC386,Client Services,<2 yrs,The messaging changes every few weeks.\nC387,Policy,2-5 yrs,The training didn't mention our privacy obligations at all.\nC388,Finance,10+ yrs,We were told about Compass by email one Friday afternoon. That was it.\nC389,Finance,6-10 yrs,\"Oh sure, it's a huge time saver. If you never read what it writes.\"\nC390,Operations,<2 yrs,\"Honnêtement, l'assistant a changé ma façon de travailler pour le mieux.\"\nC391,Policy,2-5 yrs,\"Every time there's an update, something else stops working.\"\nC392,Operations,2-5 yrs,\"The output is polished, which makes errors harder to spot.\"\nC393,IT,<2 yrs,Access is uneven across units and it's creating resentment.\nC394,Communications,<2 yrs,We demand meaningful consultation with employees and our union before any further AI rollout. No AI without consultation!\nC395,Policy,6-10 yrs,\"The approved tool can't open PDFs, which is 90 percent of what we receive.\"\nC396,Client Services,2-5 yrs,I worry about my future here. I've been in this role 18 years.\nC397,Finance,10+ yrs,Some colleagues are hiding how much they use it. That tells you something about trust.\nC398,IT,2-5 yrs,Utile pour reformuler mes courriels quand je cherche le bon ton.\nC399,Finance,<2 yrs,I'm worried about what this means for my job.\nC400,Communications,10+ yrs,Personne n'est clairement responsable des décisions sur l'IA.\n";
+const LAB_CSV = "id,hr_category,split\nC001,Tools & Access,train\nC002,Other,train\nC004,Tools & Access,train\nC005,Workload & Productivity,train\nC006,Jobs & Careers,train\nC007,Leadership & Communication,test\nC008,Workload & Productivity,test\nC010,Workload & Productivity,train\nC011,Leadership & Communication,train\nC013,Leadership & Communication,train\nC015,Tools & Access,train\nC016,Leadership & Communication,train\nC018,Tools & Access,test\nC019,Training & Support,train\nC022,Leadership & Communication,test\nC024,Workload & Productivity,test\nC025,Training & Support,train\nC026,Other,test\nC027,Training & Support,train\nC030,Leadership & Communication,train\nC033,Workload & Productivity,train\nC034,Workload & Productivity,train\nC035,Leadership & Communication,train\nC037,Workload & Productivity,train\nC038,Leadership & Communication,train\nC040,Workload & Productivity,test\nC041,Jobs & Careers,train\nC043,Tools & Access,train\nC046,Leadership & Communication,test\nC047,Training & Support,train\nC048,Workload & Productivity,train\nC049,Tools & Access,test\nC050,Tools & Access,train\nC051,Jobs & Careers,test\nC055,Workload & Productivity,train\nC056,Workload & Productivity,test\nC058,Workload & Productivity,train\nC059,Leadership & Communication,train\nC060,Leadership & Communication,train\nC061,Jobs & Careers,train\nC062,Training & Support,train\nC064,Training & Support,train\nC066,Leadership & Communication,test\nC067,Training & Support,train\nC068,Leadership & Communication,train\nC069,Leadership & Communication,train\nC070,Leadership & Communication,train\nC071,Workload & Productivity,train\nC072,Leadership & Communication,train\nC073,Tools & Access,train\nC074,Workload & Productivity,train\nC075,Workload & Productivity,test\nC076,Leadership & Communication,train\nC077,Tools & Access,train\nC079,Tools & Access,train\nC080,Workload & Productivity,train\nC081,Leadership & Communication,train\nC083,Leadership & Communication,train\nC084,Workload & Productivity,train\nC087,Workload & Productivity,train\nC089,Leadership & Communication,train\nC090,Workload & Productivity,train\nC093,Leadership & Communication,test\nC094,Jobs & Careers,train\nC095,Jobs & Careers,train\nC097,Workload & Productivity,train\nC098,Training & Support,train\nC099,Leadership & Communication,train\nC100,Workload & Productivity,train\nC101,Workload & Productivity,train\nC102,Leadership & Communication,train\nC103,Training & Support,train\nC104,Jobs & Careers,train\nC105,Leadership & Communication,train\nC106,Tools & Access,train\nC108,Workload & Productivity,train\nC109,Workload & Productivity,train\nC111,Tools & Access,train\nC112,Workload & Productivity,train\nC113,Tools & Access,test\nC114,Workload & Productivity,train\nC116,Workload & Productivity,train\nC117,Workload & Productivity,train\nC119,Tools & Access,test\nC122,Workload & Productivity,train\nC123,Jobs & Careers,train\nC125,Workload & Productivity,train\nC126,Leadership & Communication,train\nC128,Jobs & Careers,train\nC129,Leadership & Communication,test\nC130,Training & Support,train\nC131,Leadership & Communication,train\nC133,Tools & Access,train\nC134,Tools & Access,train\nC136,Leadership & Communication,train\nC137,Workload & Productivity,train\nC139,Training & Support,test\nC140,Workload & Productivity,train\nC142,Leadership & Communication,train\nC145,Workload & Productivity,train\nC147,Workload & Productivity,train\nC149,Workload & Productivity,train\nC150,Tools & Access,train\nC151,Leadership & Communication,train\nC152,Training & Support,train\nC153,Workload & Productivity,train\nC154,Tools & Access,test\nC155,Workload & Productivity,train\nC156,Jobs & Careers,train\nC157,Workload & Productivity,train\nC158,Training & Support,train\nC159,Workload & Productivity,train\nC160,Leadership & Communication,train\nC161,Workload & Productivity,train\nC162,Leadership & Communication,train\nC164,Tools & Access,train\nC166,Leadership & Communication,test\nC168,Leadership & Communication,train\nC169,Workload & Productivity,train\nC170,Leadership & Communication,train\nC171,Workload & Productivity,train\nC172,Leadership & Communication,train\nC173,Training & Support,train\nC174,Leadership & Communication,train\nC175,Tools & Access,train\nC176,Leadership & Communication,test\nC177,Training & Support,train\nC179,Training & Support,test\nC180,Tools & Access,train\nC181,Tools & Access,train\nC185,Workload & Productivity,train\nC186,Jobs & Careers,train\nC188,Leadership & Communication,train\nC189,Workload & Productivity,train\nC191,Leadership & Communication,train\nC193,Training & Support,train\nC194,Workload & Productivity,train\nC195,Workload & Productivity,train\nC196,Tools & Access,train\nC197,Workload & Productivity,train\nC198,Workload & Productivity,train\nC200,Workload & Productivity,train\nC201,Workload & Productivity,train\nC202,Jobs & Careers,train\nC203,Workload & Productivity,train\nC204,Jobs & Careers,train\nC205,Training & Support,train\nC206,Leadership & Communication,train\nC207,Workload & Productivity,train\nC208,Leadership & Communication,train\nC210,Jobs & Careers,train\nC212,Workload & Productivity,test\nC214,Workload & Productivity,train\nC215,Jobs & Careers,train\nC216,Workload & Productivity,train\nC219,Jobs & Careers,train\nC221,Training & Support,train\nC224,Tools & Access,train\nC225,Workload & Productivity,train\nC226,Leadership & Communication,train\nC227,Tools & Access,train\nC228,Leadership & Communication,train\nC229,Tools & Access,train\nC230,Jobs & Careers,train\nC231,Workload & Productivity,train\nC235,Leadership & Communication,test\nC236,Workload & Productivity,train\nC238,Leadership & Communication,train\nC239,Training & Support,test\nC240,Workload & Productivity,train\nC241,Workload & Productivity,train\nC243,Tools & Access,train\nC244,Leadership & Communication,train\nC245,Leadership & Communication,train\nC246,Jobs & Careers,train\nC247,Workload & Productivity,test\nC249,Workload & Productivity,train\nC250,Leadership & Communication,train\nC251,Training & Support,test\nC252,Jobs & Careers,test\nC255,Training & Support,train\nC256,Leadership & Communication,train\nC257,Leadership & Communication,train\nC258,Tools & Access,train\nC260,Leadership & Communication,train\nC262,Jobs & Careers,train\nC264,Jobs & Careers,train\nC266,Training & Support,train\nC267,Training & Support,train\nC268,Workload & Productivity,train\nC269,Other,train\nC271,Leadership & Communication,train\nC272,Workload & Productivity,train\nC273,Leadership & Communication,test\nC276,Workload & Productivity,train\nC277,Training & Support,train\nC279,Workload & Productivity,train\nC280,Tools & Access,train\nC281,Leadership & Communication,train\nC284,Leadership & Communication,train\nC285,Workload & Productivity,train\nC286,Workload & Productivity,train\nC287,Workload & Productivity,train\nC288,Workload & Productivity,train\nC289,Workload & Productivity,train\nC290,Training & Support,train\nC291,Workload & Productivity,train\nC293,Training & Support,train\nC294,Training & Support,train\nC295,Tools & Access,train\nC296,Workload & Productivity,train\nC297,Leadership & Communication,train\nC298,Leadership & Communication,test\nC299,Tools & Access,test\nC300,Workload & Productivity,train\nC301,Tools & Access,train\nC302,Workload & Productivity,train\nC304,Tools & Access,train\nC305,Leadership & Communication,train\nC306,Training & Support,train\nC307,Workload & Productivity,train\nC308,Training & Support,train\nC309,Leadership & Communication,train\nC310,Workload & Productivity,test\nC312,Workload & Productivity,train\nC313,Workload & Productivity,train\nC314,Tools & Access,train\nC315,Workload & Productivity,test\nC319,Tools & Access,train\nC320,Jobs & Careers,train\nC321,Leadership & Communication,train\nC323,Training & Support,train\nC324,Leadership & Communication,train\nC326,Jobs & Careers,train\nC327,Leadership & Communication,train\nC328,Workload & Productivity,train\nC329,Leadership & Communication,train\nC330,Workload & Productivity,train\nC331,Workload & Productivity,train\nC332,Training & Support,train\nC333,Tools & Access,train\nC334,Jobs & Careers,train\nC335,Training & Support,train\nC336,Leadership & Communication,train\nC337,Tools & Access,train\nC338,Training & Support,train\nC340,Leadership & Communication,train\nC341,Workload & Productivity,train\nC342,Jobs & Careers,train\nC343,Workload & Productivity,test\nC344,Workload & Productivity,test\nC345,Workload & Productivity,test\nC347,Leadership & Communication,train\nC349,Leadership & Communication,train\nC352,Leadership & Communication,train\nC354,Leadership & Communication,train\nC355,Training & Support,train\nC357,Jobs & Careers,train\nC358,Training & Support,train\nC360,Jobs & Careers,test\nC361,Other,train\nC362,Jobs & Careers,train\nC363,Leadership & Communication,train\nC364,Training & Support,train\nC365,Workload & Productivity,train\nC366,Training & Support,train\nC368,Training & Support,train\nC369,Leadership & Communication,train\nC371,Jobs & Careers,train\nC372,Jobs & Careers,test\nC374,Workload & Productivity,train\nC375,Workload & Productivity,train\nC376,Tools & Access,train\nC377,Leadership & Communication,train\nC378,Tools & Access,train\nC379,Leadership & Communication,train\nC380,Training & Support,train\nC381,Leadership & Communication,train\nC382,Training & Support,test\nC384,Leadership & Communication,train\nC386,Leadership & Communication,train\nC389,Workload & Productivity,test\nC390,Workload & Productivity,train\nC391,Tools & Access,train\nC392,Workload & Productivity,train\nC394,Leadership & Communication,train\nC396,Jobs & Careers,train\nC397,Jobs & Careers,train\nC398,Workload & Productivity,train\nC399,Jobs & Careers,train\n";
+const WATCH = [["C014", "Colleagues pasting client files with SIN numbers into a free public chatbot"], ["C057", "A screen-reader user who cannot use Compass at all"], ["C088", "“Great, another tool that saves me ten minutes and costs me an hour of checking.”"], ["C121", "In French: no French training, just a link to an English video"], ["C163", "“We demand meaningful consultation… No AI without consultation.” (one of 39 near-identical posts)"], ["C199", "Stopped using Compass after hearing managers can pull usage reports by team"], ["C232", "Compass halved first-draft time; the monthly report goes out two days earlier"], ["C270", "The union was not consulted, as the collective agreement requires"], ["C311", "If Compass writes the first drafts, how will juniors learn?"], ["C356", "In French: colleagues copying clients' personal information into free AI tools"]];
+const RUNS = [{"id": "r0", "nav": "Run 0", "sub": "Claude's default", "change": "Claude decides everything: what to read, how, which themes, how to rank"}, {"id": "r1", "nav": "Run 1", "sub": "LDA · 5 topics", "change": "A named algorithm (LDA topic model), 5 topics, seed 1; topics named from their top words"}, {"id": "r2", "nav": "Run 2", "sub": "12 topics", "change": "LDA, 12 topics (was 5)"}, {"id": "r3", "nav": "Run 3", "sub": "seed only", "change": "LDA, 12 topics, random_state 2 (was 1)"}, {"id": "r4", "nav": "Run 4", "sub": "NMF algorithm", "change": "NMF with TF-IDF word weights, 12 topics (was LDA with raw counts: two changes)"}, {"id": "r5", "nav": "Run 5", "sub": "data preparation", "change": "LDA, 12 topics; duplicates removed AND French stop words added (two changes; % of remaining comments)"}, {"id": "r6", "nav": "Run 6", "sub": "HR's categories", "change": "Claude reads and sorts comments into HR's six existing categories (categories fixed in advance, and reading instead of an algorithm)"}, {"id": "r7", "nav": "Run 7", "sub": "supervised", "change": "A classifier trained on 50, then 250, of HR's labelled comments"}];
+const KEYITEMS = [["A serious privacy risk", "8 of 400 comments (2%) describe staff pasting client data, including social insurance numbers and health information, into unapproved AI tools (C014 and C356 on the watch list). Topic models scatter these comments across unrelated topics at every setting. HR's categories file them under Other. A careful reader, human or Claude, catches them, and Claude's default reading (Run 0) often ranks them among the top issues by seriousness even though they are only 2% of comments."], ["A coordinated campaign", "39 near-identical comments demand consultation (C163 is one). They give consultation a large theme in every topic-model run. Genuine, independent consultation concerns are only about 2.5% of comments. Remove duplicates (Run 5) and the theme shrinks, and a genuine union concern such as C270 can end up anywhere."], ["French comments (12%)", "With English-only stop words, the 12-topic models build a topic out of words like les, pour, des, est. It gets named Unclear or French comments: the language became a theme. C121 and C356 raise real issues in French."], ["The random seed", "Same data, same algorithm, same 12 topics. Changing only the random starting point reshuffles topics and moved the largest theme from about a third of comments to about a fifth in our tests. One run is one draw."], ["Naming is interpretation", "A topic model outputs word lists, not themes. Count the Mixed and Unclear topics in each run: that is how muddy the model was. Every theme name you compared was Claude's reading of a word list, and a tidy name can hide a muddy topic."], ["The crosswalk is a model too", "Deciding that two differently named themes are the same issue is a judgement. Look at how many common themes Claude created, what it merged, and what it kept apart. Your edits to it are part of the analysis."], ["HR's categories are a model too", "Expect Claude's reading to agree with HR well short of 100% on the 40 test comments. Disagreements cluster on accuracy, trust, monitoring, and consultation, which HR's six categories have no good place for. A 100% score almost always means the answers leaked into the chat."], ["Training data", "Always guessing the most common category scores about 33%. The supervised classifier scores about 48% with 50 labelled examples and about 55% with 250. On short, varied text, the capability sits mostly in the pre-trained model, which every competitor can rent too."], ["Sarcasm and accessibility", "C088 is sarcasm; word counts read it as praise for time savings. The 5 accessibility comments (1%, C057 among them) almost always disappear."], ["The runs are not clean experiments", "Several runs changed more than one thing, Run 5 changes the denominator, and HR's six categories cannot express many of the emergent themes. That is normal in practice. The question is whether anyone writes the choices down."]];
+const STEPS = RUNS.map(r=>[r.nav,r.sub]).concat([["Align","match the themes"],["Compare","what each run saw"]]);
+const IALIGN = RUNS.length, ICMP = RUNS.length+1;
+const KEY = "adx5103_c4_textlab_v3";
+const NM = "Not matched";
+function fresh(){return {step:0, gut:null, paste:{}, note:{}, xwPaste:"", xwEdit:{}, extra:[], ref1:"", ref2:"", ref3:"", keyOn:false, saved:null}}
+let S = fresh(); let ready = false;
+function save(){if(!ready)return;S.saved=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function stored(){try{const t=localStorage.getItem(KEY);return t?JSON.parse(t):null}catch(e){return null}}
+const $=id=>document.getElementById(id);
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+const lc=s=>String(s||"").toLowerCase().replace(/[“”"'’*`]/g,"").replace(/\s+/g," ").trim();
+
+/* ---------- parse LAB DATA (themes emerge per run) ---------- */
+function parse(text){
+  const t=String(text||""); const m=t.match(/=+\s*LAB DATA\s*=+([\s\S]*?)(=+\s*END\s*=+|$)/i);
+  if(!m) return null; const b=m[1]; const out={themes:[],top:[],watch:{},acc:""};
+  const g=k=>{const r=b.match(new RegExp("^[\\s*_]*"+k+"[\\s*_]*[:=]\\s*([\\s\\S]*?)(?=^[\\s*_]*(RUN|THEMES|TOP3|WATCH|ACCURACY)[\\s*_]*[:=]|$(?![\\s\\S]))","im"));return r?r[1].trim():""};
+  out.acc=g("ACCURACY");
+  const seen={};
+  g("THEMES").split(/;|\n/).forEach(p=>{p=p.trim();if(!p)return;const r=p.match(/^(.*\S)\s*[=:]\s*~?\s*([\d.]+)\s*%?\s*$/);if(!r)return;
+    const name=r[1].replace(/^[-•*\s]+/,"").trim();const k=lc(name);
+    if(seen[k]!=null)out.themes[seen[k]].pct+=parseFloat(r[2]);else{seen[k]=out.themes.length;out.themes.push({name,pct:parseFloat(r[2])})}});
+  out.top=g("TOP3").split("|").map(s=>s.replace(/\(.*?\)\s*$/,"").trim()).filter(Boolean).slice(0,3);
+  const w=g("WATCH"); WATCH.forEach(([id])=>{const r=w.match(new RegExp(id+"\\s*[=:]\\s*([^;\\n]+)","i"));out.watch[id]=r?resolve(out,r[1].trim()):""});
+  out.top=out.top.map(x=>resolve(out,x));
+  return out.themes.length?out:null}
+function resolve(p,raw){const k=lc(raw);if(!k)return "";const ex=p.themes.find(t=>lc(t.name)===k);if(ex)return ex.name;
+  const pre=p.themes.find(t=>lc(t.name).startsWith(k)||k.startsWith(lc(t.name)));return pre?pre.name:raw}
+
+/* ---------- parse CROSSWALK ---------- */
+function parseXW(text){
+  const t=String(text||""); const m=t.match(/=+\s*CROSSWALK\s*=+([\s\S]*?)(=+\s*END\s*=+|$)/i);
+  if(!m) return null; const out={common:[],map:{}};
+  m[1].split("\n").forEach(line=>{line=line.replace(/^[\s*_-]+/,"").trim();if(!line)return;
+    let r=line.match(/^COMMON(?:\s+THEMES)?\s*[:=]\s*(.+)$/i);if(r){out.common=r[1].split("|").map(s=>s.trim()).filter(Boolean);return}
+    r=line.match(/^(?:RUN\s*|R)(\d)\s*[:=]\s*(.+)$/i);if(r){const id="r"+r[1];out.map[id]=out.map[id]||{};
+      r[2].split(";").forEach(pair=>{const q=pair.split(/=>|->|→/);if(q.length<2)return;const a=q[0].trim(),c=q.slice(1).join("").trim();if(a&&c)out.map[id][lc(a)]=c})}});
+  // make sure every target appears in the common list
+  Object.values(out.map).forEach(mm=>Object.values(mm).forEach(c=>{if(!out.common.some(x=>lc(x)===lc(c)))out.common.push(c)}));
+  return out.common.length?out:null}
+function XW(){return parseXW(S.xwPaste)}
+function commons(){const x=XW();const list=(x?x.common:[]).concat(S.extra||[]);const u=[];list.forEach(c=>{if(!u.some(y=>lc(y)===lc(c)))u.push(c)});return u}
+function claudeMap(rid,name){const x=XW();if(!x||!x.map[rid])return NM;const c=x.map[rid][lc(name)];if(!c)return NM;const cm=commons().find(y=>lc(y)===lc(c));return cm||c}
+function mapOf(rid,name){if(/^(removed|excluded)$/.test(lc(name)))return "Removed";const k=rid+"||"+lc(name);return S.xwEdit[k]||claudeMap(rid,name)}
+
+/* ---------- colours for common themes ---------- */
+const PAL=["#2E9C9A","#8F1739","#6f8a13","#D69B2D","#8A3A7A","#3d5a80","#b5562c","#c1121f","#1b7f5b","#5c4d7d","#0a6a8f","#9c6b00","#4a7c59","#a23b72","#35605a","#7a4e2d","#51588e","#8b8b3a"];
+function colOf(c){if(!c||c===NM)return "#aaa";if(c==="Removed")return "#ccc";const i=commons().findIndex(y=>lc(y)===lc(c));return i<0?"#999":PAL[i%PAL.length]}
+function chip(c,title){return c?`<span class="lb" style="background:${colOf(c)}" title="${esc(title||c)}">${esc(c)}</span>`:""}
+
+/* ---------- nav ---------- */
+function buildSide(){const nav=$("side");STEPS.forEach((s,i)=>{
+  if(i===0){const d=document.createElement("div");d.className="divider";d.textContent="Pre-assembled";nav.appendChild(d)}
+  if(i===1){const d=document.createElement("div");d.className="divider";d.textContent="Assembled by you";nav.appendChild(d)}
+  if(i===IALIGN){const d=document.createElement("div");d.className="divider";d.textContent="Compare";nav.appendChild(d)}
+  const b=document.createElement("button");b.className="step";b.dataset.i=i;b.innerHTML=`<span class="n">${i<RUNS.length?i:""}</span><span class="t">${s[0]}<small>${s[1]}</small></span>`;b.onclick=()=>go(i);nav.appendChild(b)})}
+function go(i){S.step=Math.max(0,Math.min(STEPS.length-1,i));render();save();window.scrollTo({top:0,behavior:"smooth"})}
+function done(r){return !!parse(S.paste[r.id])}
+function render(){document.querySelectorAll("section.pane").forEach((p,i)=>p.classList.toggle("on",i===S.step));
+  document.querySelectorAll(".step").forEach(b=>{const i=+b.dataset.i;b.classList.toggle("active",i===S.step);
+    const d=i<RUNS.length?done(RUNS[i]):(i===IALIGN?!!XW():false);b.classList.toggle("done",d&&i!==S.step)});
+  const n=RUNS.filter(done).length;$("progTxt").textContent=`${n} of ${RUNS.length}`;$("progBar").style.width=(n/RUNS.length*100)+"%";
+  $("prev").style.visibility=S.step===0?"hidden":"visible";$("prev").textContent="← "+(S.step>0?STEPS[S.step-1][0]:"");
+  $("next").textContent=S.step<STEPS.length-1?("Continue to "+STEPS[S.step+1][0]+" →"):"Save a PDF";
+  $("skip").style.display=(S.step>=2&&S.step<RUNS.length-1)?"inline-flex":"none";
+  if(S.step===IALIGN)buildAlign();if(S.step===ICMP)buildCompare()}
+$("prev").onclick=()=>go(S.step-1);$("skip").onclick=()=>go(IALIGN);$("next").onclick=()=>S.step<STEPS.length-1?go(S.step+1):makePDF();
+
+/* ---------- per-run paste + preview ---------- */
+function preview(r){const box=$("pv_"+r.id);const txt=S.paste[r.id]||"";
+  if(!txt.trim()){box.innerHTML="";return}
+  const p=parse(txt);
+  if(!p){box.innerHTML=`<div class="status no"><b>No LAB DATA block found.</b> Make sure you copied Claude's whole reply, down to “=== END ===”. If Claude left the block out, ask it: <i>“Please output the LAB DATA block exactly as specified.”</i></div>`;return}
+  const th=p.themes.slice().sort((a,b)=>b.pct-a.pct).map(t=>`<tr><td>${esc(t.name)}</td><td class="num">${Math.round(t.pct*10)/10}%</td></tr>`).join("");
+  const w=WATCH.map(([id])=>`<tr><td><b>${id}</b></td><td>${p.watch[id]?esc(p.watch[id]):'<span style="color:#999">not reported</span>'}</td></tr>`).join("");
+  box.innerHTML=`<div class="status ok"><b>Recorded.</b> ${p.themes.length} themes${p.acc?` · accuracy ${esc(p.acc)}`:""}.</div>
+   <div class="grid2" style="margin-top:12px"><div><h3>Themes</h3><table class="grid">${th}</table><h3 style="margin-top:14px">Top 3</h3><ol style="margin:0;padding-left:18px;font-size:14.5px">${p.top.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
+   <div><h3>Watch list</h3><table class="grid">${w}</table></div></div>`}
+function wireRuns(){RUNS.forEach(r=>{const ta=$("pa_"+r.id);ta.value=S.paste[r.id]||"";ta.oninput=()=>{S.paste[r.id]=ta.value;save();preview(r);render()};
+  const nt=$("nt_"+r.id);nt.value=S.note[r.id]||"";nt.oninput=()=>{S.note[r.id]=nt.value;save()};
+  const sec=$("run_"+r.id);const lb=sec.querySelector(".lookbtn");const rv=sec.querySelector(".reveal");lb.onclick=()=>rv.classList.add("on");rv.classList.remove("on");preview(r)})}
+
+/* ---------- align ---------- */
+function runsData(){return RUNS.map(r=>({r,p:parse(S.paste[r.id])}))}
+function xwPromptText(){const D=runsData().filter(d=>d.p);
+  let t="Below are the themes found by several different analyses of the same 400 employee-survey comments about an AI assistant. Each analysis named its own themes, so the same issue may appear under different names, and one name may hide a different issue.\n\n";
+  D.forEach(d=>{t+=`${d.r.nav.replace("Run ","R")} (${d.r.change}):\n`+d.p.themes.map(x=>`- ${x.name} (${Math.round(x.pct*10)/10}%)`).join("\n")+"\n\n"});
+  t+="Build a crosswalk: group the theme names that describe the same underlying issue into common themes.\nRules:\n1. Put two themes together only if they are about the same issue, not merely related words.\n2. Keep a rare but distinct issue (for example data privacy or accessibility) as its own common theme, even if only one analysis found it.\n3. Map a \"Mixed: X\" theme by its main issue X, and list it in your notes as mixed. Put \"Unclear: ...\" themes and \"No words left\" into one common theme called \"Unclear or no content\". Map \"Removed\" to itself only if it appears as a theme.\n4. Every theme maps to exactly one common theme. If a theme mixes two issues, choose the main one and mention it in your notes.\n5. Aim for 8 to 15 common themes, with short names.\n\nReport: (1) a table of common themes with the run themes in each; (2) notes on the hard calls, including any theme that mixes issues.\n\nEnd your reply with this block, exactly in this format, using every run theme name exactly as written above:\n=== CROSSWALK ===\nCOMMON: <common theme> | <common theme> | ...\n";
+  D.forEach(d=>{t+=`${d.r.nav.replace("Run ","R")}: `+d.p.themes.map(x=>`${x.name} => <common theme>`).join("; ")+"\n"});
+  t+="=== END ===";return t}
+function buildAlign(){const D=runsData();const got=D.filter(d=>d.p).length;
+  $("alignMissing").innerHTML=got<RUNS.length?`<div class="status no" style="margin-bottom:10px">You have recorded ${got} of ${RUNS.length} runs, and the prompt below includes only those. That is fine: align and compare what you have. If you record more runs later, come back here, copy the updated prompt into a new Chat D, and paste the new reply over the old one.</div>`:"";
+  const p=$("xwPrompt");const txt=xwPromptText();p.textContent=txt;p.dataset.text=txt;addCopy(p);
+  const x=XW();
+  if(!S.xwPaste.trim()){$("xwStatus").innerHTML="";$("xwReview").style.display="none";return}
+  if(!x){$("xwStatus").innerHTML=`<div class="status no"><b>No CROSSWALK block found.</b> Copy Claude's whole reply, down to “=== END ===”.</div>`;$("xwReview").style.display="none";return}
+  const total=D.reduce((a,d)=>a+(d.p?d.p.themes.length:0),0);let unm=0;D.forEach(d=>d.p&&d.p.themes.forEach(t=>{if(claudeMap(d.r.id,t.name)===NM)unm++}));
+  $("xwStatus").innerHTML=`<div class="status ok"><b>Recorded.</b> ${commons().length} common themes for ${total} run themes${unm?` · <b>${unm}</b> run themes were not matched by Claude; assign them below`:""}.</div>`;
+  $("xwReview").style.display="block";
+  const opts=commons().concat([NM]);
+  let h="<tr><th>Run theme</th><th>%</th><th>Common theme</th></tr>";
+  D.forEach(d=>{if(!d.p)return;h+=`<tr class="runhead"><td colspan="3">${d.r.nav} · ${esc(d.r.sub)}</td></tr>`;
+    d.p.themes.forEach(t=>{const k=d.r.id+"||"+lc(t.name);const cur=mapOf(d.r.id,t.name);const ed=!!S.xwEdit[k]&&S.xwEdit[k]!==claudeMap(d.r.id,t.name);
+      h+=`<tr class="${ed?"edited":""}"><td>${esc(t.name)}</td><td class="num">${Math.round(t.pct)}</td><td><select data-k="${esc(k)}" data-c="${esc(claudeMap(d.r.id,t.name))}">${opts.map(o=>`<option${lc(o)===lc(cur)?" selected":""}>${esc(o)}</option>`).join("")}</select> ${ed?'<span style="font-size:12px;color:#8a5d10">changed</span>':""}</td></tr>`})});
+  $("xwTable").innerHTML=h;
+  $("xwTable").querySelectorAll("select").forEach(s=>s.onchange=()=>{if(s.value===s.dataset.c)delete S.xwEdit[s.dataset.k];else S.xwEdit[s.dataset.k]=s.value;save();buildAlign()})}
+function addTheme(){const v=$("newTheme").value.trim();if(!v)return;if(!commons().some(c=>lc(c)===lc(v)))S.extra.push(v);$("newTheme").value="";save();buildAlign()}
+
+/* ---------- compare ---------- */
+function covMatrix(){const D=runsData();const rows=commons().concat([NM]);const M={};
+  rows.forEach(c=>M[c]={});D.forEach(d=>{if(!d.p)return;d.p.themes.forEach(t=>{const c=mapOf(d.r.id,t.name);const key=rows.find(y=>lc(y)===lc(c))||NM;
+    const cell=M[key][d.r.id]||(M[key][d.r.id]={v:0,names:[]});cell.v+=t.pct;cell.names.push(t.name)})});
+  return {D,rows:rows.filter(c=>c!==NM||Object.keys(M[NM]).length),M}}
+const LEVERS=[["Data","Run 5","Tell me what you will include, exclude, or merge. Count identical text as one voice."],
+ ["Method","Runs 0 and 1","Say which method you are using, and whether you are counting or estimating."],
+ ["Granularity","Runs 1 and 2","Give me five themes, then twelve. What splits, and what disappears?"],
+ ["Categories","Run 6","Use our categories, then show me everything that does not fit them."],
+ ["Ranking","Run 0","Rank by how often it came up, and separately by how serious it is."],
+ ["Evidence","Run 3","Cite comment IDs for every theme. Then run it again in a new chat and compare."],
+ ["Humans","Align","Decide who checks the themes, and the crosswalk, before anything reaches a decision."]];
+const AWARE="I have attached 400 open-ended comments from our employee survey about our AI assistant. What are employees telling us, and what should leadership know?\n\nBefore you analyse, tell me which comments you will set aside or merge, and treat identical text as one voice. Read the French comments as closely as the English ones. Count rather than estimate, and cite three comment IDs for each theme. After your own themes, sort the comments into our HR categories and show me what does not fit. Rank what leadership should hear twice: by how often it came up, and by how serious it is. End with a method note I can put in the appendix.";
+function buildLevers(){$("leverTable").innerHTML="<tr><th>Lever</th><th>You saw it in</th><th>What to ask for</th></tr>"+LEVERS.map(l=>`<tr><td><b>${l[0]}</b></td><td style="white-space:nowrap;color:#666">${l[1]}</td><td style="white-space:normal">${esc(l[2])}</td></tr>`).join("");
+  const p=$("awarePrompt");p.textContent=AWARE;p.dataset.text=AWARE;addCopy(p)}
+function tot(d){return d.p?Math.round(d.p.themes.reduce((a,t)=>a+t.pct,0)):""}
+function buildCompare(){const {D,rows,M}=covMatrix();const has=!!XW();
+  $("gutBack").innerHTML=S.gut?`<div class="status ok" style="margin-bottom:14px">Before Run 0 you guessed the top three issues would change <b>${esc(S.gut.toLowerCase())}</b>. Were you right?</div>`:"";
+  $("cmpMissing").innerHTML=has?"":`<div class="status no" style="margin-bottom:14px">Complete the <b>Align</b> step first: the comparison needs the crosswalk to line up the runs.</div>`;
+  let h="<tr><th>Common theme</th>"+D.map(d=>`<th>${d.r.nav}</th>`).join("")+"</tr>";
+  h+="<tr><td style='color:#777'>Themes found</td>"+D.map(d=>`<td class="num" style="color:#777">${d.p?d.p.themes.length:""}</td>`).join("")+"</tr>";
+  if(has)rows.forEach(c=>{h+=`<tr><td>${chip(c)}</td>`+D.map(d=>{const cell=M[c][d.r.id];if(!d.p)return "<td></td>";if(!cell)return `<td class="num" style="color:#bbb">·</td>`;
+    const a=Math.min(1,cell.v/40);return `<td class="num" title="${esc(cell.names.join(" + "))}" style="background:rgba(46,156,154,${(a*.55).toFixed(2)})">${Math.round(cell.v)}${S.showOwn?`<span class="own" style="font-weight:400;text-align:left;min-width:110px">${cell.names.map(esc).join("<br>")}</span>`:""}</td>`}).join("")+"</tr>"});
+  if(has)h+="<tr><td style='color:#777'><b>Total</b></td>"+D.map(d=>{const v=tot(d);return `<td class="num" style="color:${v!==""&&Math.abs(v-100)>3?"#8F1739":"#777"}">${v}</td>`}).join("")+"</tr>";
+  $("covGrid").innerHTML=h+`<tr><td colspan="${D.length+1}" style="font-size:12.5px;color:#666;white-space:normal">· = no theme in this run mapped here; the issue may still be hidden inside an Unclear or Other theme. A total well above 100 means the run put some comments in more than one theme. Run 5 percentages are of the comments left after duplicates were removed. Runs 6 and 7 could only use HR's six categories.</td></tr>`;
+  let w="<tr><th>Comment</th>"+D.map(d=>`<th>${d.r.nav}</th>`).join("")+"</tr>";
+  WATCH.forEach(([id,desc])=>{w+=`<tr><td title="${esc(desc)}"><b>${id}</b><span class="own" style="max-width:190px;white-space:normal">${esc(desc)}</span></td>`+D.map(d=>{if(!d.p)return "<td></td>";const own=d.p.watch[id];if(!own)return `<td style="color:#bbb">not reported</td>`;
+      const c=has?mapOf(d.r.id,own):"";return `<td>${has?chip(c,own):""}<span class="own">${esc(own)}</span></td>`}).join("")+"</tr>"});
+  $("watchGrid").innerHTML=w;
+  $("topGrid").innerHTML="<tr><th>Run</th><th>What changed</th><th>Top 3</th></tr>"+D.map(d=>`<tr><td style="white-space:nowrap"><b>${d.r.nav}</b></td><td style="white-space:normal;min-width:220px">${esc(d.r.change)}</td><td style="white-space:normal">${d.p?d.p.top.map(x=>has?chip(mapOf(d.r.id,x),x)+`<span class="own">${esc(x)}</span>`:esc(x)).join(" "):""}</td></tr>`).join("");
+  const txt="Here is the comparison table built from the crosswalk you made, after my review (I may have moved some themes). The runs varied the method, number of topics, random seed, algorithm, data preparation, the category scheme, and a supervised model; the TOP 3 section says what changed in each run, and some runs changed more than one thing. In the table, - means the run had no theme in that common theme. Run 0's top 3 is Claude's judgement of importance; the other runs list the largest themes. Runs 6 and 7 could only use HR's six categories.\n\n"+tableText()+"\nPlease: (1) say which single change altered the picture of what employees are saying the most; (2) separate themes that were stable across runs from those that depended on the method; (3) point out anything a leader could miss by relying on any one run; (4) tell me where this table, or my crosswalk, may be incomplete or misleading.";
+  const p=$("cmpPrompt");p.textContent=txt;p.dataset.text=txt;addCopy(p);
+  buildLevers();if(S.keyOn)$("key").classList.add("on")}
+function tableText(){const cm=covMatrix();const D=cm.D.filter(d=>d.p),rows=cm.rows,M=cm.M;const has=!!XW();let t="SHARE OF COMMENTS BY COMMON THEME (%)\nCommon theme | "+D.map(d=>d.r.nav).join(" | ")+"\n";
+  if(has){rows.forEach(c=>{t+=c+" | "+D.map(d=>!d.p?"":M[c][d.r.id]?Math.round(M[c][d.r.id].v):"-").join(" | ")+"\n"});t+="Total | "+D.map(tot).join(" | ")+"\n"}
+  t+="\nWATCH LIST (common theme [run's own theme])\nComment | "+D.map(d=>d.r.nav).join(" | ")+"\n";
+  WATCH.forEach(([id,desc])=>{t+=`${id} (${desc}) | `+D.map(d=>{if(!d.p)return "";const own=d.p.watch[id];if(!own)return "-";return has?`${mapOf(d.r.id,own)} [${own}]`:own}).join(" | ")+"\n"});
+  t+="\nTOP 3\n"+D.map(d=>`${d.r.nav} [${d.r.change}]: ${d.p?d.p.top.join("; "):"-"}${d.p&&d.p.acc?` (accuracy ${d.p.acc})`:""}`).join("\n")+"\n";return t}
+
+/* ---------- PDF ---------- */
+const LIBS=["https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"];
+function loadScript(u){return new Promise((ok,no)=>{if(document.querySelector(`script[src="${u}"]`))return ok();const s=document.createElement("script");s.src=u;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+function A(s){return String(s==null?"":s).replace(/[“”«»]/g,'"').replace(/[‘’]/g,"'").replace(/[–—]/g,"-").replace(/…/g,"...").replace(/[→⇒]/g,"=>").replace(/[·•]/g,"-").replace(/ /g," ").replace(/[^\x09\x0a\x0d\x20-\x7e\xa0-\xff]/g,"?")}
+async function makePDF(){
+  try{for(const u of LIBS)await loadScript(u)}catch(e){alert("The PDF tool could not load (are you offline?). Opening your browser's print dialog instead: choose Save as PDF.");try{go(ICMP);window.print()}catch(_){}return}
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:"pt",format:"letter",orientation:"landscape"});
+  const W=doc.internal.pageSize.getWidth(),H=doc.internal.pageSize.getHeight(),M=40;let y=M;
+  const MAROON=[143,23,57],TEAL=[46,156,154];
+  const need=h=>{if(y+h>H-M){doc.addPage();y=M}};
+  const head=(t)=>{need(40);doc.setFont("helvetica","bold");doc.setFontSize(14);doc.setTextColor(...MAROON);doc.text(A(t),M,y+14);y+=26;doc.setTextColor(30)};
+  const para=(t,size=10,style="normal")=>{doc.setFont("helvetica",style);doc.setFontSize(size);const lines=doc.splitTextToSize(A(t),W-2*M);lines.forEach(l=>{need(size*1.35);doc.text(l,M,y+size);y+=size*1.35});y+=4};
+  const table=(headRow,body,opts={})=>{doc.autoTable(Object.assign({head:[headRow.map(A)],body:body.map(r=>r.map(A)),startY:y,margin:{left:M,right:M},styles:{fontSize:8,cellPadding:3,overflow:"linebreak"},headStyles:{fillColor:TEAL,textColor:255},theme:"grid"},opts));y=doc.lastAutoTable.finalY+16};
+  doc.setFont("helvetica","bold");doc.setFontSize(20);doc.setTextColor(...MAROON);doc.text("The Assemblage Lab - ADX 5103 Class 4",M,y+18);y+=30;
+  doc.setFontSize(10);doc.setFont("helvetica","normal");doc.setTextColor(90);doc.text(A(`Telfer Executive MBA - AI for Executives - saved ${new Date().toLocaleDateString()}`),M,y);y+=20;doc.setTextColor(30);
+  para("Rideau Valley Services (fictional) asked 400 employees about its AI assistant, Compass. The same comments were analysed several ways on the same Claude: first with a pre-assembled assemblage (Claude\'s defaults), then with assemblages built lever by lever. The themes were aligned with a crosswalk and compared.");
+  if(S.gut)para(`Your gut check before Run 0: the top three issues would change ${S.gut.toLowerCase()}.`,10,"italic");
+  const cm0=covMatrix();const D=cm0.D.filter(d=>d.p),rows=cm0.rows,Mx=cm0.M;const has=!!XW();
+  head("1. Share of comments by common theme (%)");
+  if(has)table(["Common theme"].concat(D.map(d=>d.r.nav)),rows.map(c=>[c].concat(D.map(d=>!d.p?"":Mx[c][d.r.id]?String(Math.round(Mx[c][d.r.id].v)):"-"))).concat([["Total"].concat(D.map(d=>String(tot(d))))]),{columnStyles:{0:{cellWidth:170}}});else para("No crosswalk recorded yet.");
+  head("2. Where each watch-list comment landed (common theme [run's own theme])");
+  table(["Comment"].concat(D.map(d=>d.r.nav)),WATCH.map(([id,desc])=>[`${id}: ${desc}`].concat(D.map(d=>{if(!d.p)return "";const own=d.p.watch[id];if(!own)return "-";return has?`${mapOf(d.r.id,own)} [${own}]`:own}))),{styles:{fontSize:7,cellPadding:2.5,overflow:"linebreak"},columnStyles:{0:{cellWidth:150}}});
+  head("3. What changed, and the top three each run reported");
+  table(["Run","What changed","Top 3","Accuracy"],D.map(d=>[d.r.nav,d.r.change,d.p?d.p.top.join("; "):"-",d.p&&d.p.acc?d.p.acc:""]),{columnStyles:{0:{cellWidth:45},1:{cellWidth:260}}});
+  head("4. Your crosswalk (Claude's proposal, with your changes)");
+  const xb=[];D.forEach(d=>{if(!d.p)return;d.p.themes.forEach(t=>{const cm=claudeMap(d.r.id,t.name),m=mapOf(d.r.id,t.name);xb.push([d.r.nav,t.name,String(Math.round(t.pct)),m,m!==cm?`changed (Claude: ${cm})`:""])})});
+  table(["Run","Run's own theme","%","Common theme","Your change"],xb,{columnStyles:{0:{cellWidth:45},2:{cellWidth:30}}});
+  head("5. Your notes and reflections");
+  RUNS.forEach(r=>{if(S.note[r.id])para(`${r.nav}: ${S.note[r.id]}`)});
+  para("Which single choice changed the picture the most?",10,"bold");para(S.ref1||"-");
+  para("Where did the capability to find the real issues reside?",10,"bold");para(S.ref2||"-");
+  para("What would you tell the CHRO before she presents any single run?",10,"bold");para(S.ref3||"-");
+  head("6. Next time AI arrives pre-assembled: pull the levers");table(["Lever","You saw it in","What to ask for"],LEVERS,{columnStyles:{0:{cellWidth:80},1:{cellWidth:90}}});para("The CHRO's question, asked by someone who knows the levers:",10,"bold");para(AWARE,9);
+  head("7. What we planted");KEYITEMS.forEach(([a,b])=>para(`${a}: ${b}`));
+  para("The foundation model was the same in every run. The findings were not. Pre-assembled or built by you, it is the assemblage that produces the answer.",10,"italic");
+  doc.addPage();y=M;head("Appendix: Claude's replies");
+  RUNS.forEach(r=>{if(!(S.paste[r.id]||"").trim())return;para(`${r.nav} - ${r.change}`,11,"bold");para(S.paste[r.id],8)});
+  if(S.xwPaste.trim()){para("Align - the crosswalk reply",11,"bold");para(S.xwPaste,8)}
+  const n=doc.internal.getNumberOfPages();for(let i=1;i<=n;i++){doc.setPage(i);doc.setFontSize(8);doc.setTextColor(140);doc.text(`ADX 5103 - The Assemblage Lab - page ${i} of ${n}`,W-M,H-18,{align:"right"})}
+  const blob=doc.output("blob");const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ADX5103_Class4_Assemblage_Lab.pdf";document.body.appendChild(a);a.click();a.remove()}
+
+/* ---------- utils ---------- */
+function addCopy(p){if(p.querySelector(".copy"))return;if(!p.dataset.text)p.dataset.text=p.textContent;const b=document.createElement("button");b.className="copy";b.textContent="Copy";b.onclick=()=>{copyText(p.dataset.text);b.textContent="Copied";b.classList.add("ok");setTimeout(()=>{b.textContent="Copy";b.classList.remove("ok")},1500)};p.appendChild(b)}
+function copyText(t){const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}a.remove()};try{navigator.clipboard.writeText(t).catch(fb)}catch(e){fb()}}
+function optGroup(id,key){$(id).querySelectorAll(".opt").forEach(b=>{b.onclick=()=>{S[key]=b.dataset.v;paintOpt(id,key);save()}});paintOpt(id,key)}
+function paintOpt(id,key){$(id).querySelectorAll(".opt").forEach(b=>b.classList.toggle("sel",S[key]===b.dataset.v))}
+function dlBlob(text,name,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove()}
+function dlCSV(){dlBlob("﻿"+CSV_DATA,"rvs_ai_survey.csv","text/csv;charset=utf-8")}
+function dlLabels(){dlBlob("﻿"+LAB_CSV,"rvs_hr_labels.csv","text/csv;charset=utf-8")}
+function download(){let t=`ADX 5103 · Class 4 · The Assemblage Lab\n${new Date().toLocaleDateString()}\n\nGut check: ${S.gut||"-"}\n\n`+tableText();
+  RUNS.forEach(r=>{if(S.note[r.id])t+=`\n${r.nav} note: ${S.note[r.id]}`});
+  t+=`\n\nReflection\n1. ${S.ref1||"-"}\n2. ${S.ref2||"-"}\n3. ${S.ref3||"-"}\n`;
+  dlBlob(t,"ADX5103_Class4_Assemblage_Lab.txt","text/plain")}
+function hydrate(){wireRuns();const so=$("showOwn");so.checked=!!S.showOwn;so.onchange=()=>{S.showOwn=so.checked;save();buildCompare()};optGroup("gut","gut");
+  ["ref1","ref2","ref3"].forEach(id=>{$(id).value=S[id]||"";$(id).oninput=e=>{S[id]=e.target.value;save()}});
+  const xp=$("xwPaste");xp.value=S.xwPaste||"";xp.oninput=()=>{S.xwPaste=xp.value;save();buildAlign();render()};
+  $("key").classList.toggle("on",!!S.keyOn);render()}
+function startOver(){if(!confirm("Clear all your recorded runs and start again at Run 0?"))return;try{localStorage.removeItem(KEY)}catch(e){}S=fresh();hydrate();window.scrollTo(0,0)}
+function resume(yes){const old=stored();$("resume").classList.remove("on");ready=true;
+  if(yes&&old){S=Object.assign(fresh(),old)}else{try{localStorage.removeItem(KEY)}catch(e){}S=fresh()}
+  hydrate()}
+
+buildSide();
+$("wl")&&($("wl").innerHTML=WATCH.map(w=>`<b>${w[0]}</b><span>${esc(w[1])}</span>`).join(""));
+document.querySelectorAll(".prompt").forEach(p=>{if(p.id!=="cmpPrompt"&&p.id!=="xwPrompt"&&p.id!=="awarePrompt")addCopy(p)});
+(function init(){const old=stored();hydrate();
+  const n=old?RUNS.filter(r=>parse((old.paste||{})[r.id])).length:0;
+  if(old&&(n||(old.xwPaste||"").trim()||old.gut)){
+    $("resumeTxt").innerHTML=`You have work saved on this device from <b>${old.saved?new Date(old.saved).toLocaleString():"an earlier visit"}</b>: ${n} of ${RUNS.length} runs recorded${(old.xwPaste||"").trim()?", and a crosswalk":""}.`;
+    $("resume").classList.add("on")}else ready=true})();
+</script>
+</body>
+</html>
