@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/MayurJoshi_Pic.jpg">
 <meta property="og:url" content="https://mayurpjoshi.com/">
 <meta property="og:type" content="website">
-
+ 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mayur Joshi, PhD – Academic Portfolio">
@@ -32,7 +32,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+ 
         :root {
             --primary: #716140;
             --primary-dark: #5a4d33;
@@ -44,7 +44,7 @@
             --border: #e5e7eb;
             --shadow: rgba(0, 0, 0, 0.1);
         }
-
+ 
         [data-theme="dark"] {
             --text: #f9fafb;
             --text-light: #d1d5db;
@@ -53,7 +53,7 @@
             --border: #374151;
             --shadow: rgba(0, 0, 0, 0.3);
         }
-
+ 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
@@ -64,7 +64,7 @@
             display: flex;
             flex-direction: column;
         }
-
+ 
         /* Navigation */
         nav {
             position: sticky;
@@ -76,7 +76,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 8px var(--shadow);
         }
-
+ 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -85,14 +85,14 @@
             justify-content: space-between;
             align-items: center;
         }
-
+ 
         .nav-links {
             display: flex;
             gap: 0.5rem;
             list-style: none;
             flex: 1;
         }
-
+ 
         .nav-links button {
             padding: 0.75rem 1.5rem;
             background: none;
@@ -105,16 +105,16 @@
             border-radius: 8px;
             position: relative;
         }
-
+ 
         .nav-links button:hover {
             background: var(--bg-secondary);
             color: var(--primary);
         }
-
+ 
         .nav-links button.active {
             color: var(--primary);
         }
-
+ 
         .nav-links button.active::after {
             content: '';
             position: absolute;
@@ -125,7 +125,7 @@
             background: var(--primary);
             border-radius: 2px;
         }
-
+ 
         .theme-toggle {
             background: none;
             border: 2px solid var(--border);
@@ -139,7 +139,7 @@
             font-size: 1.2rem;
             transition: all 0.3s ease;
         }
-
+ 
         .theme-toggle:hover {
             border-color: var(--primary);
             transform: rotate(180deg);
@@ -148,7 +148,7 @@
 .plain-list {
     margin-top: 2rem;
 }
-
+ 
 .plain-list h3 {
     color: var(--primary);
     font-size: 1.5rem;
@@ -157,13 +157,13 @@
     border-bottom: 2px solid var(--border);
     padding-bottom: 0.25rem;
 }
-
+ 
 .plain-list p {
     margin-bottom: 1.75rem; /* half-space between items */
     line-height: 1.7;
     color: var(--text);
 }
-
+ 
 .plain-list em {
     color: var(--text-light);
 }
@@ -176,13 +176,13 @@
     flex-wrap: wrap;
     text-align: left;
 }
-
+ 
 .hero-image {
     flex: 1;
     display: flex;
     justify-content: center;
 }
-
+ 
 .profile-rect {
     width: 500px; /* doubled from 260px */
     height: auto;
@@ -191,12 +191,12 @@
     box-shadow: 0 10px 28px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+ 
 .profile-rect:hover {
     transform: scale(1.02);
     box-shadow: 0 12px 30px var(--shadow);
 }
-
+ 
 .hero-content {
     flex: 2;
     display: flex;
@@ -204,7 +204,7 @@
     justify-content: center;
     text-align: center;
 }
-
+ 
         /* Main Content */
         main {
             flex: 1;
@@ -213,16 +213,16 @@
             margin: 0 auto;
             padding: 3rem 2rem;
         }
-
+ 
         .page {
             display: none;
             animation: fadeIn 0.5s ease-in;
         }
-
+ 
         .page.active {
             display: block;
         }
-
+ 
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -233,7 +233,7 @@
                 transform: translateY(0);
             }
         }
-
+ 
         /* Buttons and CTAs */
         .btn {
             padding: 0.875rem 2rem;
@@ -246,29 +246,29 @@
             cursor: pointer;
             font-size: 1rem;
         }
-
+ 
         .btn-primary {
             background: var(--primary);
             color: white;
         }
-
+ 
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px var(--shadow);
         }
-
+ 
         .btn-secondary {
             border: 2px solid var(--primary);
             color: var(--primary);
             background: transparent;
         }
-
+ 
         .btn-secondary:hover {
             background: var(--primary);
             color: white;
         }
-
+ 
         /* Home Page */
         .hero-section {
             text-align: center;
@@ -279,7 +279,7 @@
             position: relative;
             overflow: hidden;
         }
-
+ 
         .hero-section::before {
             content: '';
             position: absolute;
@@ -290,38 +290,38 @@
             background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
                         radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
         }
-
+ 
         .hero-content {
             position: relative;
             z-index: 1;
         }
-
+ 
         .hero-section h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             color: #716140;
         }
-
+ 
         .hero-section .subtitle {
             font-size: 1.5rem;
             color: var(--text-light);
             margin-bottom: 1rem;
         }
-
+ 
         .hero-section .affiliation {
             font-size: 1.1rem;
             color: var(--text);
             margin-bottom: 2rem;
         }
-
+ 
        .contact-buttons {
   display: flex;
   gap: 0.6rem; /* slightly tighter spacing */
   justify-content: center;
   flex-wrap: wrap;
 }
-
+ 
 .contact-btn {
   padding: 0.6rem 1.1rem; /* reduced padding */
   min-width: 130px;       /* narrower buttons */
@@ -338,25 +338,25 @@
   justify-content: center;
   gap: 0.4rem;
 }
-
+ 
         .contact-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px var(--shadow);
         }
-
+ 
         .cv-btn {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
-
+ 
         .cv-btn:hover {
             background: var(--primary-dark);
             color: white;
         }
-
+ 
         /* Section Titles */
         .section-title {
             font-size: 2rem;
@@ -367,14 +367,14 @@
             padding-bottom: 0.5rem;
             display: inline-block;
         }
-       
+ 
         /* Updates Section */
         .updates-grid {
             display: grid;
             gap: 1.25rem;
             margin-top: 2rem;
         }
-
+ 
         .update-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -383,24 +383,24 @@
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary);
         }
-
+ 
         .update-card:hover {
             transform: translateX(8px);
             box-shadow: 0 8px 24px var(--shadow);
         }
-
+ 
         .update-card .date {
             color: var(--primary);
             font-weight: 600;
             font-size: 0.875rem;
             margin-bottom: 0.5rem;
         }
-
+ 
         .update-card p {
             color: var(--text);
             line-height: 1.6;
         }
-
+ 
         /* Work & Education Timeline */
         .timeline {
     position: relative;
@@ -411,7 +411,7 @@
 .timeline::before { content: none; }
 .timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 0; }
 .timeline-item::before { content: none; }
-
+ 
         /* Publications */
         .pub-card {
             background: var(--bg-secondary);
@@ -421,48 +421,48 @@
             margin-bottom: 2rem;
             transition: all 0.3s ease;
         }
-
+ 
         .pub-card:hover {
             box-shadow: 0 8px 24px var(--shadow);
         }
-
+ 
         .pub-card .journal {
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.5rem;
             font-size: 1rem;
         }
-
+ 
         .pub-card h3 {
             font-size: 1.15rem;
             margin-bottom: 0.75rem;
             color: var(--text);
             line-height: 1.4;
         }
-
+ 
         .pub-card .authors {
             color: var(--text-light);
             margin-bottom: 0.5rem;
             font-style: italic;
         }
-
+ 
        .pub-card a {
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
-
+ 
         .pub-card a::after {
     content: " ↗";
     font-size: 0.9rem;
     color: var(--primary);
 }
-
+ 
         .pub-card a:hover {
             text-decoration: underline;
         }
-
+ 
         /* Awards Section */
        /* Two-column layout */
 #research .awards-funding-grid {
@@ -472,7 +472,7 @@
   margin-top: 3rem;
   align-items: start;
 }
-
+ 
 /* Column */
 #research .awards-column h3 {
   color: var(--primary);
@@ -482,14 +482,14 @@
   border-bottom: 2px solid var(--border);
   padding-bottom: 0.4rem;
 }
-
+ 
 /* Card stack */
 #research .award-stack {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
 }
-
+ 
 /* Card */
 #research .award-card {
   background: var(--bg-secondary);
@@ -499,41 +499,41 @@
   border-left: 4px solid var(--secondary);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
+ 
 #research .award-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
-
+ 
 #research .award-card .year {
   color: var(--secondary);
   font-weight: 600;
   font-size: 0.8rem;
   margin-bottom: 0.15rem;
 }
-
+ 
 #research .award-card h4 {
   font-size: 0.96rem;
   margin-bottom: 0.2rem;
 }
-
+ 
 #research .award-card p {
   color: var(--text-light);
   font-size: 0.86rem;
 }
-
+ 
 /* Mobile */
 @media (max-width: 900px) {
   #research .awards-funding-grid {
     grid-template-columns: 1fr;
   }
 }
-
+ 
         /* Teaching Section */
         .teaching-section {
             margin-bottom: 3rem;
         }
-
+ 
         .teaching-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -541,47 +541,47 @@
             padding: 2rem;
             margin-bottom: 1.5rem;
         }
-
+ 
         .teaching-card h3 {
             color: var(--primary);
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
-
+ 
         .course-item {
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border);
         }
-
+ 
         .course-item:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
+ 
         .course-item h4 {
             color: var(--text);
             margin-bottom: 0.5rem;
         }
-
+ 
         .course-item .details {
             color: var(--text-light);
             font-size: 0.95rem;
         }
-
+ 
         .course-item .award {
             color: var(--secondary);
             font-weight: 600;
             margin-top: 0.5rem;
             display: inline-block;
         }
-
+ 
         /* Service Section */
         .service-category {
             margin-bottom: 3rem;
         }
-
+ 
         .service-category h3 {
             color: var(--primary);
             font-size: 1.3rem;
@@ -589,7 +589,7 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--border);
         }
-
+ 
         .service-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -597,24 +597,24 @@
             padding: 1.25rem;
             margin-bottom: 1rem;
         }
-
+ 
         .service-item h4 {
             color: var(--text);
             margin-bottom: 0.5rem;
             font-size: 1.05rem;
         }
-
+ 
         .service-item p {
             color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
         }
-
+ 
         .service-item a {
             color: var(--primary);
             text-decoration: none;
         }
-
+ 
         .service-item a:hover {
             text-decoration: underline;
         }
@@ -652,7 +652,7 @@
             color: var(--text-light);
             margin-top: auto;
         }
-
+ 
         /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
@@ -662,7 +662,7 @@
             color: var(--text);
             cursor: pointer;
         }
-
+ 
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -678,41 +678,41 @@
                 box-shadow: 0 4px 6px var(--shadow);
                 gap: 0;
             }
-
+ 
             .nav-links.active {
                 display: flex;
             }
-
+ 
             .nav-links button {
                 width: 100%;
                 text-align: left;
                 padding: 1rem;
             }
-
+ 
             .mobile-menu-btn {
                 display: block;
             }
-
+ 
             .hero-section h1 {
                 font-size: 2.5rem;
             }
-
+ 
             .hero-section .subtitle {
                 font-size: 1.25rem;
             }
-
+ 
             .section-title {
                 font-size: 1.75rem;
             }
-
+ 
             .timeline {
                 padding-left: 1.5rem;
             }
-
+ 
             .timeline-item {
                 padding-left: 1.5rem;
             }
-
+ 
           .contact-buttons {
     flex-wrap: wrap;
   }
@@ -727,7 +727,7 @@
     flex-direction: column;
     text-align: center;
 }
-
+ 
 .hero-content {
     text-align: center;
 }
@@ -753,7 +753,7 @@
             </button>
         </div>
     </nav>
-
+ 
   <!-- Main Content -->
 <main>
   <!-- Home Page -->
@@ -767,13 +767,13 @@
             class="profile-rect"
           >
         </div>
-
+ 
         <div class="hero-content">
           <h1>Mayur Joshi, PhD</h1>
           <p class="subtitle">Assistant Professor of Technology and Organizing</p>
           <p class="subtitle">Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations</p>
           <p class="affiliation">Telfer School of Management, University of Ottawa</p>
-
+ 
           <div class="contact-buttons">
             <a href="mailto:mayur.joshi@telfer.uottawa.ca" class="contact-btn">📧 Email</a>
             <a href="https://scholar.google.com/citations?user=5lvshU4AAAAJ&hl=en" target="_blank" class="contact-btn">🎓 Google Scholar</a>
@@ -783,12 +783,12 @@
     </svg>
     LinkedIn
 </a>
-              <a href="https://telfer.uottawa.ca/en/directory/mayur-joshi/" 
-   target="_blank" 
+              <a href="https://telfer.uottawa.ca/en/directory/mayur-joshi/"
+   target="_blank"
    class="contact-btn">
    🏛️ University Profile
 </a>
-
+ 
             <a href="https://mayurpjoshi.com/CV_MayurJoshi_Aug2026.pdf"
                download="CV_MayurJoshi_Aug2026.pdf"
                class="contact-btn cv-btn">📄 Download CV</a>
@@ -796,49 +796,49 @@
         </div> <!-- /.hero-content -->
       </div>   <!-- /.hero-flex -->
     </div>     <!-- /.hero-section -->
-
+ 
     <!-- Bio Blurb -->
 <section class="bio-section"
   style="margin-top:2rem; width:100%; background:var(--bg-secondary);
          border-top:1px solid var(--border); border-bottom:1px solid var(--border);
          padding:2.5rem 8%; box-shadow:0 6px 18px var(--shadow);">
-
+ 
   <p style="color:var(--text); line-height:1.7; font-size:1rem; margin-bottom:1.5rem;">
-    I am an assistant professor of technology and organizing at the 
-    Telfer School of Management, University of Ottawa, Canada. 
-    I earned my PhD in Information Systems and Strategy/Organization Theory from Ivey Business School at Western University. 
-    I previously taught as a lecturer (assistant professor) at 
-    Alliance Manchester Business School, University of Manchester. 
-    Prior to academia, I spent over a decade in the banking industry contributing to 
+    I am an assistant professor of technology and organizing at the
+    Telfer School of Management, University of Ottawa, Canada.
+    I earned my PhD in Information Systems and Strategy/Organization Theory from Ivey Business School at Western University.
+    I previously taught as a lecturer (assistant professor) at
+    Alliance Manchester Business School, University of Manchester.
+    Prior to academia, I spent over a decade in the banking industry contributing to
     technology implementation, process improvement, and branch banking operations.
   </p>
-
+ 
   <p style="color:var(--text); line-height:1.7; font-size:1rem; margin-bottom:1.5rem;">
     My research examines technology and organizing at the intersection of strategy/organization theory (OT) and information systems (IS). I study how AI, data, and other digital technologies shape and are shaped by the organizational and institutional arrangements through which knowledge is produced, decisions are made, expertise is exercised, and technological change is governed. I use emerging technologies as theoretical leverage to revisit established assumptions about how organizations and institutions function.
   </p>
-
+ 
   <p style="color:var(--text); line-height:1.7; font-size:1rem;">
-    My work has appeared or is forthcoming in <em>Organization Science</em>,  
-      <em>MIS Quarterly</em>, 
-    <em>Journal of Management Studies</em>, 
-    <em>MIT Sloan Management Review</em>, 
-    <em>Journal of the Association for Information Systems</em>, <em>Research in the Sociology of Organizations</em>, 
-    and the <em>Cambridge Handbook of Qualitative Digital Research</em>. 
-    I have also co-edited the <em>Research Handbook on AI and Decision-Making in Organizations</em>. 
+    My work has appeared or is forthcoming in <em>Organization Science</em>,
+      <em>MIS Quarterly</em>,
+    <em>Journal of Management Studies</em>,
+    <em>MIT Sloan Management Review</em>,
+    <em>Journal of the Association for Information Systems</em>, <em>Research in the Sociology of Organizations</em>,
+    and the <em>Cambridge Handbook of Qualitative Digital Research</em>.
+    I have also co-edited the <em>Research Handbook on AI and Decision-Making in Organizations</em>.
     I am a recipient of the AIS Outreach Practice Publication Award, MIT Sloan Management Review’s Top 10 Articles of the Year recognition, and Best AE Awards at leading conferences.
   </p>
-
+ 
 </section>
     <div style="margin-top: 3rem;">
       <h2 class="section-title">Latest Updates</h2>
       <div class="updates-grid">
         <div class="update-card">
           <div class="date">October 2026</div>
-          <p>📄 Latest paper on AI, epistemic conflict, and knowledge tranformation got accepted for publication at <strong>Organization Science</strong>!</p>
+          <p>📄 Latest paper on AI, epistemic conflict, and knowledge transformation is now published online in <strong>Organization Science</strong>!</p>
         </div>  <div class="update-card">
           <div class="date">August 2026</div>
           <p>⭐ Won the <strong>Outstanding Associate Editor award</strong> from the CTO Division, AoM 2026!</p>
-        </div> 
+        </div>
           <div class="update-card">
           <div class="date">June 2026</div>
           <p>🏅 Won the <strong>Research Excellence Award</strong> for the year 2025-26 in the Emerging Researcher category from Telfer School of Management!</p>
@@ -907,63 +907,63 @@
     </div>
   </div>
   <!-- end of Home Page -->
-
+ 
         <!-- Work & Education Page -->
     <div id="work" class="page">
     <h2 class="section-title">Work & Education</h2>
-
+ 
     <div class="plain-list">
         <h3>Education</h3>
         <p><strong>PhD in Business Administration (June 2021)</strong><br>
         <em>Ivey Business School, Western University, Canada</em><p>
-
+ 
         <p><strong>Certified Associate of Indian Institute of Banking & Finance (CAIIB) (Dec 2009)</strong><br>
         <em>Indian Institute of Banking & Finance, Mumbai, India</em><p>
-
+ 
         <p><strong>Master of Business Administration (MBA), Marketing (Mar 2004)</strong><br>
         <em>B.K. School of Business Management, Gujarat University, India</em><p>
-
+ 
         <p><strong>Bachelor of Engineering (BE), Chemical (Mar 2001)</strong><br>
         <em>Dharmsinh Desai Institute of Technology, Gujarat University, India</em><p>
-
+ 
         <h3>Academic Positions</h3>
         <p><strong>Assistant Professor of Technology and Organizing (July 2023 – Present)</strong> &<br>
         <strong>Father Edgar Thivierge Fellow in AI and Transformation of Work, Occupations, and Organizations (July 2025 – Present)</strong><br>
         <em>Telfer School of Management, University of Ottawa, Canada</em></p>
-
+ 
         <p><strong>Assistant Professor (Lecturer) in FinTech and Information Systems (Feb 2021 – July 2023)</strong><br>
         <em>Alliance Manchester Business School, The University of Manchester, UK</em></p>
-
+ 
         <p><strong>Research Fellow – Scotiabank Digital Banking Lab (June 2018 – May 2021)</strong><br>
         <em>Ivey Business School, Western University, Canada</em></p>
-
+ 
         <h3>Editorial Affiliations</h3>
-
+ 
         <p><strong>Senior Editor (2025 – Present)</strong><br>
         <em>Information and Organization</em></p>
-        
+ 
         <p><strong>Editorial Board Member (2024 – Present)</strong><br>
         <em>Information Systems Journal</em></p>
-
+ 
         <p><strong>Editorial Board Member (2022 – Present)</strong><br>
         <em>Journal of Strategic Information Systems</em></p>
-
+ 
         <h3>Industry Positions</h3>
         <p><strong>Sub-unit Head (Assistant Vice President) – Retail Branch Control Unit (Sep 2006 – July 2016)</strong><br>
         <em>HDFC Bank Ltd., India</em></p>
-
+ 
         <p><strong>Teller Authorizer (Assistant Manager) – Retail Branch Banking (May 2005 – Aug 2006)</strong><br>
         <em>ICICI Bank Ltd., India</em></p>
-
+ 
         <p><strong>Executive (Management Trainee) – Business Planning and Analysis (Apr 2004 – Apr 2005)</strong><br>
         <em>Claris Lifesciences Ltd., India</em></p>
     </div>
 </div>
-
+ 
    <!-- Research & Publications Page -->
 <div id="research" class="page">
   <h2 class="section-title">Research & Publications</h2>
-
+ 
   <style>
     #research .research-intro {
       background: var(--bg-secondary);
@@ -977,19 +977,19 @@
       color: var(--text);
       max-width: 1100px;
     }
-
+ 
     #research .layout {
       display: block;
       width: 100%;
     }
-
+ 
     /* Full-width research-program figure */
     #research .venn-panel {
       width: 100%;
       position: static;
       margin-bottom: 2.25rem;
     }
-
+ 
 #research .venn-wrap {
   width: 100%;
   background: #ffffff;
@@ -1003,41 +1003,41 @@
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
 }
-
+ 
 #research .venn-wrap > svg {
   display: block;
   width: 100%;
   height: auto;
   max-width: none;
 }
-
+ 
 #research .figure-mobile-hint {
   display: none;
   color: var(--text-light);
   font-size: 0.8rem;
   margin: 0 0 0.55rem 0.15rem;
 }
-
+ 
     #research .paper-badge {
       cursor: pointer;
       transition: all 0.2s;
     }
-
+ 
     #research .paper-badge circle {
       transition: all 0.2s;
     }
-
+ 
     #research .paper-badge:hover circle {
       r: 14;
     }
-
+ 
     #research .legend {
       margin-top: 1.15rem;
       display: flex;
       flex-direction: column;
       gap: 0.45rem;
     }
-
+ 
     #research .legend-item {
       display: flex;
       align-items: flex-start;
@@ -1049,11 +1049,11 @@
       border-radius: 6px;
       transition: background 0.15s;
     }
-
+ 
     #research .legend-item:hover {
       background: #f0ece4;
     }
-
+ 
     #research .legend-num {
       flex-shrink: 0;
       width: 20px;
@@ -1067,36 +1067,36 @@
       align-items: center;
       justify-content: center;
     }
-
+ 
     #research .legend-text {
       color: var(--text);
     }
-
+ 
     #research .legend-journal {
       color: var(--text-light);
       font-style: italic;
     }
-
+ 
     #research .theme-dots {
       display: flex;
       gap: 3px;
       margin-top: 2px;
     }
-
+ 
     #research .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
     }
-
+ 
     #research .theme-legend {
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
     }
-
+ 
     #research .theme-legend-item {
       display: flex;
       align-items: center;
@@ -1104,19 +1104,19 @@
       font-size: 0.8rem;
       color: var(--text-light);
     }
-
+ 
     #research .theme-swatch {
       width: 14px;
       height: 14px;
       border-radius: 3px;
       flex-shrink: 0;
     }
-
+ 
     #research .papers-panel {
       width: 100%;
       min-width: 0;
     }
-
+ 
     #research .paper-ribbon {
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -1125,12 +1125,12 @@
       transition: box-shadow 0.2s, border-color 0.2s;
       background: var(--bg);
     }
-
+ 
     #research .paper-ribbon.highlighted {
       border-color: var(--primary);
       box-shadow: 0 0 0 2px rgba(113,97,64,0.2);
     }
-
+ 
     #research .ribbon-header {
       display: flex;
       align-items: center;
@@ -1141,11 +1141,11 @@
       transition: background 0.2s;
       user-select: none;
     }
-
+ 
     #research .ribbon-header:hover {
       background: #eee8df;
     }
-
+ 
     #research .paper-num-badge {
       flex-shrink: 0;
       width: 26px;
@@ -1159,7 +1159,7 @@
       align-items: center;
       justify-content: center;
     }
-
+ 
     #research .ribbon-journal {
       flex-shrink: 0;
       font-size: 0.75rem;
@@ -1170,7 +1170,7 @@
       border-radius: 20px;
       white-space: nowrap;
     }
-
+ 
     #research .ribbon-title {
       flex: 1;
       font-size: 0.94rem;
@@ -1178,13 +1178,13 @@
       color: var(--text);
       line-height: 1.35;
     }
-
+ 
     #research .ribbon-themes {
       display: flex;
       gap: 4px;
       flex-shrink: 0;
     }
-
+ 
     #research .ribbon-chevron {
       flex-shrink: 0;
       color: var(--primary-dark);
@@ -1196,29 +1196,29 @@
       text-align: center;
       opacity: 1;
     }
-
+ 
     #research .ribbon-chevron.open {
       transform: rotate(180deg);
     }
-
+ 
     #research .ribbon-body {
       display: none;
       padding: 1.75rem;
       border-top: 1px solid var(--border);
     }
-
+ 
     #research .ribbon-body.open {
   display: flex;
   gap: 2rem;
   flex-wrap: nowrap;
   align-items: flex-start;
 }
-
+ 
     #research .pub-img-wrap {
       flex: 0 0 260px;
       max-width: 260px;
     }
-
+ 
     #research .pub-img-wrap img {
       width: 100%;
       border-radius: 12px;
@@ -1227,43 +1227,43 @@
       -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
       mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
     }
-
+ 
     #research .pub-img-wrap img.no-fade {
       -webkit-mask-image: none;
       mask-image: none;
     }
-
+ 
     #research .pub-details {
       flex: 1;
       min-width: 320px;
     }
-
+ 
     #research .pub-journal-label {
       color: var(--primary);
       font-weight: 700;
       font-size: 0.95rem;
       margin-bottom: 0.4rem;
     }
-
+ 
     #research .pub-details h3 {
       font-size: 1.1rem;
       line-height: 1.4;
       margin-bottom: 0.6rem;
     }
-
+ 
     #research .pub-authors {
       color: var(--text-light);
       font-style: italic;
       font-size: 0.9rem;
       margin-bottom: 0.75rem;
     }
-
+ 
     #research .pub-abstract {
       font-size: 0.93rem;
       line-height: 1.7;
       color: var(--text);
     }
-
+ 
     #research .pub-link {
       display: inline-block;
       margin-top: 0.75rem;
@@ -1272,72 +1272,72 @@
       text-decoration: none;
       font-size: 0.92rem;
     }
-
+ 
     #research .pub-link::after {
       content: " ↗";
     }
-
+ 
     #research .pub-link:hover {
       text-decoration: underline;
     }
-
+ 
 @media (max-width: 980px) {
   #research .figure-mobile-hint {
     display: block;
   }
-
+ 
   #research .venn-wrap {
     padding: 0.35rem;
     border-radius: 10px;
   }
-
+ 
   #research .venn-wrap > svg {
     width: 1400px;
     min-width: 1400px;
     height: auto;
   }
 }
-
+ 
 @media (max-width: 480px) {
   #research .venn-wrap > svg {
     width: 1450px;
     min-width: 1450px;
   }
 }
-
+ 
     @media (max-width: 640px) {
       #research .ribbon-header {
         flex-wrap: wrap;
       }
-
+ 
       #research .ribbon-journal {
         order: 2;
       }
-
+ 
       #research .ribbon-title {
         flex-basis: 100%;
         order: 3;
       }
-
+ 
       #research .ribbon-themes {
         order: 4;
       }
-
+ 
       #research .ribbon-chevron {
         order: 5;
         margin-left: auto;
       }
     }
   </style>
-
+ 
  <div class="research-intro">
   <p>My research examines the phenomenon of <em>technology, work, and organizing</em>: how artificial intelligence (AI), data, and other digital technologies reshape the ways organizations produce knowledge, make decisions, organize work, and respond to institutional change. Situated at the intersection of information systems (IS) and organization theory (OT), I study technology relationally—as part of systems of work, expertise, organizational intelligence, and institutional arrangements—rather than as a standalone artifact. Drawing on qualitative field research, conceptual theorizing, and computational methods, I examine how technologies and organizing practices become mutually constituted over time.</p>
   <br>
-  <p>This research program develops across four interrelated streams: <strong>AI &amp; Organizational Intelligence</strong>, engaging the Carnegie School tradition and related research on organizational intelligence, rationality, and choice; <strong>AI, Professional Work &amp; Expertise</strong>, engaging research on work, occupations, professions, and expertise; <strong>Digital Technologies &amp; Institutions</strong>, engaging institutional theory; and <strong>Computational Tools &amp; Theory Construction</strong>. The first two streams form the mature core of my work on how AI changes organizational knowledge, decision-making, expertise, and professional work. The third extends this agenda to institutional and regulatory settings in which digital technologies reshape governance, fields, and public issues. The fourth develops computational approaches for constructing and evaluating theory. Across these streams, my work engages both IS and OT audiences and has appeared in <em>MIS Quarterly</em>, <em>Journal of Management Studies</em>, <em>Journal of the Association for Information Systems</em>, <em>MIT Sloan Management Review</em>, and <em>Research in the Sociology of Organizations</em>.</p>
+  <p>This research program develops across four interrelated streams: <strong>AI &amp; Organizational Intelligence</strong>, engaging the Carnegie School tradition and related research on organizational intelligence, rationality, and choice; <strong>AI, Professional Work &amp; Expertise</strong>, engaging research on work, occupations, professions, and expertise; <strong>Digital Technologies &amp; Institutions</strong>, engaging institutional theory; and <strong>Computational Tools &amp; Theory Construction</strong>. The first two streams form the mature core of my work on how AI changes organizational knowledge, decision-making, expertise, and professional work. The third extends this agenda to institutional and regulatory settings in which digital technologies reshape governance, fields, and public issues. The fourth develops computational approaches for constructing and evaluating theory. Across these streams, my work engages both IS and OT audiences and has appeared in <em>Organization Science</em>, <em>MIS Quarterly</em>, <em>Journal of Management Studies</em>, <em>Journal of the Association for Information Systems</em>, <em>MIT Sloan Management Review</em>, and <em>Research in the Sociology of Organizations</em>.</p>
 </div>
-
+ 
   <div class="layout">
-
+ 
     <!-- FULL-WIDTH RESEARCH PROGRAM FIGURE -->
     <div class="venn-panel">
   <div class="figure-mobile-hint">Swipe horizontally to explore the research program →</div>
@@ -1381,38 +1381,38 @@
   <marker id="aInst" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#3f7d6e"/></marker>
   <marker id="aComp" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#7a67a6"/></marker>
 </defs>
-
+ 
 <rect width="1800" height="900" fill="#fff"/>
-
+ 
 <!-- Header -->
 <text x="900" y="52" text-anchor="middle" class="title">Technology, Work, and Organizing</text>
-
+ 
 <!-- Timeline -->
 <g>
   <line x1="555" y1="120" x2="555" y2="805" stroke="#eeeeee"/>
   <text x="555" y="108" text-anchor="middle" class="year">2021</text>
-
+ 
   <line x1="630" y1="120" x2="630" y2="805" stroke="#eeeeee"/>
   <text x="630" y="108" text-anchor="middle" class="year">2022</text>
-
+ 
   <line x1="705" y1="120" x2="705" y2="805" stroke="#eeeeee"/>
   <text x="705" y="108" text-anchor="middle" class="year">2023</text>
-
+ 
   <line x1="780" y1="120" x2="780" y2="805" stroke="#eeeeee"/>
   <text x="780" y="108" text-anchor="middle" class="year">2024</text>
-
+ 
   <line x1="855" y1="120" x2="855" y2="805" stroke="#eeeeee"/>
   <text x="855" y="108" text-anchor="middle" class="year">2025</text>
-
+ 
   <line x1="930" y1="120" x2="930" y2="805" stroke="#eeeeee"/>
   <text x="930" y="108" text-anchor="middle" class="year">2026</text>
-
-  <line x1="985" y1="92" x2="985" y2="815" stroke="#d9c9c0" stroke-width="1.6" stroke-dasharray="5 5"/>
-  <text x="1002" y="108" class="year" fill="#a5587c">WORKS IN PROGRESS →</text>
+ 
+  <line x1="1030" y1="92" x2="1030" y2="815" stroke="#d9c9c0" stroke-width="1.6" stroke-dasharray="5 5"/>
+  <text x="1047" y="108" class="year" fill="#a5587c">WORKS IN PROGRESS →</text>
 </g>
-
+ 
 <!-- Stream labels removed; they will be placed on the forming dotted lines -->
-
+ 
 <!-- Overarching RQ at left -->
 <g>
   <rect x="32" y="410" width="360" height="160" rx="16"
@@ -1425,74 +1425,76 @@
     <tspan x="212" dy="20">decide, work, and govern?</tspan>
   </text>
 </g>
-
-
-<!-- Straight-line research-stream architecture -->
+ 
+ 
+<!-- Research-stream architecture -->
 <!-- Stream y positions:
      Stream 1 = 250
      Shared 1+2 lane = 330
      Stream 2 = 410
      Stream 3 = 570
      Stream 4 = 730 -->
-
-<!-- Forming / dotted segments before the first node on each stream -->
-<path d="M212 410 L405 250 L555 250"
+ 
+<!-- Forming / dotted wavy segments from the research question to the first node on each stream -->
+<path d="M212 410 L214.7 407.9 L217.7 406.1 L220.8 404.5 L224.1 403.1 L227.6 401.9 L231.1 400.8 L234.1 399 L237.1 397.2 L240 395.3 L242.8 393.4 L245.5 391.3 L248.2 389.1 L250.7 386.8 L253.2 384.5 L255.6 382 L258 379.4 L260.2 376.8 L262.5 374.1 L264.6 371.3 L266.7 368.5 L268.8 365.6 L270.9 362.7 L272.9 359.8 L274.9 356.9 L277 354 L279 351.1 L281.1 348.3 L283.3 345.5 L285.5 342.7 L287.7 340.1 L290 337.5 L292.4 335 L294.8 332.5 L297.4 330.2 L300 328 L302.7 325.9 L305.4 323.8 L308.3 321.9 L311.2 320 L314.2 318.3 L317.2 316.6 L320.4 315 L323.5 313.4 L326.7 311.9 L329.9 310.4 L333.2 308.9 L336.4 307.4 L339.7 306 L342.9 304.5 L346.1 303 L349.2 301.4 L352.3 299.8 L355.4 298.1 L358.4 296.3 L361.3 294.5 L364.2 292.6 L366.9 290.5 L369.6 288.4 L372.3 286.2 L374.8 283.9 L377.2 281.4 L379.6 278.9 L381.9 276.3 L384.2 273.7 L386.4 270.9 L388.5 268.1 L390.4 265.5 L392 263.5 L393.6 261.4 L395.3 259.5 L397.1 257.6 L399 255.8 L401 254 L403.1 252.4 L405.3 250.9 L407.6 249.5 L410 248.2 L412.5 247 L415 246 L417.7 245.1 L420.4 244.4 L423.2 243.8 L426 243.5 L427.6 243.3 L428.6 243.2 L429.6 243.2 L430.5 243.1 L431.5 243.1 L432.4 243 L433.4 243 L434.4 243 L435.3 243 L436.3 243 L437.2 243 L438.2 243 L439.2 243.1 L440.1 243.1 L441.1 243.2 L442 243.2 L443 243.3 L444 243.4 L444.9 243.5 L445.9 243.6 L446.8 243.7 L447.8 243.8 L448.8 244 L449.7 244.1 L450.7 244.2 L451.6 244.4 L452.6 244.6 L453.6 244.7 L454.5 244.9 L455.5 245.1 L456.4 245.3 L457.4 245.5 L458.4 245.7 L459.3 245.9 L460.3 246.1 L461.2 246.3 L462.2 246.6 L463.2 246.8 L464.1 247 L465.1 247.3 L466 247.5 L467 247.8 L468 248 L468.9 248.3 L469.9 248.5 L470.8 248.8 L471.8 249.1 L472.8 249.3 L473.7 249.6 L474.7 249.9 L475.6 250.1 L476.6 250.4 L477.6 250.6 L478.5 250.9 L479.5 251.2 L480.4 251.4 L481.4 251.7 L482.4 251.9 L483.3 252.2 L484.3 252.4 L485.2 252.7 L486.2 252.9 L487.2 253.2 L488.1 253.4 L489.1 253.6 L490 253.9 L491 254.1 L492 254.3 L492.9 254.5 L493.9 254.7 L494.8 254.9 L495.8 255.1 L496.8 255.3 L497.7 255.4 L498.7 255.6 L499.6 255.7 L500.6 255.9 L501.6 256 L502.5 256.2 L503.5 256.3 L504.4 256.4 L505.4 256.5 L506.4 256.6 L507.3 256.7 L508.3 256.7 L509.2 256.8 L510.2 256.9 L511.2 256.9 L512.1 257 L513.1 257 L514 257 L515 257 L516 257 L516.9 257 L517.9 257 L518.8 256.9 L519.8 256.9 L520.8 256.8 L521.7 256.8 L522.7 256.7 L523.6 256.6 L524.6 256.5 L525.6 256.4 L526.5 256.3 L527.5 256.2 L528.4 256.1 L529.4 255.9 L530.4 255.8 L531.3 255.6 L532.3 255.5 L533.2 255.3 L534.2 255.1 L535.2 254.9 L536.1 254.5 L537.1 254.1 L538 253.7 L539 253.3 L540 252.9 L540.9 252.6 L541.9 252.3 L542.8 252 L543.8 251.7 L544.8 251.4 L545.7 251.2 L546.7 250.9 L547.6 250.7 L548.6 250.6 L549.6 250.4 L550.5 250.3 L551.5 250.2 L552.4 250.1 L553.4 250 L554.4 250 L555 250"
       fill="none" stroke="#6f5f3e" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
-
-<path d="M392 473 L420 410 L555 410"
+ 
+<path d="M392 473 L392.3 472.4 L392.6 471.7 L392.9 471.1 L393.3 470.5 L393.7 469.9 L394.1 469.3 L394.5 468.7 L394.9 468.1 L395.4 467.6 L395.9 467 L396.3 466.5 L396.9 465.9 L397.4 465.4 L397.9 464.9 L398.4 464.3 L398.8 463.7 L399.2 463.1 L399.6 462.5 L400.1 461.9 L400.5 461.4 L400.9 460.8 L401.3 460.2 L401.7 459.6 L402.1 459 L402.5 458.4 L402.9 457.8 L403.3 457.2 L403.7 456.6 L404.1 456 L404.5 455.5 L404.9 454.9 L405.3 454.3 L405.7 453.7 L406.1 453.1 L406.5 452.5 L406.9 451.9 L407.3 451.3 L407.6 450.7 L408 450.1 L408.4 449.5 L408.8 448.9 L409.1 448.3 L409.5 447.7 L409.9 447 L410.2 446.4 L410.6 445.8 L411 445.2 L411.3 444.6 L411.7 444 L412 443.4 L412.4 442.8 L412.7 442.1 L413.1 441.5 L413.4 440.9 L413.7 440.3 L414.1 439.7 L414.4 439 L414.7 438.4 L415.1 437.8 L415.4 437.2 L415.7 436.5 L416 435.9 L416.3 435.3 L416.6 434.6 L416.9 434 L417.2 433.4 L417.8 432.3 L418.7 430.3 L419.7 428.6 L420.8 426.9 L421.8 425.3 L422.9 423.9 L424.1 422.5 L425.3 421.3 L426.6 420.1 L427.9 419 L429.4 417.9 L431 416.9 L432.7 416 L434.6 415.1 L436.6 414.4 L438.8 413.7 L441.2 413 L442.6 412.7 L443.4 412.6 L444.3 412.4 L445.1 412.2 L446 412 L446.8 411.9 L447.6 411.7 L448.5 411.5 L449.3 411.3 L450.2 411.1 L451 410.9 L451.9 410.8 L452.7 410.6 L453.6 410.4 L454.4 410.2 L455.3 410 L456.1 409.8 L457 409.6 L457.8 409.5 L458.7 409.3 L459.5 409.1 L460.4 408.9 L461.2 408.7 L462.1 408.5 L462.9 408.3 L463.8 408.2 L464.6 408 L465.4 407.8 L466.3 407.6 L467.1 407.5 L468 407.3 L468.8 407.1 L469.7 406.9 L470.5 406.8 L471.4 406.6 L472.2 406.4 L473.1 406.3 L473.9 406.1 L474.8 406 L475.6 405.8 L476.5 405.7 L477.3 405.5 L478.2 405.4 L479 405.3 L479.9 405.1 L480.7 405 L481.6 404.9 L482.4 404.7 L483.2 404.6 L484.1 404.5 L484.9 404.4 L485.8 404.3 L486.6 404.2 L487.5 404.1 L488.3 404 L489.2 403.9 L490 403.8 L490.9 403.7 L491.7 403.6 L492.6 403.5 L493.4 403.5 L494.3 403.4 L495.1 403.3 L496 403.3 L496.8 403.2 L497.7 403.2 L498.5 403.2 L499.3 403.1 L500.2 403.1 L501 403.1 L501.9 403 L502.7 403 L503.6 403 L504.4 403 L505.3 403 L506.1 403 L507 403 L507.8 403 L508.7 403 L509.5 403.1 L510.4 403.1 L511.2 403.1 L512.1 403.2 L512.9 403.2 L513.8 403.3 L514.6 403.3 L515.5 403.4 L516.3 403.4 L517.1 403.5 L518 403.6 L518.8 403.6 L519.7 403.7 L520.5 403.8 L521.4 403.9 L522.2 404 L523.1 404.1 L523.9 404.2 L524.8 404.3 L525.6 404.4 L526.5 404.5 L527.3 404.6 L528.2 404.8 L529 404.9 L529.9 405 L530.7 405.1 L531.6 405.3 L532.4 405.4 L533.2 405.6 L534.1 405.7 L534.9 405.9 L535.8 406 L536.6 406.2 L537.5 406.3 L538.3 406.5 L539.2 406.7 L540 406.8 L540.9 407 L541.7 407.2 L542.6 407.3 L543.4 407.5 L544.3 407.7 L545.1 407.9 L546 408.2 L546.8 408.5 L547.7 408.8 L548.5 409.1 L549.4 409.3 L550.2 409.5 L551 409.7 L551.9 409.8 L552.7 409.9 L553.6 410 L554.4 410 L555 410"
       fill="none" stroke="#43689f" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
-
-<path d="M392 507 L420 570 L1040 570"
+ 
+<path d="M392 507 L392.3 507.6 L392.6 508.3 L392.8 508.9 L393.1 509.6 L393.3 510.3 L393.6 510.9 L393.8 511.6 L394.1 512.2 L394.3 512.9 L394.5 513.6 L394.7 514.3 L395 514.9 L395.2 515.6 L395.4 516.3 L395.5 517 L395.7 517.7 L395.9 518.4 L396.1 519.1 L396.3 519.7 L396.4 520.4 L396.6 521.1 L396.7 521.8 L396.9 522.5 L397 523.3 L397.2 524 L397.3 524.7 L397.5 525.4 L397.6 526.1 L397.7 526.8 L397.9 527.5 L398 528.2 L398.1 528.9 L398.2 529.7 L398.3 530.4 L398.5 531.1 L398.6 531.8 L398.7 532.5 L398.8 533.3 L398.9 534 L399 534.7 L399.1 535.4 L399.3 536.1 L399.4 536.9 L399.5 537.6 L399.6 538.3 L399.7 539 L399.8 539.7 L400 540.4 L400.1 541.2 L400.2 541.9 L400.4 542.6 L400.5 543.3 L400.8 543.9 L401.1 544.6 L401.3 545.2 L401.6 545.9 L401.9 546.5 L402.2 547.2 L402.5 547.8 L402.8 548.4 L403.1 549.1 L403.4 549.7 L403.7 550.3 L404 551 L404.3 551.6 L404.7 552.2 L405.4 553.5 L406.9 556.1 L408.6 558.4 L410.4 560.5 L412.4 562.5 L414.5 564.2 L416.7 565.7 L418.9 567 L421.3 568 L423.7 568.8 L426.1 569.4 L428.6 569.8 L431.1 570 L433.6 569.9 L436.1 569.7 L438.6 569.3 L441.1 568.7 L445.2 567.7 L450 566.5 L454.8 565.4 L459.6 564.5 L464.4 563.8 L469.2 563.3 L474 563 L478.8 563 L483.6 563.2 L488.4 563.7 L493.2 564.4 L498 565.3 L502.8 566.3 L507.6 567.5 L512.4 568.7 L517.2 570 L522 571.3 L526.8 572.6 L531.6 573.7 L536.4 574.8 L541.2 575.6 L546 576.3 L550.8 576.8 L555.6 577 L560.4 577 L565.2 576.7 L570 576.2 L574.8 575.5 L579.6 574.6 L584.4 573.5 L589.2 572.3 L594 571 L598.8 569.7 L603.6 568.4 L608.4 567.2 L613.2 566.1 L618 565 L622.8 564.2 L627.6 563.6 L632.4 563.2 L637.2 563 L642 563.1 L646.8 563.4 L651.6 563.9 L656.4 564.7 L661.2 565.6 L666 566.7 L670.8 567.9 L675.6 569.2 L680.4 570.5 L685.2 571.8 L690 573 L694.8 574.1 L699.6 575.1 L704.4 575.9 L709.2 576.5 L714 576.9 L718.8 577 L723.6 576.9 L728.4 576.5 L733.2 575.9 L738 575.1 L742.8 574.2 L747.6 573.1 L752.4 571.8 L757.2 570.5 L762 569.2 L766.8 568 L771.6 566.8 L776.4 565.7 L781.2 564.7 L786 564 L790.8 563.4 L795.6 563.1 L800.4 563 L805.2 563.2 L810 563.6 L814.8 564.2 L819.6 565 L824.4 566 L829.2 567.2 L834 568.4 L838.8 569.7 L843.6 571 L848.4 572.3 L853.2 573.5 L858 574.5 L862.8 575.4 L867.6 576.2 L872.4 576.7 L877.2 577 L882 577 L886.8 576.8 L891.6 576.3 L896.4 575.7 L901.2 574.8 L906 573.8 L910.8 572.6 L915.6 571.4 L920.4 570.1 L925.2 568.8 L930 567.5 L934.8 566.3 L939.6 565.3 L944.4 564.4 L949.2 563.7 L954 563.3 L958.8 563 L963.6 563 L968.4 563.3 L973.2 563.8 L978 564.5 L982.8 565.4 L987.6 566.4 L992.4 567.6 L997.2 568.9 L1002 570.2 L1006.8 571.5 L1011.6 572.7 L1016.4 573.9 L1021.2 574.9 L1026 575.7 L1030.8 576.4 L1035.6 576.8 L1040.4 577 L1045.2 576.9 L1050 575.8 L1054.8 574.6 L1059.6 573.3 L1064.4 572.1 L1069.2 571.2 L1074 570.5 L1078.8 570.1 L1082 570"
       fill="none" stroke="#3f7d6e" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".72"/>
-
-<path d="M212 570 L420 730 L705 730"
+ 
+<path d="M212 570 L214.8 572.3 L217.4 574.8 L219.9 577.5 L222.2 580.4 L224.4 583.4 L226.6 586.6 L228.7 589.8 L231 592.7 L233.6 595.1 L236.3 597.5 L239.2 599.7 L242.1 601.9 L245.1 603.9 L248.2 605.7 L251.4 607.5 L254.6 609.2 L257.9 610.8 L261.3 612.4 L264.7 613.8 L268.2 615.3 L271.6 616.7 L275.1 618.1 L278.6 619.5 L282 620.9 L285.5 622.4 L288.9 623.9 L292.2 625.5 L295.4 627.1 L298.6 628.9 L301.8 630.8 L304.8 632.7 L307.7 634.8 L310.6 637 L313.3 639.4 L316 641.8 L318.6 644.3 L321.1 647 L323.6 649.7 L325.9 652.5 L328.3 655.4 L330.6 658.4 L332.8 661.3 L335.1 664.3 L337.3 667.4 L339.6 670.3 L341.8 673.3 L344.1 676.2 L346.5 679.1 L348.9 681.9 L351.4 684.6 L353.9 687.1 L356.6 689.6 L359.3 692 L362.1 694.3 L365 696.4 L368 698.5 L371 700.4 L374.2 702.2 L377.4 703.9 L380.7 705.5 L384.1 707.1 L387.5 708.6 L390.9 710 L394.4 711.4 L397.9 712.8 L401.4 714.2 L404.5 715.5 L406.9 716.4 L409.4 717.2 L411.7 718 L414.1 718.6 L416.4 719.2 L418.7 719.8 L420.9 720.2 L423.2 720.7 L425.4 721.1 L427.6 721.5 L429.8 721.9 L432 722.2 L434.3 722.5 L436.5 722.8 L438.8 723.2 L441.2 723.5 L443.3 723.7 L445.3 724 L447.3 724.3 L449.2 724.6 L451.2 725 L453.2 725.4 L455.1 725.8 L457.1 726.3 L459.1 726.8 L461.1 727.3 L463 727.8 L465 728.3 L467 728.9 L469 729.4 L470.9 730 L472.9 730.5 L474.9 731.1 L476.8 731.6 L478.8 732.2 L480.8 732.7 L482.8 733.2 L484.7 733.7 L486.7 734.1 L488.7 734.6 L490.7 735 L492.6 735.3 L494.6 735.7 L496.6 736 L498.5 736.3 L500.5 736.5 L502.5 736.7 L504.5 736.8 L506.4 736.9 L508.4 737 L510.4 737 L512.4 737 L514.3 736.9 L516.3 736.8 L518.3 736.6 L520.2 736.4 L522.2 736.2 L524.2 735.9 L526.2 735.6 L528.1 735.2 L530.1 734.8 L532.1 734.4 L534 734 L536 733.5 L538 733 L540 732.5 L541.9 732 L543.9 731.4 L545.9 730.9 L547.9 730.3 L549.8 729.8 L551.8 729.2 L553.8 728.7 L555.7 728.1 L557.7 727.6 L559.7 727.1 L561.7 726.6 L563.6 726.1 L565.6 725.7 L567.6 725.2 L569.6 724.9 L571.5 724.5 L573.5 724.2 L575.5 723.9 L577.4 723.6 L579.4 723.4 L581.4 723.2 L583.4 723.1 L585.3 723 L587.3 723 L589.3 723 L591.3 723.1 L593.2 723.2 L595.2 723.3 L597.2 723.5 L599.1 723.7 L601.1 724 L603.1 724.2 L605.1 724.6 L607 725 L609 725.4 L611 725.8 L613 726.2 L614.9 726.7 L616.9 727.2 L618.9 727.7 L620.8 728.3 L622.8 728.8 L624.8 729.4 L626.8 729.9 L628.7 730.5 L630.7 731 L632.7 731.6 L634.6 732.1 L636.6 732.6 L638.6 733.1 L640.6 733.6 L642.5 734.1 L644.5 734.5 L646.5 734.9 L648.5 735.3 L650.4 735.7 L652.4 736 L654.4 736.2 L656.3 736.5 L658.3 736.7 L660.3 736.8 L662.3 736.9 L664.2 737 L666.2 737 L668.2 737 L670.2 736.9 L672.1 736.8 L674.1 736.6 L676.1 736.4 L678 736.1 L680 735.4 L682 734.7 L684 734 L685.9 733.4 L687.9 732.8 L689.9 732.2 L691.9 731.7 L693.8 731.2 L695.8 730.9 L697.8 730.5 L699.7 730.3 L701.7 730.1 L703.7 730 L705 730"
       fill="none" stroke="#7a67a6" stroke-width="3"
       stroke-dasharray="4 6" stroke-linecap="round" opacity=".74"/>
-
+ 
 <!-- Stream names -->
 <g>
   <text x="420" y="216" class="stream" fill="#6f5f3e">
     <tspan x="420" dy="0">AI &amp; Organizational</tspan>
     <tspan x="420" dy="20">Intelligence</tspan>
   </text>
-
-  <text x="420" y="438" class="stream" fill="#43689f">
+ 
+  <text x="420" y="447" class="stream" fill="#43689f">
     <tspan x="420" dy="0">AI, Professional</tspan>
     <tspan x="420" dy="20">Work &amp; Expertise</tspan>
   </text>
-
+ 
   <text x="420" y="533" class="stream" fill="#3f7d6e">
     <tspan x="420" dy="0">Digital Technologies</tspan>
     <tspan x="420" dy="20">&amp; Institutions</tspan>
   </text>
-
+ 
   <text x="420" y="693" class="stream" fill="#7a67a6">
     <tspan x="420" dy="0">Computational Tools</tspan>
     <tspan x="420" dy="20">&amp; Theory Construction</tspan>
   </text>
 </g>
-
-<!-- Solid straight streams after the first node -->
-<line x1="555" y1="250" x2="1725" y2="250"
-      stroke="#6f5f3e" stroke-width="3.5" opacity=".96"
+ 
+<!-- Solid wavy streams after the first node.
+     Each wave passes exactly through every node on its stream (nodes sit on the
+     zero-crossings), and flattens out at the arrowhead. -->
+<path d="M555 250 C577.5 240.7 607.5 240.7 630 250 C652.5 259.3 682.5 259.3 705 250 C727.6 240.7 757.7 240.7 780.3 250 C802.9 259.3 833.1 259.3 855.7 250 C878.3 240.7 908.4 240.7 931 250 C953.6 259.3 983.7 259.3 1006.3 250 C1028.9 240.7 1059.1 240.7 1081.7 250 C1104.3 259.3 1134.4 259.3 1157 250 C1180.1 240.7 1210.9 240.7 1234 250 C1257.1 259.3 1287.9 259.3 1311 250 C1334.1 240.7 1364.9 240.7 1388 250 C1411.1 259.3 1441.9 259.3 1465 250 C1488.1 240.7 1518.9 240.7 1542 250 C1569.5 259.3 1606 259.3 1633.5 250 C1661 240.7 1697.5 250 1725 250"
+      fill="none" stroke="#6f5f3e" stroke-width="3.5" stroke-linecap="round" opacity=".96"
       marker-end="url(#aOrg)"/>
-
-<line x1="555" y1="410" x2="1725" y2="410"
-      stroke="#43689f" stroke-width="3.5" opacity=".96"
+ 
+<path d="M555 410 C577.5 400.7 607.5 400.7 630 410 C652.5 419.3 682.5 419.3 705 410 C727.5 400.7 757.5 400.7 780 410 C802.5 419.3 832.5 419.3 855 410 C881.9 400.7 917.6 400.7 944.5 410 C971.4 419.3 1007.1 419.3 1034 410 C1060.8 400.7 1096.7 400.7 1123.5 410 C1150.3 419.3 1186.2 419.3 1213 410 C1239.3 400.7 1274.4 400.7 1300.7 410 C1327 419.3 1362 419.3 1388.3 410 C1414.6 400.7 1449.7 400.7 1476 410 C1500.9 419.3 1534.1 419.3 1559 410 C1583.9 400.7 1617.1 400.7 1642 410 C1666.9 419.3 1700.1 410 1725 410"
+      fill="none" stroke="#43689f" stroke-width="3.5" stroke-linecap="round" opacity=".96"
       marker-end="url(#aProf)"/>
-
-<line x1="1040" y1="570" x2="1725" y2="570"
-      stroke="#3f7d6e" stroke-width="3.5" opacity=".96"
+ 
+<path d="M1082 570 C1110.2 560.7 1147.8 560.7 1176 570 C1209.6 579.3 1254.4 579.3 1288 570 C1321.9 560.7 1367.1 560.7 1401 570 C1419.3 579.3 1443.7 579.3 1462 570 C1480.3 560.7 1504.7 560.7 1523 570 C1541.3 579.3 1565.7 579.3 1584 570 C1602.3 560.7 1626.7 560.7 1645 570 C1669 579.3 1701 570 1725 570"
+      fill="none" stroke="#3f7d6e" stroke-width="3.5" stroke-linecap="round" opacity=".96"
       marker-end="url(#aInst)"/>
-
-<line x1="705" y1="730" x2="1725" y2="730"
-      stroke="#7a67a6" stroke-width="3.5" opacity=".96"
+ 
+<path d="M705 730 C730.5 720.7 764.5 720.7 790 730 C815.5 739.3 849.5 739.3 875 730 C900.5 720.7 934.5 720.7 960 730 C983.9 739.3 1015.6 739.3 1039.5 730 C1063.3 720.7 1095.2 720.7 1119 730 C1144.4 739.3 1178.3 739.3 1203.7 730 C1229.1 720.7 1262.9 720.7 1288.3 730 C1313.7 739.3 1347.6 739.3 1373 730 C1399.3 720.7 1434.4 720.7 1460.7 730 C1487 739.3 1522 739.3 1548.3 730 C1574.6 720.7 1609.7 720.7 1636 730 C1662.7 739.3 1698.3 730 1725 730"
+      fill="none" stroke="#7a67a6" stroke-width="3.5" stroke-linecap="round" opacity=".96"
       marker-end="url(#aComp)"/>
-
-
+ 
+ 
 <!-- Published nodes -->
 <g class="paper-badge" onclick="highlightPaper(1)" data-paper="1">
   <title>MIT Sloan Management Review — Why So Many Data Science Projects Fail to Deliver</title>
@@ -1501,7 +1503,7 @@
   <text x="555" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Why Data Science</text>
   <text x="555" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Projects Fail</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(3)" data-paper="3">
   <title>JAIS — Organizations as Digital Enactment Systems</title>
   <circle cx="705" cy="250" r="12" fill="#6f5f3e" stroke="#fff" stroke-width="2.5"/>
@@ -1509,7 +1511,7 @@
   <text x="705" y="213" text-anchor="middle" class="plabel">Orgs as Digital</text>
   <text x="705" y="231" text-anchor="middle" class="plabel">Enactment Systems</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(4)" data-paper="4">
   <title>Research Handbook on AI and Decision-Making in Organizations</title>
   <circle cx="780" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
@@ -1517,191 +1519,211 @@
   <text x="780" y="378" text-anchor="middle" class="pid" fill="url(#splitIEText)">Research Handbook</text>
   <text x="780" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">AI &amp; Decision Making</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(5)" data-paper="5">
   <title>Research in the Sociology of Organizations — Data Science as Craft</title>
   <circle cx="855" cy="410" r="12" fill="#43689f" stroke="#fff" stroke-width="2.5"/>
   <text x="855" y="440" text-anchor="middle" class="pid" fill="#43689f">Pub5 · RSO</text>
   <text x="855" y="458" text-anchor="middle" class="plabel">Data Science as Craft</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(6)" data-paper="6">
   <title>Journal of Management Studies — AI as an Organizing Capability</title>
   <circle cx="930" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
   <text x="930" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">Pub6 · JMS</text>
   <text x="930" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">AI as Org Capability</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(2)" data-paper="2">
   <title>Cambridge University Press — Algorithms as Co-Researchers</title>
   <circle cx="705" cy="730" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
   <text x="705" y="765" text-anchor="middle" class="pid" fill="#7a67a6">Pub2 · CUP</text>
   <text x="705" y="783" text-anchor="middle" class="plabel">Algorithms as Co-Researchers</text>
 </g>
-
+ 
 <g class="paper-badge" onclick="highlightPaper(7)" data-paper="7">
   <title>MIS Quarterly — Trustworthiness in Computational Theory Construction</title>
   <circle cx="960" cy="730" r="12" fill="#7a67a6" stroke="#fff" stroke-width="2.5"/>
   <text x="960" y="690" text-anchor="middle" class="pid" fill="#7a67a6">Pub7 · MISQ</text>
   <text x="960" y="708" text-anchor="middle" class="plabel">Trustworthiness in CTC</text>
 </g>
-
-<!-- Current nodes -->
-<!-- WP1: Streams 1 + 2; provisionally accepted -->
-<g>
-  <title>Organization Science — Bridging Epistemic Stances</title>
-  <circle cx="1080" cy="330" r="10" fill="#fff"/>
-  <path d="M1080 320 A10 10 0 0 0 1080 340" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1080 340 A10 10 0 0 0 1080 320" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <circle cx="1080" cy="330" r="3" fill="#666"/>
-  <text x="1080" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">WP1 · OrgSci</text>
-  <text x="1080" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Bridging Epistemic Stances</text>
+ 
+<!-- Pub8: Streams 1 + 2; labels sit above the lane to avoid Pub6's labels below -->
+<g class="paper-badge" onclick="highlightPaper(8)" data-paper="8">
+  <title>Organization Science — When Data Scientists Meet Domain Experts: AI, Epistemic Conflict, and Knowledge Transformation</title>
+  <circle cx="995" cy="330" r="12" fill="url(#splitIE)" stroke="#fff" stroke-width="2.5"/>
+  <text x="995" y="281" text-anchor="middle" class="pid" fill="url(#splitIEText)">Pub8 · OrgSci</text>
+  <text x="995" y="297" text-anchor="middle" class="plabel" fill="url(#splitIEText)">AI, Epistemic Conflict, &amp;</text>
+  <text x="995" y="313" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Knowledge Transformation</text>
 </g>
-
+ 
+<!-- Current nodes -->
 <!-- WP4: Stream 1; R&R -->
 <g>
   <title>Organization Studies — AI as an Assemblage</title>
-  <circle cx="1120" cy="250" r="10" fill="url(#halfOrg)" stroke="#6f5f3e" stroke-width="2.4"/>
-  <text x="1120" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP4 · OrgStud</text>
-  <text x="1120" y="228" text-anchor="middle" class="plabel">AI as an Assemblage</text>
+  <circle cx="1157" cy="250" r="10" fill="url(#halfOrg)" stroke="#6f5f3e" stroke-width="2.4"/>
+  <text x="1157" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP4 · OrgStud</text>
+  <text x="1157" y="228" text-anchor="middle" class="plabel">AI as an Assemblage</text>
 </g>
-
+ 
 <!-- WP2: Stream 2; MISQ R&R -->
 <g>
   <title>MIS Quarterly — Experts’ Epistemic Encounters</title>
-  <circle cx="1180" cy="410" r="10" fill="url(#halfProf)" stroke="#43689f" stroke-width="2.4"/>
-  <text x="1180" y="440" text-anchor="middle" class="pid" fill="#43689f">WP2 · MISQ</text>
-  <text x="1180" y="458" text-anchor="middle" class="plabel">Experts’ Epistemic Encounters</text>
+  <circle cx="1213" cy="410" r="10" fill="url(#halfProf)" stroke="#43689f" stroke-width="2.4"/>
+  <text x="1213" y="440" text-anchor="middle" class="pid" fill="#43689f">WP2 · MISQ</text>
+  <text x="1213" y="458" text-anchor="middle" class="plabel">Experts’ Epistemic Encounters</text>
 </g>
-
+ 
 <!-- WP3: Streams 1 + 2; MISQ R&R -->
 <g>
   <title>MIS Quarterly — Data Scientists, AI, and Garbage Cans</title>
-  <circle cx="1300" cy="330" r="10" fill="url(#halfNeutral)"/>
-  <path d="M1300 320 A10 10 0 0 0 1300 340" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1300 340 A10 10 0 0 0 1300 320" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <text x="1300" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">WP3 · MISQ</text>
-  <text x="1300" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Data Scientists, AI,</text>
-  <text x="1300" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">&amp; Garbage Cans</text>
+  <circle cx="1326" cy="330" r="10" fill="url(#halfNeutral)"/>
+  <path d="M1326 320 A10 10 0 0 0 1326 340" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1326 340 A10 10 0 0 0 1326 320" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1326" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">WP3 · MISQ</text>
+  <text x="1326" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Data Scientists, AI,</text>
+  <text x="1326" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">&amp; Garbage Cans</text>
 </g>
-
+ 
 <!-- WP10: Stream 2 -->
 <g>
   <title>AI, Stigma, and Spoiled Expertise</title>
-  <circle cx="1460" cy="410" r="10" fill="#fff" stroke="#43689f" stroke-width="2.3"/>
-  <text x="1460" y="440" text-anchor="middle" class="pid" fill="#43689f">WP10</text>
-  <text x="1460" y="458" text-anchor="middle" class="plabel">AI, Stigma, &amp; Spoiled Expertise</text>
+  <circle cx="1476" cy="410" r="10" fill="#fff" stroke="#43689f" stroke-width="2.3"/>
+  <text x="1476" y="440" text-anchor="middle" class="pid" fill="#43689f">WP10</text>
+  <text x="1476" y="458" text-anchor="middle" class="plabel">AI, Stigma, &amp; Spoiled Expertise</text>
 </g>
-
+ 
 <!-- WP8: Stream 1 -->
 <g>
   <title>AI and New Sciences of the Artificial</title>
-  <circle cx="1530" cy="250" r="10" fill="#fff" stroke="#6f5f3e" stroke-width="2.3"/>
-  <text x="1530" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP8</text>
-  <text x="1530" y="228" text-anchor="middle" class="plabel">AI &amp; New Sciences of the Artificial</text>
+  <circle cx="1542" cy="250" r="10" fill="#fff" stroke="#6f5f3e" stroke-width="2.3"/>
+  <text x="1542" y="210" text-anchor="middle" class="pid" fill="#6f5f3e">WP8</text>
+  <text x="1542" y="228" text-anchor="middle" class="plabel">AI &amp; New Sciences of the Artificial</text>
 </g>
-
+ 
 <!-- WP16: Streams 1 + 2 -->
 <g>
   <title>Generative AI and Software Developers</title>
-  <circle cx="1660" cy="330" r="10.5" fill="#fff"/>
-  <path d="M1660 319.5 A10.5 10.5 0 0 0 1660 340.5" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
-  <path d="M1660 340.5 A10.5 10.5 0 0 0 1660 319.5" fill="none" stroke="#43689f" stroke-width="2.6"/>
-  <text x="1660" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">WP16</text>
-  <text x="1660" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">GenAI &amp; Software</text>
-  <text x="1660" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Developers</text>
+  <circle cx="1664" cy="330" r="10.5" fill="#fff"/>
+  <path d="M1664 319.5 A10.5 10.5 0 0 0 1664 340.5" fill="none" stroke="#6f5f3e" stroke-width="2.6"/>
+  <path d="M1664 340.5 A10.5 10.5 0 0 0 1664 319.5" fill="none" stroke="#43689f" stroke-width="2.6"/>
+  <text x="1664" y="360" text-anchor="middle" class="pid" fill="url(#splitIEText)">WP16</text>
+  <text x="1664" y="378" text-anchor="middle" class="plabel" fill="url(#splitIEText)">GenAI &amp; Software</text>
+  <text x="1664" y="396" text-anchor="middle" class="plabel" fill="url(#splitIEText)">Developers</text>
 </g>
-
+ 
 <!-- Institutional nodes: Stream 3 -->
 <g>
   <title>Information Systems Research — GDPR and Regulatory Decoupling</title>
-  <circle cx="1040" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
-  <text x="1040" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP5 · ISR</text>
-  <text x="1040" y="530" text-anchor="middle" class="plabel">GDPR &amp; Regulatory</text>
-  <text x="1040" y="548" text-anchor="middle" class="plabel">Decoupling</text>
+  <circle cx="1082" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1082" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP5 · ISR</text>
+  <text x="1082" y="530" text-anchor="middle" class="plabel">GDPR &amp; Regulatory</text>
+  <text x="1082" y="548" text-anchor="middle" class="plabel">Decoupling</text>
 </g>
-
+ 
 <g>
   <title>Information Systems Journal — Risk Work in AI Regulation</title>
-  <circle cx="1140" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
-  <text x="1140" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP6 · ISJ</text>
-  <text x="1140" y="618" text-anchor="middle" class="plabel">Risk Work in AI Regulation</text>
+  <circle cx="1176" cy="570" r="10" fill="url(#halfInst)" stroke="#3f7d6e" stroke-width="2.4"/>
+  <text x="1176" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP6 · ISJ</text>
+  <text x="1176" y="618" text-anchor="middle" class="plabel">Risk Work in AI Regulation</text>
 </g>
-
+ 
 <g>
   <title>Digital Currencies and State Capitalism</title>
-  <circle cx="1260" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1260" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP7</text>
-  <text x="1260" y="530" text-anchor="middle" class="plabel">Digital Currencies &amp;</text>
-  <text x="1260" y="548" text-anchor="middle" class="plabel">State Capitalism</text>
+  <circle cx="1288" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1288" y="512" text-anchor="middle" class="pid" fill="#3f7d6e">WP7</text>
+  <text x="1288" y="530" text-anchor="middle" class="plabel">Digital Currencies &amp;</text>
+  <text x="1288" y="548" text-anchor="middle" class="plabel">State Capitalism</text>
 </g>
-
+ 
 <g>
   <title>Digital Technologies and Issue Fields</title>
-  <circle cx="1380" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1380" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP9</text>
-  <text x="1380" y="618" text-anchor="middle" class="plabel">Digital Technologies &amp; Issue Fields</text>
+  <circle cx="1401" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1401" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP9</text>
+  <text x="1401" y="618" text-anchor="middle" class="plabel">Digital Technologies &amp; Issue Fields</text>
 </g>
-
+ 
 <g>
   <title>Canadian Open Banking</title>
-  <circle cx="1510" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1510" y="530" text-anchor="middle" class="pid" fill="#3f7d6e">WP12</text>
-  <text x="1510" y="548" text-anchor="middle" class="plabel">Canadian Open Banking</text>
+  <circle cx="1523" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1523" y="530" text-anchor="middle" class="pid" fill="#3f7d6e">WP12</text>
+  <text x="1523" y="548" text-anchor="middle" class="plabel">Canadian Open Banking</text>
 </g>
-
+ 
 <g>
   <title>Digital Rights Activism</title>
-  <circle cx="1640" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
-  <text x="1640" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP15</text>
-  <text x="1640" y="618" text-anchor="middle" class="plabel">Digital Rights Activism</text>
+  <circle cx="1645" cy="570" r="10" fill="#fff" stroke="#3f7d6e" stroke-width="2.3"/>
+  <text x="1645" y="600" text-anchor="middle" class="pid" fill="#3f7d6e">WP15</text>
+  <text x="1645" y="618" text-anchor="middle" class="plabel">Digital Rights Activism</text>
 </g>
-
+ 
 <!-- Computational nodes: Stream 4 -->
 <g>
   <title>Configurational Meta-Theorizing</title>
-  <circle cx="1080" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1080" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP11</text>
-  <text x="1080" y="778" text-anchor="middle" class="plabel">Configurational Meta-Theorizing</text>
+  <circle cx="1119" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1119" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP11</text>
+  <text x="1119" y="778" text-anchor="middle" class="plabel">Configurational Meta-Theorizing</text>
 </g>
-
+ 
 <g>
   <title>Surfacing Theory from Text</title>
-  <circle cx="1350" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1350" y="690" text-anchor="middle" class="pid" fill="#7a67a6">WP13</text>
-  <text x="1350" y="708" text-anchor="middle" class="plabel">Surfacing Theory from Text</text>
+  <circle cx="1373" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1373" y="690" text-anchor="middle" class="pid" fill="#7a67a6">WP13</text>
+  <text x="1373" y="708" text-anchor="middle" class="plabel">Surfacing Theory from Text</text>
 </g>
-
+ 
 <g>
   <title>Computational Tools and Epistemic Communities</title>
-  <circle cx="1630" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
-  <text x="1630" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP14</text>
-  <text x="1630" y="778" text-anchor="middle" class="plabel">Computational Tools &amp;</text>
-  <text x="1630" y="796" text-anchor="middle" class="plabel">Epistemic Communities</text>
+  <circle cx="1636" cy="730" r="10" fill="#fff" stroke="#7a67a6" stroke-width="2.3"/>
+  <text x="1636" y="760" text-anchor="middle" class="pid" fill="#7a67a6">WP14</text>
+  <text x="1636" y="778" text-anchor="middle" class="plabel">Computational Tools &amp;</text>
+  <text x="1636" y="796" text-anchor="middle" class="plabel">Epistemic Communities</text>
 </g>
-
+ 
 <!-- Legend -->
 <g transform="translate(190,852)">
   <circle cx="0" cy="0" r="6" fill="#444"/>
   <text x="14" y="4" class="legend">published</text>
-
-  <circle cx="96" cy="0" r="6" fill="#fff" stroke="#666" stroke-width="1.5"/>
-  <circle cx="96" cy="0" r="2.4" fill="#666"/>
-  <text x="110" y="4" class="legend">provisionally accepted</text>
-
-  <circle cx="280" cy="0" r="6" fill="url(#halfOrg)" stroke="#666" stroke-width="1.3"/>
-  <text x="294" y="4" class="legend">under review / R&amp;R</text>
-
-  <circle cx="452" cy="0" r="6" fill="#fff" stroke="#666" stroke-width="1.3"/>
-  <text x="466" y="4" class="legend">in progress</text>
+ 
+  <circle cx="96" cy="0" r="6" fill="url(#halfOrg)" stroke="#666" stroke-width="1.3"/>
+  <text x="110" y="4" class="legend">under review / R&amp;R</text>
+ 
+  <circle cx="268" cy="0" r="6" fill="#fff" stroke="#666" stroke-width="1.3"/>
+  <text x="282" y="4" class="legend">in progress</text>
 </g>
 </svg>
       </div>
     </div>
-
+ 
     <!-- PAPERS -->
     <div class="papers-panel">
-
+ 
+      <!-- 8 OrgSci -->
+      <div class="paper-ribbon" id="paper-8">
+        <div class="ribbon-header" onclick="togglePaper(8)">
+          <div class="paper-num-badge" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">8</div>
+          <div class="ribbon-journal" style="background:linear-gradient(90deg,#6f5f3e 0 50%,#43689f 50% 100%);">OrgSci 2026</div>
+          <div class="ribbon-title">When Data Scientists Meet Domain Experts: Artificial Intelligence, Epistemic Conflict, and Knowledge Transformation</div>
+          <div class="ribbon-themes">
+            <span class="dot" title="Stream 1" aria-label="Stream 1" style="background:#6f5f3e;width:10px;height:10px;"></span>
+            <span class="dot" title="Stream 2" aria-label="Stream 2" style="background:#43689f;width:10px;height:10px;"></span>
+          </div>
+          <div class="ribbon-chevron" id="chev-8">▼</div>
+        </div>
+        <div class="ribbon-body" id="body-8">
+          <div class="pub-img-wrap">
+            <img src="https://raw.githubusercontent.com/mayurpjoshi/mayurpjoshi.github.io/main/OrgSci%202026.png" alt="Organization Science 2026">
+          </div>
+          <div class="pub-details">
+            <div class="pub-journal-label">Organization Science (2026)</div>
+            <h3>When Data Scientists Meet Domain Experts: Artificial Intelligence, Epistemic Conflict, and Knowledge Transformation</h3>
+            <p class="pub-authors">Joshi, M., Su, N., &amp; Zbaracki, M.</p>
+            <p class="pub-abstract">Predictive AI models developed by data scientists promise to transform organizational knowledge, yet in practice the predictions remain inscrutable to domain experts. Existing explanations situate the problems in the opacity of the AI tools, failed adoption, or jurisdictional conflict, but offer limited insight into how to make the knowledge accessible. Here we show how the problem emerges from the competing epistemic stances of data scientists and domain experts, which create conflict over how to produce and evaluate knowledge. We then ask how data scientists and domain experts address that conflict so that their work with AI satisfies each group's standards for producing and evaluating knowledge. Drawing on an 18-month inductive study of three large Indian banks, we show that the data scientists produce new knowledge, but domain experts hold the power to decide whether it is deployed. Our findings distinguish between epistemic and jurisdictional conflict. We show that data scientists first try to address the epistemic conflict directly through assimilative practices that follow one epistemic stance or the other. When these practices fail to transform knowledge, data scientists learn to address the conflict indirectly through four bridging practices. These practices help the domain experts transform knowledge by embedding the data scientists' predictions in the boundary objects and practices that the domain experts already use. Our findings reveal how power based on expertise rather than jurisdictional control can make possible the coproduction of knowledge.</p>
+            <a class="pub-link" href="https://doi.org/10.1287/orsc.2023.17369" target="_blank">Read Article</a>
+          </div>
+        </div>
+      </div>
+ 
       <!-- 7 MISQ -->
       <div class="paper-ribbon" id="paper-7">
         <div class="ribbon-header" onclick="togglePaper(7)">
@@ -1726,7 +1748,7 @@
           </div>
         </div>
       </div>
-
+ 
       <!-- 6 JMS -->
       <div class="paper-ribbon" id="paper-6">
         <div class="ribbon-header" onclick="togglePaper(6)">
@@ -1752,7 +1774,7 @@
           </div>
         </div>
       </div>
-
+ 
           <!-- 5 RSO -->
       <div class="paper-ribbon" id="paper-5">
         <div class="ribbon-header" onclick="togglePaper(5)">
@@ -1802,9 +1824,9 @@
           </div>
         </div>
       </div>
-
-    
-
+ 
+ 
+ 
       <!-- 3 JAIS -->
       <div class="paper-ribbon" id="paper-3">
         <div class="ribbon-header" onclick="togglePaper(3)">
@@ -1829,7 +1851,7 @@
           </div>
         </div>
       </div>
-
+ 
       <!-- 2 CAMBRIDGE -->
       <div class="paper-ribbon" id="paper-2">
         <div class="ribbon-header" onclick="togglePaper(2)">
@@ -1854,7 +1876,7 @@
           </div>
         </div>
       </div>
-
+ 
       <!-- 1 MIT SMR -->
       <div class="paper-ribbon" id="paper-1">
         <div class="ribbon-header" onclick="togglePaper(1)">
@@ -1884,10 +1906,10 @@
           </div>
         </div>
       </div>
-
+ 
     </div>
   </div>
-
+ 
   <script>
     function togglePaper(n) {
       const body = document.getElementById('body-' + n);
@@ -1896,32 +1918,32 @@
       body.classList.toggle('open', !isOpen);
       chev.classList.toggle('open', !isOpen);
     }
-
+ 
     function highlightPaper(n) {
       document.querySelectorAll('#research .paper-ribbon').forEach(r => r.classList.remove('highlighted'));
       const ribbon = document.getElementById('paper-' + n);
       ribbon.classList.add('highlighted');
-
+ 
       const body = document.getElementById('body-' + n);
       const chev = document.getElementById('chev-' + n);
       body.classList.add('open');
       chev.classList.add('open');
-
+ 
       ribbon.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => ribbon.classList.remove('highlighted'), 2000);
     }
   </script>
-
-
+ 
+ 
   <!-- =========================
-       Awards 
+       Awards
   ========================== -->
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-top:3rem; align-items:start;">
-
+ 
   <!-- LEFT COLUMN -->
   <div>
     <h3 style="color:var(--primary); font-size:1.4rem; font-weight:700; margin-bottom:1.25rem;">Awards &amp; Honors</h3>
-
+ 
     <div style="display:grid; grid-template-columns:1fr; gap:1rem;">
       <div class="award-card">
         <div class="year">2026</div>
@@ -1953,49 +1975,49 @@
         <h4>Outstanding Associate Editor Award</h4>
         <p>CTO Division, Academy of Management</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2023</div>
         <h4>Best Associate Editor Award</h4>
         <p>European Conference on Information Systems</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2022</div>
         <h4>Outreach Practice Publication Award</h4>
         <p>Association for Information Systems</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2022</div>
         <h4>OMT Division Showcase Symposium</h4>
         <p>Academy of Management 2022</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2021</div>
         <h4>Top 10 Most Popular Articles</h4>
         <p>MIT Sloan Management Review</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2020</div>
         <h4>Best ERF Paper – Runner-up</h4>
         <p>AMCIS 2020</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2019</div>
         <h4>Best Student Paper</h4>
         <p>SIG DSA ICIS 2019</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2019</div>
         <h4>Honorable Mention</h4>
         <p>OT Division, ASAC 2019</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2018</div>
         <h4>Best Paper, Strategic IT Track</h4>
@@ -2013,11 +2035,11 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- RIGHT COLUMN -->
   <div>
     <h3 style="color:var(--primary); font-size:1.4rem; font-weight:700; margin-bottom:1.25rem;">Research Grants &amp; Funding</h3>
-
+ 
     <div style="display:grid; grid-template-columns:1fr; gap:1rem;">
       <div class="award-card">
         <div class="year">2026–2030</div>
@@ -2029,19 +2051,19 @@
         <h4>SSHRC Insight Development Grant, Principal Investigator, $71,770, Evolving Nature of Work in the Era of Artificial Intelligence</h4>
         <p>Social Sciences and Humanities Research Council</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2023–2025</div>
         <h4>Startup Fund, $40,000</h4>
         <p>Telfer School of Management</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2023</div>
         <h4>Seed Funding, $20,000, Domain Experts' AI Integration</h4>
         <p>University of Ottawa</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2022</div>
         <h4>Startup Grant, $2,528</h4>
@@ -2052,31 +2074,31 @@
         <h4>Research Support Fund, $8,295</h4>
         <p>Alliance Manchester Business School</p>
       </div>
-        
+ 
       <div class="award-card">
         <div class="year">2021</div>
         <h4>Manchester-Melbourne Research Fund, $8,050</h4>
         <p>FinTech Research</p>
       </div>
-
+ 
             <div class="award-card">
         <div class="year">2019–2020</div>
         <h4>Brock Scholarship, $30,000</h4>
         <p>Ivey Business School</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2019</div>
         <h4>Professor Al Mikalachki PhD Research Fund, $1,500</h4>
         <p>Ivey Business School</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2016–2020</div>
         <h4>Plan for Excellence Doctoral Fellowship, $110,800</h4>
         <p>Ivey Business School</p>
       </div>
-
+ 
       <div class="award-card">
         <div class="year">2016–2020</div>
         <h4>Dean's Scholarship, $20,000</h4>
@@ -2084,7 +2106,7 @@
       </div>
     </div>
   </div>
-
+ 
 </div>
   <!-- =========================
        ADD: Accordion JS
@@ -2094,13 +2116,13 @@
 (function () {
   function toggleBody(bodyEl, chevronEl) {
     if (!bodyEl) return;
-
+ 
     const isOpen =
       bodyEl.style.display === 'block' ||
       window.getComputedStyle(bodyEl).display === 'block';
-
+ 
     bodyEl.style.display = isOpen ? 'none' : 'block';
-
+ 
     if (chevronEl) {
       chevronEl.classList.toggle('rotated', !isOpen);
     }
@@ -2112,7 +2134,7 @@
     body.classList.toggle('ropen', !isOpen);
     chev.classList.toggle('ropen', !isOpen);
 }
-
+ 
 function highlightPaper(n) {
     document.querySelectorAll('.paper-ribbon').forEach(r => r.classList.remove('highlighted'));
     const ribbon = document.getElementById('paper-' + n);
@@ -2122,36 +2144,36 @@ function highlightPaper(n) {
     ribbon.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setTimeout(() => ribbon.classList.remove('highlighted'), 2000);
 }
-
+ 
   // Event delegation: one listener handles all accordion headers
   document.addEventListener('click', function (e) {
     const header = e.target.closest('#research .accordion-header');
     if (!header) return;
-
+ 
     const bodySelector = header.getAttribute('data-target');
     const chevSelector = header.getAttribute('data-chevron');
-
+ 
     const bodyEl = bodySelector ? document.querySelector(bodySelector) : null;
     const chevronEl = chevSelector ? document.querySelector(chevSelector) : null;
-
+ 
     toggleBody(bodyEl, chevronEl);
   });
-
+ 
   // Keyboard accessibility (Enter/Space)
   document.addEventListener('keydown', function (e) {
     const header = e.target.closest('#research .accordion-header');
     if (!header) return;
-
+ 
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       header.click();
     }
   });
 })();
-      
+ 
 </script>
 </div>
-
+ 
         <!-- Teaching Page -->
         <div id="teaching" class="page">
             <h2 class="section-title">Teaching</h2>
@@ -2163,9 +2185,9 @@ function highlightPaper(n) {
 <div class="teaching-card">
   <h3>Telfer School of Management, Canada</h3>
   <p class="details" style="margin-bottom:1rem;">
-    Taught across the undergrad (ADM 2372, ADM 4377, ADM 4396), MBA (MBA 5264), and DTI graduate program (DTI 7102). Scheduled to teach research-oriented master's course (MGT 5320) and Executive MBA (ADX 5103) this Fall 2026. ADM 4396, MGT 5320, and ADX 5103 were developed end-to-end; ADM 4377, MBA 5264, and DTI 7102 were re-architected. ADM 2372 is a multi-section core course delivered under a common outline. 
+    Taught across the undergrad (ADM 2372, ADM 4377, ADM 4396), MBA (MBA 5264), and DTI graduate program (DTI 7102). Scheduled to teach research-oriented master's course (MGT 5320) and Executive MBA (ADX 5103) this Fall 2026. ADM 4396, MGT 5320, and ADX 5103 were developed end-to-end; ADM 4377, MBA 5264, and DTI 7102 were re-architected. ADM 2372 is a multi-section core course delivered under a common outline.
   </p>
-
+ 
   <!-- ADM 2372 -->
   <div class="course-item">
     <h4>Course Instructor</h4>
@@ -2216,7 +2238,7 @@ function highlightPaper(n) {
       </a><br>
       <span style="color:var(--text-light);">Interactive after-class exercise for Class 2: interview each form of AI on the same decision.</span>
     </p>
-
+ 
       <p class="details" style="margin-top:0.85rem;">
   <strong>Student resource · </strong>
   <a href="teaching/ADX5103/ADX5103_Class4_Assemblage_Lab.html"
@@ -2246,10 +2268,10 @@ function highlightPaper(n) {
     </p>
   </div>
 </div>
-
+ 
                 <div class="teaching-card">
                     <h3>Alliance Manchester Business School, UK</h3>
-                    
+ 
                     <div class="course-item">
                         <h4>Module Developer & Course Instructor</h4>
                         <p class="details"><strong>Financial Data Analytics and AI in Finance</strong><br>
@@ -2257,7 +2279,7 @@ function highlightPaper(n) {
                         Winter 2022, 2023</p>
                         <span class="award">🏅 Teaching Excellence Award from the Dean (2021-22)</span>
                     </div>
-                    
+ 
                     <div class="course-item">
                         <h4>Course Instructor</h4>
                         <p class="details"><strong>Marketing Analytics</strong><br>
@@ -2266,10 +2288,10 @@ function highlightPaper(n) {
                         <span class="award">🏅 Teaching Excellence Award from the Dean (2022-23)</span>
                     </div>
                 </div>
-
+ 
                 <div class="teaching-card">
                     <h3>Ivey Business School, Canada</h3>
-                    
+ 
                     <div class="course-item">
                         <h4>Session / Course Instructor</h4>
                         <p class="details"><strong>Data Management</strong> (HBA and MSc)<br>
@@ -2277,7 +2299,7 @@ function highlightPaper(n) {
                         Session Taught: Database Architecture and Data Warehouses<br>
                         Supervising Professor: Derrick Neufeld</p>
                     </div>
-                    
+ 
                     <div class="course-item">
                         <h4>Session / Course Instructor</h4>
                         <p class="details"><strong>Project Management</strong> (HBA)<br>
@@ -2285,14 +2307,14 @@ function highlightPaper(n) {
                         Section Taught: Hands-on with Microsoft Project<br>
                         Supervising Professor: Ning Su</p>
                     </div>
-                    
+ 
                     <div class="course-item">
                         <h4>Course Instructor</h4>
                         <p class="details"><strong>Analytics Bootcamp</strong> (Pre-HBA)<br>
                         Fall 2019<br>
                         Duties: Teaching basics of analytics to incoming Ivey students</p>
                     </div>
-                    
+ 
                     <div class="course-item">
                         <h4>Teaching Assistant</h4>
                         <p class="details">
@@ -2302,7 +2324,7 @@ function highlightPaper(n) {
                         </p>
                     </div>
                 </div>
-
+ 
                 <div class="teaching-card">
                     <h3>Pedagogical Training</h3>
                     <div class="course-item">
@@ -2310,7 +2332,7 @@ function highlightPaper(n) {
                         Teaching Support Centre, Summer 2017</p>
                     </div>
                 </div>
-
+ 
                 <!-- Teaching Evaluations -->
 <div class="teaching-card">
   <h3>Teaching Evaluations</h3>
@@ -2472,11 +2494,11 @@ function highlightPaper(n) {
     Note: Instructor evaluation scores are on a 5-point scale; all values are mean scores averaged across sections and terms. Evaluations consistently rank above institutional averages. Instructor evaluation is measured as teaching excellence at Alliance Manchester Business School, while at Telfer School of Management, it is a combination of preparedness, delivery, and role as a teacher.
   </p>
 </div>
-
-  
+ 
+ 
             </div>
         </div>
-
+ 
         <!-- Service & Professional Development Page -->
         <!-- Service & Professional Development Page -->
 <div id="service" class="page">
@@ -2500,11 +2522,11 @@ function highlightPaper(n) {
       </p>
     </div>
    </div>
-
+ 
   <!-- Conference Organizing & Associate Editor Roles -->
   <div class="service-category">
     <h3>Conference Organizing</h3>
-
+ 
           <div class="service-item">
       <h4>Local Conferences</h4>
       <p>
@@ -2539,7 +2561,7 @@ function highlightPaper(n) {
                • Panelist — How can your organization become the new Google?, Digital Tech Summit, Copenhagen (2021)
       </p>
     </div>
-
+ 
     <div class="service-item">
       <h4>Minitrack Chair: Americas Conference on Information Systems (AMCIS)</h4>
       <p>
@@ -2549,7 +2571,7 @@ function highlightPaper(n) {
       </p>
     </div>
   </div>
-
+ 
   <!-- Academic Seminars -->
   <div class="service-category">
     <h3>Academic Seminars</h3>
@@ -2578,7 +2600,7 @@ function highlightPaper(n) {
       </p>
     </div>
   </div>
-
+ 
   <!-- Reviewing -->
   <div class="service-category">
     <h3>Ad-hoc Reviewing</h3>
@@ -2604,7 +2626,7 @@ function highlightPaper(n) {
       </p>
     </div>
   </div>
-
+ 
   <!-- Other Services -->
   <div class="service-category">
     <h3>Institutional and Community Services</h3>
@@ -2617,7 +2639,7 @@ function highlightPaper(n) {
   • BAIS Section Representative, Graduate Research Programs Committee (2024–2028)<br>
             • Panelist, Telfer Spring Open House (2025)<br>
   • Judge, Telfer Annual Thesis Competition (2024)<br>
-
+ 
       </p>
     </div>
       <div class="service-item">
@@ -2634,26 +2656,26 @@ function highlightPaper(n) {
     <!-- Blog Page -->
 <div id="blog" class="page">
   <h2 class="section-title">Blog</h2>
-
+ 
   <p style="color:var(--text-light); margin-bottom:1rem;">
     I occasionally write opinions informed by my research in order to engage with a wider audience. Here are some examples.
   </p>
-
+ 
   <div class="blog-grid">
-
+ 
      <!-- Example post 1 -->
     <article class="blog-card">
       <div class="meta">November 2025 • Management Studies Insights</div>
       <h3>
         <a href="https://managementstudiesinsights.com/rethinking-artificial-intelligence-from-an-entity-to-an-organizing-capability/" target="_blank" rel="noopener">
-          Rethinking Artificial Intelligence: From an Entity to an Organizing Capability  
+          Rethinking Artificial Intelligence: From an Entity to an Organizing Capability
         </a>
       </h3>
       <p>
         The current predominant narrative depicts artificial intelligence (AI) as an entity that resides in algorithms. In business practice as well as in academic discourses, we often talk about deploying, installing, or integrating AI into our existing systems, treating AI as an entity. In our new article, recently published in the Journal of Management Studies, we challenge this dominant view and argue that AI is an organizing capability that arises only when humans and algorithms work together in practice. This new definition changes how we think about AI in organizations, policymaking, and society: AI is not a tool we adopt, but a capability we collectively create. In this blog, we outline the implications of the capability view for managing AI.
       </p>
     </article>
-      
+ 
       <!-- Example post 1 -->
     <article class="blog-card">
       <div class="meta">August 2025 • Data Studies Bibliography</div>
@@ -2666,7 +2688,7 @@ function highlightPaper(n) {
         For a very long time, the students of technology and organizing have considered information as an integral lever in organizational decision-making. Yet, the assumption about information has been that information needs to be “processed” and not necessarily “produced.” In this post, I argue for an “information production” turn in examining and theorizing the role of technology in organizational decision-making.
       </p>
     </article>
-
+ 
     <!-- Example post 2 -->
     <article class="blog-card">
       <div class="meta">January 2023 • ASQ Blog</div>
@@ -2680,7 +2702,7 @@ function highlightPaper(n) {
 </p>
       </p>
     </article>
-
+ 
     <!-- Example post 3 -->
     <article class="blog-card">
       <div class="meta">July 2021 • AMBS Original Thinking Blog</div>
@@ -2696,7 +2718,7 @@ function highlightPaper(n) {
     understand data-generating processes to spot bias and design context-sensitive solutions.
       </p>
     </article>
-
+ 
           <!-- Example post 4 -->
     <article class="blog-card">
       <div class="meta">May 2020 • ASQ Blog</div>
@@ -2706,13 +2728,13 @@ function highlightPaper(n) {
         </a>
       </h3>
       <p>
-       Danielle Bovenberg and I interview Matt Beane to unpack how residents develop robotic surgery skills via 
-    “shadow learning”, that is, informal, workaround practices that emerge when formal training restricts 
-    hands-on experience. The discussion reframes risk as socially constructed and highlights how 
+       Danielle Bovenberg and I interview Matt Beane to unpack how residents develop robotic surgery skills via
+    “shadow learning”, that is, informal, workaround practices that emerge when formal training restricts
+    hands-on experience. The discussion reframes risk as socially constructed and highlights how
     complex, data-rich technologies complicate organizational learning and risk management.
       </p>
     </article>
-
+ 
           <!-- Example post 5 -->
     <article class="blog-card">
       <div class="meta">November 2019 • ASQ Blog</div>
@@ -2722,38 +2744,38 @@ function highlightPaper(n) {
         </a>
       </h3>
       <p>
-        Danielle Bovenberg and I interview Beth Bechky to discuss her study that shows how the prestige of DNA evidence spilled over into other 
-    forensic subfields, subtly reshaping how work was valued and judged. The ethnography 
-    illustrates how a high-status technology can reconfigure occupational culture, influence 
+        Danielle Bovenberg and I interview Beth Bechky to discuss her study that shows how the prestige of DNA evidence spilled over into other
+    forensic subfields, subtly reshaping how work was valued and judged. The ethnography
+    illustrates how a high-status technology can reconfigure occupational culture, influence
     evaluation criteria, and alter everyday practices across a lab.
       </p>
     </article>
   </div>
 </div>
     </main>
-
+ 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Mayur Joshi. All rights reserved.</p>
             </footer>
-
+ 
     <script>
         // Page navigation
         let currentPage = 'home';
-
+ 
         function showPage(pageName) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            
+ 
             const selectedPage = document.getElementById(pageName);
             if (selectedPage) {
                 selectedPage.classList.add('active');
                 currentPage = pageName;
             }
-            
+ 
             const navButtons = document.querySelectorAll('.nav-btn');
             navButtons.forEach(btn => btn.classList.remove('active'));
-            
+ 
             const activeBtn = Array.from(navButtons).find(btn => {
                 const btnText = btn.textContent.toLowerCase().replace(/ & /g, '');
                 const pageText = pageName.toLowerCase().replace(/ & /g, '');
@@ -2762,11 +2784,11 @@ function highlightPaper(n) {
             if (activeBtn) {
                 activeBtn.classList.add('active');
             }
-            
+ 
             closeMenu();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
+ 
         // Theme toggle
         function toggleTheme() {
             const html = document.documentElement;
@@ -2776,32 +2798,32 @@ function highlightPaper(n) {
             document.getElementById('themeIcon').textContent = newTheme === 'dark' ? '☀️' : '🌙';
             localStorage.setItem('theme', newTheme);
         }
-
+ 
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.getElementById('themeIcon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-
+ 
         // Mobile menu
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-
+ 
         function closeMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.remove('active');
         }
-
+ 
         // Browser navigation
         window.addEventListener('popstate', function(e) {
             if (e.state && e.state.page) {
                 showPage(e.state.page);
             }
         });
-
+ 
         window.addEventListener('load', function() {
             history.replaceState({ page: 'home' }, '', '');
-            
+ 
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const pageName = this.textContent.toLowerCase().split(' ')[0];
